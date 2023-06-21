@@ -6,15 +6,6 @@
             "id": "4c3f450b-0e7e-4880-9e3c-8fd2fe192437",
             "actions": [
                 {
-                    "name": "Vertical",
-                    "type": "Value",
-                    "id": "c2899cb9-164b-4ae9-90dc-8bf766f02ea9",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Lateral",
                     "type": "Value",
                     "id": "1f344bc3-d6e0-4f08-bea6-a50b43411b42",
@@ -34,39 +25,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "1D Axis",
-                    "id": "9eb17823-c8e9-421a-8b5d-21a67ae61430",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Vertical",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "35966c26-6e36-4a8f-b573-957df97512dd",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Vertical",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "d18fcd8e-a364-46f8-9c9e-a2377ca80421",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Vertical",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
                 {
                     "name": "1D Axis",
                     "id": "b4fe094f-0dc8-4ee1-9f6e-b5ddcac84a7a",

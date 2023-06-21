@@ -6,13 +6,13 @@ public class Player : MonoBehaviour
 {
     public static Transform playerTransform;
 
-    public float Speed;
-    public float AngularSpeed;
     public PlayerController Controller;
+
+    public MovementData MovementData;
 
     private void Awake()
     {
-        Controller = new(transform, Speed, AngularSpeed);
+        Controller = new(transform, MovementData);
         playerTransform = transform;
     }
 
@@ -25,3 +25,5 @@ public class Player : MonoBehaviour
     }
 
 }
+
+

@@ -9,35 +9,25 @@ public class PlayerController
     private Transform m_transform;
     private Transform m_cameraTransform;
 
-    private float m_speed;
-    private float m_angularSpeed;
+    private MovementData m_movementData;
 
-    private float m_forwardInput;
-    //private float m_verticalInput; not needed
-    private float m_lateralInput;
-
-    private float m_pitchInput;
-    private float m_yawInput;
-
-    public PlayerController(Transform transform, float speed, float angularSpeed)
+    public PlayerController(Transform transform, MovementData data)
     {
+        m_movementData = data;
         m_transform = transform;
-        m_speed = speed;
-        m_angularSpeed = angularSpeed;
+        m_cameraTransform = m_transform.GetComponentInChildren<Camera>().transform;
+
         m_inputs = new();
         m_inputs.Enable();
-        m_cameraTransform = m_transform.GetComponentInChildren<Camera>().transform;
     }
 
     public void EnableInput()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
 
-        //m_inputs.Traslation.Vertical.performed += OnPerformVertical;
         m_inputs.Traslation.Lateral.performed += OnPerformLateral;
         m_inputs.Traslation.Forward.performed += OnPerformForward;
 
-        //m_inputs.Traslation.Vertical.canceled += OnCancelVertical;
         m_inputs.Traslation.Lateral.canceled += OnCancelLateral;
         m_inputs.Traslation.Forward.canceled += OnCancelForward;
 
@@ -52,11 +42,9 @@ public class PlayerController
     {
         Cursor.lockState = CursorLockMode.None;
 
-        //m_inputs.Traslation.Vertical.performed -= OnPerformVertical;
         m_inputs.Traslation.Lateral.performed -= OnPerformLateral;
         m_inputs.Traslation.Forward.performed -= OnPerformForward;
 
-        //m_inputs.Traslation.Vertical.canceled -= OnCancelVertical;
         m_inputs.Traslation.Lateral.canceled -= OnCancelLateral;
         m_inputs.Traslation.Forward.canceled -= OnCancelForward;
 
@@ -70,7 +58,6 @@ public class PlayerController
     public void HandleMovement()
     {
         MoveForward();
-        //MoveVertical();
         MoveLateral();
         MoveYaw();
         MovePitch();
@@ -78,39 +65,63 @@ public class PlayerController
 
 
     #region Movements:
-    private void MoveForward() => m_transform.Translate(new Vector3(0f, 0f, m_forwardInput * m_speed * Time.deltaTime));
-    //private void MoveVertical() => m_transform.Translate(new Vector3(0f, m_verticalInput * m_speed * Time.deltaTime, 0f));
-    private void MoveLateral() => m_transform.Translate(new Vector3(m_lateralInput * m_speed * Time.deltaTime, 0f, 0f));
+    private void MoveForward() => m_transform.Translate(new Vector3(0f, 0f, m_movementData.ForwardInput * m_movementData.Speed * Time.deltaTime));
+    private void MoveLateral() => m_transform.Translate(new Vector3(m_movementData.LateralInput * m_movementData.Speed * Time.deltaTime, 0f, 0f));
 
-    private void MoveYaw() => m_transform.RotateAround(m_transform.position, m_transform.up, m_yawInput * m_angularSpeed * Time.deltaTime);
+    private void MoveYaw() => m_transform.Rotate(0F, m_movementData.YawInput * m_movementData.AngularSpeed * Time.deltaTime, 0f);
     private void MovePitch()
     {
-        if (m_cameraTransform.eulerAngles.x > 90) Debug.Log(m_cameraTransform.eulerAngles.x);
-        m_cameraTransform.RotateAround(m_cameraTransform.position, m_cameraTransform.right, m_pitchInput * m_angularSpeed * Time.deltaTime);
+        float angle = Vector3.SignedAngle(m_cameraTransform.forward, m_transform.forward, m_transform.right);
+        float pitchRotation = m_movementData.PitchInput * m_movementData.AngularSpeed * Time.deltaTime;
+
+        if (angle > m_movementData.PitchMaxDegrees)
+        {
+            if (m_movementData.PitchInput > 0) m_cameraTransform.Rotate(pitchRotation, 0f, 0f);
+        }
+        else if (angle < m_movementData.PitchMinDegrees)
+        {
+            if (m_movementData.PitchInput < 0) m_cameraTransform.Rotate(pitchRotation, 0f, 0f);
+        }
+        else m_cameraTransform.Rotate(pitchRotation, 0f, 0f);
     }
 
     #endregion
 
     #region OnPerform:
-    private void OnPerformForward(InputAction.CallbackContext context) => m_forwardInput = context.ReadValue<float>();
-    //private void OnPerformVertical(InputAction.CallbackContext context) => m_verticalInput = context.ReadValue<float>();
-    private void OnPerformLateral(InputAction.CallbackContext context) => m_lateralInput = context.ReadValue<float>();
+    private void OnPerformForward(InputAction.CallbackContext context) => m_movementData.ForwardInput = context.ReadValue<float>();
+    private void OnPerformLateral(InputAction.CallbackContext context) => m_movementData.LateralInput = context.ReadValue<float>();
 
-    private void OnPerformPitch(InputAction.CallbackContext context) => m_pitchInput = -context.ReadValue<float>();
-    private void OnPerformYaw(InputAction.CallbackContext context) => m_yawInput = context.ReadValue<float>();
+    private void OnPerformPitch(InputAction.CallbackContext context) => m_movementData.PitchInput = -context.ReadValue<float>();
+    private void OnPerformYaw(InputAction.CallbackContext context) => m_movementData.YawInput = context.ReadValue<float>();
     #endregion
-
-
 
     #region OnCancel:
-    private void OnCancelForward(InputAction.CallbackContext context) => m_forwardInput = 0f;
-    //private void OnCancelVertical(InputAction.CallbackContext context) => m_verticalInput = 0f;
-    private void OnCancelLateral(InputAction.CallbackContext context) => m_lateralInput = 0f;
+    private void OnCancelForward(InputAction.CallbackContext context) => m_movementData.ForwardInput = 0f;
+    private void OnCancelLateral(InputAction.CallbackContext context) => m_movementData.LateralInput = 0f;
 
-    private void OnCancelPitch(InputAction.CallbackContext context) => m_pitchInput = 0f;
-    private void OnCancelYaw(InputAction.CallbackContext context) => m_yawInput = 0f;
+    private void OnCancelPitch(InputAction.CallbackContext context) => m_movementData.PitchInput = 0f;
+    private void OnCancelYaw(InputAction.CallbackContext context) => m_movementData.YawInput = 0f;
     #endregion
-
-
-
 }
+
+[System.Serializable]
+public struct MovementData
+{
+    public float Speed;
+    public float AngularSpeed;
+    [Range(1f, 90f)]
+    public float PitchMaxDegrees;
+    [Range(-1f, -90f)]
+    public float PitchMinDegrees;
+
+    [HideInInspector]
+    public float ForwardInput;
+    [HideInInspector]
+    public float LateralInput;
+    [HideInInspector]
+    public float PitchInput;
+    [HideInInspector]
+    public float YawInput;
+}
+
+
