@@ -8,6 +8,8 @@ using Gabevlogd.Patterns;
 
 public class GO15WorldTile : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
 {
+
+
     private TextMeshPro m_tileNumber;
     private Grid<GO15Tile> m_grid;
 

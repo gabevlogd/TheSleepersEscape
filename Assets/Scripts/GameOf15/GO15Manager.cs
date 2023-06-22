@@ -33,9 +33,14 @@ public class GO15Manager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F)) CheckWinCondition();
     }
 
+    //private GO15Tile pippo(int x,int y)
+    //{
+    //    return new GO15Tile(x, y);
+    //}
+
     private void GeneratePuzzle()
     {
-        m_grid = new Grid<GO15Tile>(Width, Height, WorldTilePrefab.transform.lossyScale.x, transform.position, (int x, int y) => new GO15Tile(x, y));
+        m_grid = new Grid<GO15Tile>(Width, Height, WorldTilePrefab.transform.lossyScale.x, transform.position,(int x, int y) => new GO15Tile(x, y));
         m_worldTiles = new();
 
         for (int y = 0; y < m_grid.GetHeight(); y++)
