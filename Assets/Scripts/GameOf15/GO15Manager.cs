@@ -14,6 +14,7 @@ public class GO15Manager : MonoBehaviour
     //public float CellSize;
     //public Vector3 GridOrigin;
 
+
     private Grid<GO15Tile> m_grid;
     private List<GO15WorldTile> m_worldTiles;
 
@@ -30,7 +31,7 @@ public class GO15Manager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R)) ShuffleTile();
-        if (Input.GetKeyDown(KeyCode.F)) CheckWinCondition();
+        //if (Input.GetKeyDown(KeyCode.F)) CheckWinCondition();
     }
 
     private void GeneratePuzzle()
@@ -38,23 +39,28 @@ public class GO15Manager : MonoBehaviour
         m_grid = new Grid<GO15Tile>(Width, Height, WorldTilePrefab.transform.lossyScale.x, transform.position, (int x, int y) => new GO15Tile(x, y));
         m_worldTiles = new();
 
-        for (int y = 0; y < m_grid.GetHeight(); y++)
+        for (int y = m_grid.GetHeight() - 1; y >= 0; y--)
         {
             for (int x = 0; x < m_grid.GetWidth(); x++)
             {
                 GO15WorldTile worldTile = Instantiate(WorldTilePrefab, m_grid.GetWorldPosition(x, y), Quaternion.identity, transform);
                 worldTile.SetGridManager(m_grid);
+                GO15Tile tileData = m_grid.GetGridObject(x, y);
+                worldTile.InitTileData(ref tileData);
 
                 if (x == 3 && y == 0)
                 {
                     Destroy(worldTile.GetComponentInChildren<MeshRenderer>().gameObject);
                     Destroy(worldTile.GetComponentInChildren<TextMeshPro>().gameObject);
+                    m_worldTiles.Add(worldTile);
                     continue;
                 }
 
                 m_worldTiles.Add(worldTile);
             }
         }
+
+        //ShuffleTile();
     }
 
     public void ShuffleTile()
@@ -62,15 +68,29 @@ public class GO15Manager : MonoBehaviour
         List<int> numbersPool = new List<int>();
         for (int i = 1; i < Width * Height; i++) numbersPool.Add(i);
 
+        int[] numberConfiguration = new int[Width * Height];
+        int index = 0;
+
         foreach (GO15WorldTile worldTile in m_worldTiles)
         {
+            if (worldTile.GetComponentInChildren<MeshRenderer>() == null)
+            {
+                numberConfiguration[index] = 0;
+                index++;
+                continue;
+            }
+
             int newNumber = numbersPool[Random.Range(0, numbersPool.Count)]; //randomly picks a new number for the current tile 
             numbersPool.Remove(newNumber);
-            m_grid.GetGridObject(worldTile.transform.position).TileNumber = newNumber;
-            worldTile.SetTileNumber(newNumber); //update the world tile number (TextMeshPro);
-            //Debug.Log(newNumber);
+            worldTile.SetTileNumber(newNumber);
 
+            numberConfiguration[index] = newNumber;
+            index++;
+            //Debug.Log(newNumber);
         }
+
+        if (GO15Solver.IsSolvable(numberConfiguration, 4)) Debug.Log("solvable");
+        else ShuffleTile();
     }
 
     public static void SwapTiles()
@@ -80,27 +100,36 @@ public class GO15Manager : MonoBehaviour
         SelectedTiles[0].transform.position = SelectedTiles[1].transform.position;
         SelectedTiles[1].transform.position = positionA;
 
-        //swaps datas
-        m_instance.m_grid.GetGridObject(SelectedTiles[0].transform.position).TileNumber = SelectedTiles[0].GetTileNumber();
-        m_instance.m_grid.GetGridObject(SelectedTiles[1].transform.position).TileNumber = SelectedTiles[1].GetTileNumber();
+        //swaps in array
+        int index0 = m_instance.m_worldTiles.FindIndex(value => value == SelectedTiles[0]);
+        int index1 = m_instance.m_worldTiles.FindIndex(value => value == SelectedTiles[1]);
+        m_instance.m_worldTiles[index0] = SelectedTiles[1];
+        m_instance.m_worldTiles[index1] = SelectedTiles[0];
 
-        //CheckWinCondition();
+
+        CheckWinCondition();
     }
 
     private static void CheckWinCondition()
     {
-        for (int y = 0; y < m_instance.m_grid.GetHeight(); y++)
+        int nextNumber = m_instance.m_worldTiles[1].GetTileNumber();
+        foreach (GO15WorldTile worldTile in m_instance.m_worldTiles)
         {
-            for (int x = 0; x < m_instance.m_grid.GetWidth(); x++)
+            if (worldTile.GetTileNumber() == nextNumber - 1)
             {
-                Debug.Log(m_instance.m_grid.GetGridObject(x, y).TileNumber);
+                nextNumber++;
+            }
+            else
+            {
+                Debug.Log("not win");
+                break;
+            }
+
+            if (nextNumber == 16)
+            {
+                Debug.Log("win");
+                break;
             }
         }
-
-        //foreach (GO15WorldTile worldTile in m_instance.m_worldTiles)
-        //{
-
-        //    Debug.Log(m_instance.m_grid.GetGridObject(worldTile.transform.position).TileNumber);
-        //}
     }
 }

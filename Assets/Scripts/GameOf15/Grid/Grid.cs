@@ -21,6 +21,8 @@ public class Grid<TGridObject>
 
         m_gridArray = new TGridObject[width, height];
 
+        
+
         for (int x = 0; x < m_gridArray.GetLength(0); x++) 
         {
             for (int y = 0; y < m_gridArray.GetLength(1); y++) 
