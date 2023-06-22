@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Tile 
 {
-    private int m_tileNumber;
-    public int TileNumber { get => m_tileNumber; set => m_tileNumber = value; }
+    //private int m_tileNumber;
+    //public int TileNumber { get => m_tileNumber; set => m_tileNumber = value; }
 
     public int x;
     public int y;

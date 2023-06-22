@@ -39,7 +39,11 @@ public class Grid<TGridObject>
     /// <summary>
     /// Returns the corresponding world position of the passed coordinates
     /// </summary>
-    public Vector3 GetWorldPosition(int x, int y) => new Vector3(x, y, 0f) * m_cellSize + new Vector3(1f, 1f, 0f) * m_cellSize * .5f + m_originPosition; // changed x,0,z instead of x,y,0
+    public Vector3 GetWorldPosition(int x, int y)
+    {
+        //Debug.Log(new Vector3(x, y, 0f) * m_cellSize + new Vector3(1f, 1f, 0f) * m_cellSize * .5f + m_originPosition);
+        return new Vector3(x, y, 0f) * m_cellSize + new Vector3(1f, 1f, 0f) * m_cellSize * .5f + m_originPosition; // changed x,0,z instead of x,y,0
+    }
 
     /// <summary>
     /// Returns the corresponding grid coordinates of the passed world position
