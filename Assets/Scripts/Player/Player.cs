@@ -12,12 +12,11 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        Controller = new(transform, MovementData);
         playerTransform = transform;
+        Controller = new(transform, MovementData);
+        Controller.EnableInput();
     }
 
-    private void OnEnable() => Controller.EnableInput();
-    private void OnDisable() => Controller.DisableInput();
 
     private void Update()
     {
