@@ -8,11 +8,15 @@ public class GO15Manager : MonoBehaviour
     public static List<GO15WorldTile> SelectedTiles = new();
 
     public GO15WorldTile WorldTilePrefab;
+    public Transform WorldOrientation;
+    public float DefaultTimer;
+    [HideInInspector]
+    public bool GameTriggered;
 
-    public int Width;
-    public int Height;
-    //public float CellSize;
-    //public Vector3 GridOrigin;
+    private int m_width = 4;
+    private int m_height = 4;
+    private float m_timer;
+    private bool m_outOfTime;
 
 
     private Grid<GO15Tile> m_grid;
@@ -25,18 +29,18 @@ public class GO15Manager : MonoBehaviour
     private void Awake()
     {
         m_instance = this;
+        m_timer = 0f;
+        m_outOfTime = true;
         GeneratePuzzle();
+        ShuffleTile();
+        if (WorldOrientation != null) SetPositionAndRotation(WorldOrientation);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R)) ShuffleTile();
-        //if (Input.GetKeyDown(KeyCode.F)) CheckWinCondition();
-    }
+    private void Update() => UpdateTimer();
 
     private void GeneratePuzzle()
     {
-        m_grid = new Grid<GO15Tile>(Width, Height, WorldTilePrefab.transform.lossyScale.x, transform.position, (int x, int y) => new GO15Tile(x, y));
+        m_grid = new Grid<GO15Tile>(m_width, m_height, WorldTilePrefab.transform.lossyScale.x, transform.position, (int x, int y) => new GO15Tile(x, y));
         m_worldTiles = new();
 
         for (int y = m_grid.GetHeight() - 1; y >= 0; y--)
@@ -44,13 +48,16 @@ public class GO15Manager : MonoBehaviour
             for (int x = 0; x < m_grid.GetWidth(); x++)
             {
                 GO15WorldTile worldTile = Instantiate(WorldTilePrefab, m_grid.GetWorldPosition(x, y), Quaternion.identity, transform);
-                worldTile.SetGridManager(m_grid);
                 GO15Tile tileData = m_grid.GetGridObject(x, y);
+
+                worldTile.SetGO15Manager(this);
+                worldTile.SetGridManager(ref m_grid);
                 worldTile.InitTileData(ref tileData);
 
                 if (x == 3 && y == 0)
                 {
-                    Destroy(worldTile.GetComponentInChildren<MeshRenderer>().gameObject);
+                    worldTile.EmptyTile = true;
+                    Destroy(worldTile.GetComponentInChildren<MeshRenderer>().gameObject); //makes the tile invissible
                     Destroy(worldTile.GetComponentInChildren<TextMeshPro>().gameObject);
                     m_worldTiles.Add(worldTile);
                     continue;
@@ -59,21 +66,20 @@ public class GO15Manager : MonoBehaviour
                 m_worldTiles.Add(worldTile);
             }
         }
-
-        //ShuffleTile();
     }
 
     public void ShuffleTile()
     {
         List<int> numbersPool = new List<int>();
-        for (int i = 1; i < Width * Height; i++) numbersPool.Add(i);
+        for (int i = 1; i < m_width * m_height; i++) numbersPool.Add(i);
 
-        int[] numberConfiguration = new int[Width * Height];
+        int[] numberConfiguration = new int[m_width * m_height];
         int index = 0;
 
         foreach (GO15WorldTile worldTile in m_worldTiles)
         {
-            if (worldTile.GetComponentInChildren<MeshRenderer>() == null)
+
+            if (worldTile.EmptyTile)
             {
                 numberConfiguration[index] = 0;
                 index++;
@@ -86,10 +92,9 @@ public class GO15Manager : MonoBehaviour
 
             numberConfiguration[index] = newNumber;
             index++;
-            //Debug.Log(newNumber);
         }
 
-        if (GO15Solver.IsSolvable(numberConfiguration, 4)) Debug.Log("solvable");
+        if (GO15Solver.IsSolvable(numberConfiguration, m_grid.GetWidth())) Debug.Log("solvable");
         else ShuffleTile();
     }
 
@@ -110,6 +115,7 @@ public class GO15Manager : MonoBehaviour
         CheckWinCondition();
     }
 
+
     private static void CheckWinCondition()
     {
         int nextNumber = m_instance.m_worldTiles[1].GetTileNumber();
@@ -118,18 +124,54 @@ public class GO15Manager : MonoBehaviour
             if (worldTile.GetTileNumber() == nextNumber - 1)
             {
                 nextNumber++;
+                if (nextNumber == 17)
+                {
+                    Debug.Log("win");
+                    break;
+                }
             }
             else
             {
                 Debug.Log("not win");
                 break;
             }
-
-            if (nextNumber == 16)
-            {
-                Debug.Log("win");
-                break;
-            }
         }
+    }
+
+    private void SetPositionAndRotation(Transform targetTransform)
+    {
+        transform.rotation = targetTransform.localRotation;
+        transform.position = targetTransform.localPosition;
+    }
+
+    private void UpdateTimer()
+    {
+        if (!m_outOfTime)
+        {
+            if (m_timer >= 0f) m_timer -= Time.deltaTime;
+            else EndGame();
+        }
+    }
+
+    /// <summary>
+    /// Start game event
+    /// </summary>
+    public void StartGame()
+    {
+        GameTriggered = true;
+        m_timer = DefaultTimer;
+        m_outOfTime = false;
+        //maybe other stuff to implement...
+    }
+
+    /// <summary>
+    /// End game event
+    /// </summary>
+    public void EndGame()
+    {
+        GameTriggered = false;
+        m_timer = 0;
+        m_outOfTime = true;
+        //maybe other stuff to implement...
     }
 }

@@ -1,11 +1,14 @@
 using System;
-using UnityEngine;
 
-//thanks chat gpt :)
 
+/// <summary>
+/// deals with verifying whether a 15 game configuration is solvable or not
+/// </summary>
 public class GO15Solver
 {
-    // Funzione per contare le inversioni
+    /// <summary>
+    /// Returns the number of inversions of the configuration
+    /// </summary
     public static int CountInversions(int[] tiles)
     {
         int inversions = 0;
@@ -15,7 +18,7 @@ public class GO15Solver
         {
             for (int j = i + 1; j < size; j++)
             {
-                // Se l'elemento corrente è maggiore dell'elemento successivo, incrementa il contatore di inversioni
+                // If the current element is greater than the next element, increment the flip counter
                 if (tiles[i] > tiles[j] && tiles[i] != 0 && tiles[j] != 0)
                 {
                     inversions++;
@@ -26,17 +29,21 @@ public class GO15Solver
         return inversions;
     }
 
-    // Funzione per verificare la risolvibilità della configurazione
+    /// <summary>
+    /// Checks if the configuration is solvable
+    /// </summary>
     public static bool IsSolvable(int[] tiles, int gridSize)
     {
         int inversions = CountInversions(tiles);
         int emptyRow = GetEmptyRow(tiles, gridSize);
 
-        // Se il numero totale di inversioni più il numero di righe in cui si trova la tessera vuota è pari, la configurazione è risolvibile
+        // If the total number of inverions plus the number of rows where the blank tile is located is even, the configuration is solvable
         return (inversions + emptyRow) % 2 == 0;
     }
 
-    // Funzione per ottenere la riga in cui si trova la tessera vuota
+    /// <summary>
+    /// Retruns the row of the empty tile
+    /// </summary>
     public static int GetEmptyRow(int[] tiles, int gridSize)
     {
         int emptyIndex = Array.IndexOf(tiles, 0);

@@ -1,47 +1,34 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
-using Gabevlogd.Patterns;
 
 public class GO15WorldTile : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
 {
+    [HideInInspector]
+    public bool EmptyTile;
 
     private GO15Tile m_data; 
     private TextMeshPro m_tileNumber;
     private Grid<GO15Tile> m_grid;
+    private GO15Manager m_go15Manager;
 
     private void Awake() => m_tileNumber = GetComponentInChildren<TextMeshPro>();
 
+    public void OnPointerDown(PointerEventData eventData) => StoreThisTile();
+
+    public void OnPointerEnter(PointerEventData eventData) => SwapWithLastSelectedTile();
 
 
-
-    public void SetGridManager(Grid<GO15Tile> g) => m_grid = g;
-
+    public void SetGridManager(ref Grid<GO15Tile> grid) => m_grid = grid;
+    public void SetGO15Manager(GO15Manager manager) => m_go15Manager = manager;
 
     public int GetTileNumber() => m_data.TileNumber;
-
-    //public void SetCoordinate(int x, int y)
-    //{
-    //    m_data.x = x;
-    //    m_data.y = y;
-    //}
-
-    //public void GetCoordinate(out int x, out int y)
-    //{
-    //    x = m_data.x;
-    //    y = m_data.y;
-    //}
-
 
     public void SetTileNumber(int value)
     {
         m_data.TileNumber = value;
         m_tileNumber.text = m_data.TileNumber.ToString();
     }
-
 
     public void InitTileData(ref GO15Tile data)
     {
@@ -51,14 +38,19 @@ public class GO15WorldTile : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
 
 
 
-    public void OnPointerDown(PointerEventData eventData)
+    private void StoreThisTile()
     {
-        StoreThisTile();
+        if (!m_go15Manager.GameTriggered) return;
+
+        if (GO15Manager.SelectedTiles.Count != 0) GO15Manager.SelectedTiles.Clear();
+        GO15Manager.SelectedTiles.Add(this);
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    private void SwapWithLastSelectedTile()
     {
-        if (!Input.GetKey(KeyCode.Mouse0) || GetComponentInChildren<MeshRenderer>() != null) return;
+        if (!m_go15Manager.GameTriggered) return;
+
+        if (!Input.GetKey(KeyCode.Mouse0) || !EmptyTile) return;
 
         if (GO15Manager.SelectedTiles.Count != 1)
         {
@@ -74,13 +66,6 @@ public class GO15WorldTile : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
             GO15Manager.SwapTiles();
         }
         else GO15Manager.SelectedTiles.Clear();
-
-    }
-
-    private void StoreThisTile()
-    {
-        if (GO15Manager.SelectedTiles.Count != 0) GO15Manager.SelectedTiles.Clear();
-        GO15Manager.SelectedTiles.Add(this);
     }
 
 }
