@@ -8,7 +8,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : Component
     public static T instance; 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if(instance == null)
         {
