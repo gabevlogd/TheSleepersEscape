@@ -6,21 +6,28 @@ public class Player : MonoBehaviour
 {
     public static Transform playerTransform;
 
-    public PlayerController Controller;
+    public PlayerController PlayerController;
+    public CameraController CameraController;
 
-    public MovementData MovementData;
+    public PlayerMovementData PlayerMovementData;
+    public CameraMovementData CameraMovementData;
 
     private void Awake()
     {
         playerTransform = transform;
-        Controller = new(transform, MovementData);
-        Controller.EnableInput();
+
+        CameraController = new(GetComponentInChildren<Camera>(), CameraMovementData);
+        CameraController.EnableController();
+
+        PlayerController = new(transform, PlayerMovementData);
+        PlayerController.EnableController();
     }
 
 
     private void Update()
     {
-        Controller.HandleMovement();
+        PlayerController.HandlePlayerMovement();
+        CameraController.HandleCameraMovement();
     }
 
 }
