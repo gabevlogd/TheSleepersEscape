@@ -27,7 +27,8 @@ public class GO15WorldTile : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
     public void SetTileNumber(int value)
     {
         m_data.TileNumber = value;
-        m_tileNumber.text = m_data.TileNumber.ToString();
+        if (value < 10) m_tileNumber.text = "0" + m_data.TileNumber.ToString();
+        else m_tileNumber.text = m_data.TileNumber.ToString();
     }
 
     public void InitTileData(ref GO15Tile data)
@@ -40,7 +41,8 @@ public class GO15WorldTile : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
 
     private void StoreThisTile()
     {
-        if (!m_go15Manager.GameTriggered) return;
+        //Debug.Log("StoreThisTile");
+        //if (!m_go15Manager.GameTriggered) return;
 
         if (GO15Manager.SelectedTiles.Count != 0) GO15Manager.SelectedTiles.Clear();
         GO15Manager.SelectedTiles.Add(this);
@@ -48,7 +50,8 @@ public class GO15WorldTile : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
 
     private void SwapWithLastSelectedTile()
     {
-        if (!m_go15Manager.GameTriggered) return;
+        //Debug.Log("SwapWithLastSelectedTile");
+        //if (!m_go15Manager.GameTriggered) return;
 
         if (!Input.GetKey(KeyCode.Mouse0) || !EmptyTile) return;
 
@@ -60,7 +63,7 @@ public class GO15WorldTile : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
 
         float distance = Vector3.Distance(transform.position, GO15Manager.SelectedTiles[0].transform.position);
 
-        if (Mathf.Abs(distance - m_grid.GetCellSize()) <= 0.1f)
+        if (Mathf.Abs(distance - m_grid.GetCellSize()) <= m_grid.GetCellSize() / 10f)
         {
             GO15Manager.SelectedTiles.Add(this);
             GO15Manager.SwapTiles();

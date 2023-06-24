@@ -9,9 +9,9 @@ public class PlayerController
     private Transform m_transform;
     private Transform m_cameraTransform;
 
-    private MovementData m_movementData;
+    private PlayerMovementData m_movementData;
 
-    public PlayerController(Transform transform, MovementData data)
+    public PlayerController(Transform transform, PlayerMovementData data)
     {
         m_movementData = data;
         m_transform = transform;
@@ -21,8 +21,9 @@ public class PlayerController
         m_inputs.Enable();
     }
 
-    public void EnableInput()
+    public void EnableController()
     {
+        //Debug.Log("EnableController");
         Cursor.lockState = CursorLockMode.Locked;
 
         m_inputs.Traslation.Lateral.performed += OnPerformLateral;
@@ -38,8 +39,9 @@ public class PlayerController
         m_inputs.Rotation.Yaw.canceled += OnCancelYaw;
     }
 
-    public void DisableInput()
+    public void DisableController()
     {
+        //Debug.Log("DisableController");
         Cursor.lockState = CursorLockMode.None;
 
         m_inputs.Traslation.Lateral.performed -= OnPerformLateral;
@@ -53,9 +55,15 @@ public class PlayerController
 
         m_inputs.Rotation.Pitch.canceled -= OnCancelPitch;
         m_inputs.Rotation.Yaw.canceled -= OnCancelYaw;
+
+        m_movementData.ForwardInput = 0f;
+        m_movementData.LateralInput = 0f;
+        m_movementData.PitchInput = 0f;
+        m_movementData.YawInput = 0f;
+
     }
 
-    public void HandleMovement()
+    public void HandlePlayerMovement()
     {
         MoveForward();
         MoveLateral();
@@ -105,7 +113,7 @@ public class PlayerController
 }
 
 [System.Serializable]
-public struct MovementData
+public struct PlayerMovementData
 {
     public float Speed;
     public float AngularSpeed;

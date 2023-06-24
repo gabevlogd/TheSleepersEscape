@@ -162,6 +162,54 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Selections"",
+            ""id"": ""565b5584-9a8f-44e0-917a-66089bfdb676"",
+            ""actions"": [
+                {
+                    ""name"": ""ItemSelection"",
+                    ""type"": ""Value"",
+                    ""id"": ""d3ba7439-5d60-4646-b786-b266c318f0cd"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Unselect"",
+                    ""type"": ""Value"",
+                    ""id"": ""1bb9acb4-99bf-46cd-a6bb-8a12419e0c5b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""da50d5d7-9eab-4e66-aaa0-5511ffa59798"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ItemSelection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b10dbac9-dc16-4f5d-ad20-6d3c2b788f04"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Unselect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -174,6 +222,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Rotation = asset.FindActionMap("Rotation", throwIfNotFound: true);
         m_Rotation_Pitch = m_Rotation.FindAction("Pitch", throwIfNotFound: true);
         m_Rotation_Yaw = m_Rotation.FindAction("Yaw", throwIfNotFound: true);
+        // Selections
+        m_Selections = asset.FindActionMap("Selections", throwIfNotFound: true);
+        m_Selections_ItemSelection = m_Selections.FindAction("ItemSelection", throwIfNotFound: true);
+        m_Selections_Unselect = m_Selections.FindAction("Unselect", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -339,6 +391,60 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public RotationActions @Rotation => new RotationActions(this);
+
+    // Selections
+    private readonly InputActionMap m_Selections;
+    private List<ISelectionsActions> m_SelectionsActionsCallbackInterfaces = new List<ISelectionsActions>();
+    private readonly InputAction m_Selections_ItemSelection;
+    private readonly InputAction m_Selections_Unselect;
+    public struct SelectionsActions
+    {
+        private @PlayerInput m_Wrapper;
+        public SelectionsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ItemSelection => m_Wrapper.m_Selections_ItemSelection;
+        public InputAction @Unselect => m_Wrapper.m_Selections_Unselect;
+        public InputActionMap Get() { return m_Wrapper.m_Selections; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(SelectionsActions set) { return set.Get(); }
+        public void AddCallbacks(ISelectionsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_SelectionsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_SelectionsActionsCallbackInterfaces.Add(instance);
+            @ItemSelection.started += instance.OnItemSelection;
+            @ItemSelection.performed += instance.OnItemSelection;
+            @ItemSelection.canceled += instance.OnItemSelection;
+            @Unselect.started += instance.OnUnselect;
+            @Unselect.performed += instance.OnUnselect;
+            @Unselect.canceled += instance.OnUnselect;
+        }
+
+        private void UnregisterCallbacks(ISelectionsActions instance)
+        {
+            @ItemSelection.started -= instance.OnItemSelection;
+            @ItemSelection.performed -= instance.OnItemSelection;
+            @ItemSelection.canceled -= instance.OnItemSelection;
+            @Unselect.started -= instance.OnUnselect;
+            @Unselect.performed -= instance.OnUnselect;
+            @Unselect.canceled -= instance.OnUnselect;
+        }
+
+        public void RemoveCallbacks(ISelectionsActions instance)
+        {
+            if (m_Wrapper.m_SelectionsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ISelectionsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_SelectionsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_SelectionsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public SelectionsActions @Selections => new SelectionsActions(this);
     public interface ITraslationActions
     {
         void OnLateral(InputAction.CallbackContext context);
@@ -348,5 +454,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     {
         void OnPitch(InputAction.CallbackContext context);
         void OnYaw(InputAction.CallbackContext context);
+    }
+    public interface ISelectionsActions
+    {
+        void OnItemSelection(InputAction.CallbackContext context);
+        void OnUnselect(InputAction.CallbackContext context);
     }
 }
