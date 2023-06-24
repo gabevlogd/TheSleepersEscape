@@ -18,7 +18,7 @@ public class MemoryWorldTile : MonoBehaviour, IPointerDownHandler
 
     private void Awake()
     {
-        m_memoryManager = GameManager.instance.memoryManager;
+        m_memoryManager = GameManager.instance.MemoryManager;
         m_memoryManager.CanChackTwoPair = true;
     }
 

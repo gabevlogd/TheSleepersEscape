@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    public MemoryManager memoryManager;
+    public MemoryManager MemoryManager;
     public EventManagerBase<Events> EventManager;
+    public Player Player;
 
 
 

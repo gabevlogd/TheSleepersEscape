@@ -16,7 +16,8 @@ public abstract class Singleton<T> : MonoBehaviour where T : Component
             {
                 instance = gameObject.AddComponent<T>();
             }
-        }else
+        }
+        else
         {
             Destroy(gameObject);
         }

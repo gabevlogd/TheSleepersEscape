@@ -51,7 +51,7 @@ public class CameraController
                 m_camera.transform.rotation = m_targetTransform.rotation;
 
                 this.EnableController();
-                if (m_camera.transform.position == Player.playerTransform.position) Player.playerTransform.GetComponent<Player>().PlayerController.EnableController(); //put into gamemanger
+                if (m_camera.transform.position == Player.playerTransform.position) GameManager.instance.Player.PlayerController.EnableController();
 
                 m_targetTransform = null;
             }
@@ -87,7 +87,7 @@ public class CameraController
             m_targetCollider = hitInfo.collider;
 
             m_targetCollider.enabled = false;
-            Player.playerTransform.GetComponent<Player>().PlayerController.DisableController(); //put into gamemanger
+            GameManager.instance.Player.PlayerController.DisableController(); //put into gamemanger
             this.DisableController();
             //GameManager.EventManager.TriggerEvent(Events.StartPuzzle);
         }
@@ -98,6 +98,7 @@ public class CameraController
     /// </summary>
     private void BackToPlayer(InputAction.CallbackContext context)
     {
+        if (m_camera.transform.position == Player.playerTransform.position) return;
         m_targetTransform = Player.playerTransform;
 
         if (m_targetCollider != null) m_targetCollider.enabled = true;
