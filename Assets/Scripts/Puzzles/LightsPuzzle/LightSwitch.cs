@@ -9,12 +9,8 @@ public class LightSwitch : MonoBehaviour
     [HideInInspector]
     public bool Triggered;
 
-    private Collider m_collider;
-
-    private void OnMouseDown()
-    {
-        TriggersSwitch();
-    }
+    private void OnMouseDown() => TriggersSwitch();
+   
 
     private void TriggersSwitch()
     {

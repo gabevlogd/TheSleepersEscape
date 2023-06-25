@@ -140,8 +140,8 @@ public class GO15Manager : MonoBehaviour
 
     private void SetPositionAndRotation(Transform targetTransform)
     {
-        transform.rotation = targetTransform.localRotation;
-        transform.position = targetTransform.localPosition;
+        transform.rotation = targetTransform.rotation;
+        transform.position = targetTransform.position;
     }
 
     private void UpdateTimer()

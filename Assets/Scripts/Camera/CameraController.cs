@@ -45,7 +45,7 @@ public class CameraController
             //Debug.Log("position " + (Vector3.Distance(m_camera.transform.position, m_targetTransform.position) <= 0.0001));
             //Debug.Log("rotation " + (Mathf.Abs(Quaternion.Dot(m_camera.transform.rotation, m_targetTransform.rotation) - 1f) <= 0.0001f));
 
-            if (Vector3.Distance(m_camera.transform.position, m_targetTransform.position) <= 0.0001 /*&& Mathf.Abs(Quaternion.Dot(m_camera.transform.rotation, m_targetTransform.rotation) - 1f) <= 0.0001f*/)
+            if (Vector3.Distance(m_camera.transform.position, m_targetTransform.position) <= 0.0001 && Mathf.Abs(Quaternion.Dot(m_camera.transform.rotation, m_targetTransform.rotation) - 1f) <= 0.0001f)
             {
                 m_camera.transform.position = m_targetTransform.position;
                 m_camera.transform.rotation = m_targetTransform.rotation;
@@ -64,7 +64,7 @@ public class CameraController
     private void MoveCamera(Transform target)
     {
         m_camera.transform.position = Vector3.MoveTowards(m_camera.transform.position, target.position, m_movementData.Speed * Time.deltaTime);
-        m_camera.transform.forward = Vector3.RotateTowards(m_camera.transform.forward, target.forward, m_movementData.AngularSpeed * Time.deltaTime, 0f);
+        m_camera.transform.rotation = Quaternion.RotateTowards(m_camera.transform.rotation, target.rotation, 100f * m_movementData.AngularSpeed * Time.deltaTime);
     }
 
     /// <summary>

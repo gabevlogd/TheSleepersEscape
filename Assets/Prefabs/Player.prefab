@@ -192,4 +192,4 @@ MonoBehaviour:
   CameraMovementData:
     Speed: 2
     AngularSpeed: 1
-    MaxInteractionDistance: 8
+    MaxInteractionDistance: 3

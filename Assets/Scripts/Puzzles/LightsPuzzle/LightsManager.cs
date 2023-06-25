@@ -13,6 +13,12 @@ public class LightsManager : MonoBehaviour
 
     public void CheckWinCondition()
     {
+       if (LightSwitches.Count != TargetPattern.Length)
+        {
+            Debug.Log("the length of Target Pattern need to match the number of switches, modify it in the Light Manager inspector");
+            return;
+        }
+
         for (int i = 0; i < LightSwitches.Count; i++)
         {
             if (LightSwitches[i].Triggered != TargetPattern[i])
