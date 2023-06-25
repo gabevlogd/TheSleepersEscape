@@ -7,12 +7,12 @@ using UnityEngine;
 public class State<TStateIDType>
 {
     public TStateIDType StateID;
-    protected StatesManager<TStateIDType> m_stateManager;
+    protected StatesMachine<TStateIDType> m_stateMachine;
 
-    public State(TStateIDType stateID, StatesManager<TStateIDType> stateManager = null)
+    public State(TStateIDType stateID, StatesMachine<TStateIDType> stateMachine = null)
     {
         StateID = stateID;
-        m_stateManager = stateManager;
+        m_stateMachine = stateMachine;
     }
 
     public virtual void OnEnter()

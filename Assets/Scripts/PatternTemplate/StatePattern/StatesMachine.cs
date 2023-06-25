@@ -4,13 +4,13 @@ using System.Collections.Generic;
 /// State manager to handle basic states
 /// </summary>
 /// <typeparam name="TStateIDType">The type of the state base ID</typeparam>
-public abstract class StatesManager<TStateIDType>
+public abstract class StatesMachine<TStateIDType>
 {
     public Dictionary<TStateIDType, State<TStateIDType>> AllStates;
     public State<TStateIDType> CurrentState;
     public State<TStateIDType> PreviousState;
 
-    public StatesManager(Dictionary<TStateIDType, State<TStateIDType>> allStates = null, State<TStateIDType> currentState = null, State<TStateIDType> previousState = null)
+    public StatesMachine(Dictionary<TStateIDType, State<TStateIDType>> allStates = null, State<TStateIDType> currentState = null, State<TStateIDType> previousState = null)
     {
         AllStates = allStates;
         CurrentState = currentState;

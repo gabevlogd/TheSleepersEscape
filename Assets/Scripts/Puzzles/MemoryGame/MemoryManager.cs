@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MemoryManager : MonoBehaviour
 {
+
+    public Transform WorldOrientation;
     public List<MemoryWorldTile> WordTilePrefabs = new List<MemoryWorldTile>();
 
     [HideInInspector] public List<MemoryWorldTile> SelectedTiles = new List<MemoryWorldTile>();
@@ -34,13 +36,10 @@ public class MemoryManager : MonoBehaviour
     private void Awake()
     {
         GeneratePuzzle();
-        
+        ShuffleTile();
+        if (WorldOrientation != null) SetPositionAndRotation(WorldOrientation);
     }
 
-    private void Start()
-    {
-        ShuffleTile();
-    }
 
     //private void Update()
     //{
@@ -94,21 +93,27 @@ public class MemoryManager : MonoBehaviour
     {
         List<Vector3> positions = new List<Vector3>();
 
-        for (int y = 0; y < m_grid.GetHeight(); y++)
-        {
-            for (int x = 0; x < m_grid.GetWidth(); x++)
-            {
-                Vector3 newPosition = m_grid.GetWorldPosition(x, y);
+        //for (int y = 0; y < m_grid.GetHeight(); y++)
+        //{
+        //    for (int x = 0; x < m_grid.GetWidth(); x++)
+        //    {
+        //        Vector3 newPosition = m_grid.GetWorldPosition(x, y);
 
-                positions.Add(newPosition);
-            }
+        //        positions.Add(newPosition);
+        //    }
+        //}
+
+        foreach(MemoryWorldTile worldTile in m_worldTiles)
+        {
+            Vector3 newPosition = worldTile.transform.localPosition;
+            positions.Add(newPosition);
         }
 
         foreach (MemoryWorldTile worldTile in m_worldTiles)
         {
             Vector3 newPosition = positions[Random.Range(0, positions.Count)];
 
-            worldTile.NewPosition(newPosition);
+            worldTile.NewLocalPosition(newPosition);
 
             worldTile.RotateCard(180);
 
@@ -116,6 +121,12 @@ public class MemoryManager : MonoBehaviour
 
         }
 
+    }
+
+    private void SetPositionAndRotation(Transform targetTransform)
+    {
+        transform.rotation = targetTransform.rotation;
+        transform.position = targetTransform.position;
     }
 
 

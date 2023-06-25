@@ -30,9 +30,11 @@ public class MemoryWorldTile : MonoBehaviour, IPointerDownHandler
 
     public void SetGridManager(Grid<MemoryTile> g) => m_grid = g;
 
-    public void NewPosition(Vector2 vector2) => transform.position = vector2;
+    //public void NewPosition(Vector2 vector2) => transform.position = vector2;
+    public void NewLocalPosition(Vector3 position) => transform.localPosition = position;
 
-    public void RotateCard(float rotatioValue) => transform.rotation = Quaternion.Euler(0, rotatioValue, 0);
+    //public void RotateCard(float rotatioValue) => transform.rotation = Quaternion.Euler(0, rotatioValue, 0);
+    public void RotateCard(float rotatioValue) => transform.Rotate(0f, rotatioValue, 0f, Space.Self);
 
 
     public void OnPointerDown(PointerEventData eventData)
@@ -44,8 +46,8 @@ public class MemoryWorldTile : MonoBehaviour, IPointerDownHandler
         if (m_memoryManager.CanChackTwoPair)
         {
             StoreThisTile();
-            if (m_memoryManager.SelectedTiles.Count == 1) m_memoryManager.SelectedTiles[0].RotateCard(0);
-            else m_memoryManager.SelectedTiles[1].RotateCard(0);
+            if (m_memoryManager.SelectedTiles.Count == 1) m_memoryManager.SelectedTiles[0].RotateCard(180);
+            else m_memoryManager.SelectedTiles[1].RotateCard(180);
 
             if (m_memoryManager.SelectedTiles.Count == 2)
             {

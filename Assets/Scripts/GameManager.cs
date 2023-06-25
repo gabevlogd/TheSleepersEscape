@@ -7,6 +7,7 @@ public class GameManager : Singleton<GameManager>
     public MemoryManager MemoryManager;
     public EventManagerBase<Enumerators.Events> EventManager;
     public Player Player;
+    public RoomManager RoomManager;
 
 
 
