@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     public MemoryManager MemoryManager;
-    public EventManagerBase<Events> EventManager;
+    public EventManagerBase<Enumerators.Events> EventManager;
     public Player Player;
 
 
@@ -17,7 +17,3 @@ public class GameManager : Singleton<GameManager>
 
 
 
-public enum Events
-{
-    
-}
