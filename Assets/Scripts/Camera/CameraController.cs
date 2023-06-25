@@ -7,15 +7,18 @@ using UnityEngine.InputSystem;
 public class CameraController 
 {
     private Transform m_targetTransform;
+    private Transform m_pov;
     private Collider m_targetCollider;
     private PlayerInput m_input;
     private Camera m_camera;
     private CameraMovementData m_movementData;
 
-    public CameraController(Camera camera, CameraMovementData data)
+    public CameraController(Camera camera, Transform pov, CameraMovementData data)
     {
         m_camera = camera;
         m_movementData = data;
+
+        m_pov = pov;
 
         m_input = new();
         m_input.Enable();
@@ -45,13 +48,13 @@ public class CameraController
             //Debug.Log("position " + (Vector3.Distance(m_camera.transform.position, m_targetTransform.position) <= 0.0001));
             //Debug.Log("rotation " + (Mathf.Abs(Quaternion.Dot(m_camera.transform.rotation, m_targetTransform.rotation) - 1f) <= 0.0001f));
 
-            if (Vector3.Distance(m_camera.transform.position, m_targetTransform.position) <= 0.0001 /*&& Mathf.Abs(Quaternion.Dot(m_camera.transform.rotation, m_targetTransform.rotation) - 1f) <= 0.0001f*/)
+            if (Vector3.Distance(m_camera.transform.position, m_targetTransform.position) <= 0.0001 && Mathf.Abs(Quaternion.Dot(m_camera.transform.rotation, m_targetTransform.rotation) - 1f) <= 0.0001f)
             {
                 m_camera.transform.position = m_targetTransform.position;
                 m_camera.transform.rotation = m_targetTransform.rotation;
 
                 this.EnableController();
-                if (m_camera.transform.position == Player.playerTransform.position) GameManager.instance.Player.PlayerController.EnableController();
+                if (m_camera.transform.position == m_pov.position) GameManager.instance.Player.PlayerController.EnableController();
 
                 m_targetTransform = null;
             }
@@ -64,7 +67,7 @@ public class CameraController
     private void MoveCamera(Transform target)
     {
         m_camera.transform.position = Vector3.MoveTowards(m_camera.transform.position, target.position, m_movementData.Speed * Time.deltaTime);
-        m_camera.transform.forward = Vector3.RotateTowards(m_camera.transform.forward, target.forward, m_movementData.AngularSpeed * Time.deltaTime, 0f);
+        m_camera.transform.rotation = Quaternion.RotateTowards(m_camera.transform.rotation, target.rotation, 100f * m_movementData.AngularSpeed * Time.deltaTime);
     }
 
     /// <summary>
@@ -72,7 +75,7 @@ public class CameraController
     /// </summary>
     private void LookForTarget(InputAction.CallbackContext context)
     {
-        if (m_camera.transform.position != Player.playerTransform.position) return;
+        if (m_camera.transform.position != m_pov.position) return;
         //Debug.Log("LookForTarget");
         int layerMask = 1 << 6; //puzzle trigger objects layer mask
         Vector3 pointedPosition = m_camera.ScreenToWorldPoint(new Vector3(m_camera.pixelWidth * 0.5f, m_camera.pixelHeight * 0.5f, 1f));
@@ -98,8 +101,8 @@ public class CameraController
     /// </summary>
     private void BackToPlayer(InputAction.CallbackContext context)
     {
-        if (m_camera.transform.position == Player.playerTransform.position) return;
-        m_targetTransform = Player.playerTransform;
+        if (m_camera.transform.position == m_pov.position) return;
+        m_targetTransform = m_pov;
 
         if (m_targetCollider != null) m_targetCollider.enabled = true;
         this.DisableController();
