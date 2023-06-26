@@ -6,7 +6,11 @@ public class LightsManager : MonoBehaviour
 {
     public List<LightSwitch> LightSwitches;
 
+    public static bool GameTriggered;
+
     public bool[] TargetPattern;
+
+    private void Awake() => GameTriggered = false;
 
     private void OnMouseDown() => CheckWinCondition();
 
@@ -35,8 +39,6 @@ public class LightsManager : MonoBehaviour
         }
         Debug.Log("win");
     }
-    
-
 
 }
 

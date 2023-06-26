@@ -10,5 +10,12 @@ public class RoomManager : MonoBehaviour
     private void Awake()
     {
         RoomStatesMachine = new();
+        RoomStatesMachine.CurrentState = RoomStatesMachine.AllStates[Enumerators.RoomState.LoopOne];
+        RoomStatesMachine.CurrentState.OnEnter();
+    }
+
+    private void Update()
+    {
+        RoomStatesMachine.CurrentState.OnUpdate();
     }
 }

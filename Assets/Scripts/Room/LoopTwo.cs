@@ -11,12 +11,14 @@ public class LoopTwo : LoopBase
     public override void OnEnter()
     {
         base.OnEnter();
-        GameManager.instance.RoomManager.Puzzles[0].SetActive(true);
+
+
+        GameManager.Instance.RoomManager.Puzzles[1].SetActive(true);
     }
 
     public override void OnExit()
     {
         base.OnExit();
-        GameManager.instance.RoomManager.Puzzles[0].SetActive(false);
+        GameManager.Instance.RoomManager.Puzzles[1].SetActive(false);
     }
 }

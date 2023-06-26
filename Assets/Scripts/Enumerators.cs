@@ -2,6 +2,9 @@ public static class Enumerators
 {
     public enum Events
     {
+        PuzzleCompleted,
+        StartPuzzle,
+        ResetPuzzle
 
     }
 

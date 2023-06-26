@@ -122,10 +122,10 @@ MonoBehaviour:
   SelectedTiles: []
   CanChackTwoPair: 0
   VelocityAfterTurnTheRotationTo0: 2
-  InitialScore: 0
+  InitialScore: 6
   Score: 0
-  IncreaseNumber: 0
-  GameTriggered: 1
+  IncreaseNumber: 2
+  GameTriggered: 0
 --- !u!1001 &5215512878784305390
 PrefabInstance:
   m_ObjectHideFlags: 0

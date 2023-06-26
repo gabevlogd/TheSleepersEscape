@@ -9,7 +9,11 @@ public class GameManager : Singleton<GameManager>
     public Player Player;
     public RoomManager RoomManager;
 
-
+    protected override void Awake()
+    {
+        base.Awake();
+        EventManager = new();
+    }
 
 
 

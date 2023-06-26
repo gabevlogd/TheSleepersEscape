@@ -35,7 +35,7 @@ public class EventManagerBase<TKeyEvent>
     /// </summary>
     /// <param name="eventName"></param>
     /// <param name="observer"></param>
-    public void UnRegistrer(TKeyEvent eventName, Action observer)
+    public void Unregistrer(TKeyEvent eventName, Action observer)
     {
         if (!ValidPreCondition(eventName, observer)) return;
 
@@ -59,6 +59,7 @@ public class EventManagerBase<TKeyEvent>
             foreach (Action notify in event_observer)
                 notify.Invoke();
 
+            Debug.Log("Event: " + eventName + " triggered");
         }
     }
 

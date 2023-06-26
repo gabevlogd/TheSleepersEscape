@@ -17,7 +17,7 @@ public class State<TStateIDType>
 
     public virtual void OnEnter()
     {
-        //Debug.Log("OnEnter " + StateID);
+        Debug.Log("OnEnter " + StateID);
 
     }
 

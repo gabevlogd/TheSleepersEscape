@@ -22,6 +22,9 @@ public class CameraController
 
         m_input = new();
         m_input.Enable();
+
+        GameManager.Instance.EventManager.Registrer(Enumerators.Events.PuzzleCompleted, BackToPlayer);
+        GameManager.Instance.EventManager.Registrer(Enumerators.Events.ResetPuzzle, BackToPlayer);
     }
 
 
@@ -54,7 +57,7 @@ public class CameraController
                 m_camera.transform.rotation = m_targetTransform.rotation;
 
                 this.EnableController();
-                if (m_camera.transform.position == m_pov.position) GameManager.instance.Player.PlayerController.EnableController();
+                if (m_camera.transform.position == m_pov.position) GameManager.Instance.Player.PlayerController.EnableController();
 
                 m_targetTransform = null;
             }
@@ -90,14 +93,15 @@ public class CameraController
             m_targetCollider = hitInfo.collider;
 
             m_targetCollider.enabled = false;
-            GameManager.instance.Player.PlayerController.DisableController(); //put into gamemanger
+            GameManager.Instance.Player.PlayerController.DisableController(); //put into gamemanger
             this.DisableController();
-            //GameManager.EventManager.TriggerEvent(Events.StartPuzzle);
+
+            GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.StartPuzzle);
         }
     }
 
     /// <summary>
-    /// Moves back the camera to the player POV
+    /// Moves back the camera to the player POV (only for debug, the player does not have the possibility to exits from puzzles)
     /// </summary>
     private void BackToPlayer(InputAction.CallbackContext context)
     {
@@ -106,7 +110,16 @@ public class CameraController
 
         if (m_targetCollider != null) m_targetCollider.enabled = true;
         this.DisableController();
-        //GameManager.EventManager.TriggerEvent(Events.ResetPuzzle);
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.ResetPuzzle);
+    }
+
+    public void BackToPlayer()
+    {
+        if (m_camera.transform.position == m_pov.position) return;
+        m_targetTransform = m_pov;
+
+        if (m_targetCollider != null) m_targetCollider.enabled = true;
+        this.DisableController();
     }
 
 
