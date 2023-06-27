@@ -210,6 +210,34 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""PlayerShoot"",
+            ""id"": ""84f01671-9477-4bf9-b16f-886675dd1690"",
+            ""actions"": [
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""bec6a1c7-de4f-4e72-9f0e-ce0e998ceb36"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""819661b7-093e-4d86-8b9f-195695ee933b"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -226,6 +254,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Selections = asset.FindActionMap("Selections", throwIfNotFound: true);
         m_Selections_ItemSelection = m_Selections.FindAction("ItemSelection", throwIfNotFound: true);
         m_Selections_Unselect = m_Selections.FindAction("Unselect", throwIfNotFound: true);
+        // PlayerShoot
+        m_PlayerShoot = asset.FindActionMap("PlayerShoot", throwIfNotFound: true);
+        m_PlayerShoot_Shoot = m_PlayerShoot.FindAction("Shoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -445,6 +476,52 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public SelectionsActions @Selections => new SelectionsActions(this);
+
+    // PlayerShoot
+    private readonly InputActionMap m_PlayerShoot;
+    private List<IPlayerShootActions> m_PlayerShootActionsCallbackInterfaces = new List<IPlayerShootActions>();
+    private readonly InputAction m_PlayerShoot_Shoot;
+    public struct PlayerShootActions
+    {
+        private @PlayerInput m_Wrapper;
+        public PlayerShootActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Shoot => m_Wrapper.m_PlayerShoot_Shoot;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerShoot; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerShootActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerShootActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerShootActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerShootActionsCallbackInterfaces.Add(instance);
+            @Shoot.started += instance.OnShoot;
+            @Shoot.performed += instance.OnShoot;
+            @Shoot.canceled += instance.OnShoot;
+        }
+
+        private void UnregisterCallbacks(IPlayerShootActions instance)
+        {
+            @Shoot.started -= instance.OnShoot;
+            @Shoot.performed -= instance.OnShoot;
+            @Shoot.canceled -= instance.OnShoot;
+        }
+
+        public void RemoveCallbacks(IPlayerShootActions instance)
+        {
+            if (m_Wrapper.m_PlayerShootActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPlayerShootActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerShootActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerShootActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PlayerShootActions @PlayerShoot => new PlayerShootActions(this);
     public interface ITraslationActions
     {
         void OnLateral(InputAction.CallbackContext context);
@@ -459,5 +536,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     {
         void OnItemSelection(InputAction.CallbackContext context);
         void OnUnselect(InputAction.CallbackContext context);
+    }
+    public interface IPlayerShootActions
+    {
+        void OnShoot(InputAction.CallbackContext context);
     }
 }

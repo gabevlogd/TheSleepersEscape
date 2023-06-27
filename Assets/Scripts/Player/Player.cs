@@ -11,9 +11,11 @@ public class Player : MonoBehaviour
 
     public PlayerController PlayerController;
     public CameraController CameraController;
+    //public PlayerInputHandler playerInput;
 
     public PlayerMovementData PlayerMovementData;
     public CameraMovementData CameraMovementData;
+
 
     private void Awake()
     {
@@ -24,6 +26,9 @@ public class Player : MonoBehaviour
 
         PlayerController = new(transform, PlayerMovementData);
         PlayerController.EnableController();
+
+        //playerInput = new();
+        //playerInput.EnableController();
     }
 
 
@@ -31,6 +36,7 @@ public class Player : MonoBehaviour
     {
         PlayerController.HandlePlayerMovement();
         CameraController.HandleCameraMovement();
+        
     }
 
 }
