@@ -108,16 +108,6 @@ public class MemoryManager : MonoBehaviour, IPuzzle
     {
         List<Vector3> positions = new List<Vector3>();
 
-        //for (int y = 0; y < m_grid.GetHeight(); y++)
-        //{
-        //    for (int x = 0; x < m_grid.GetWidth(); x++)
-        //    {
-        //        Vector3 newPosition = m_grid.GetWorldPosition(x, y);
-
-        //        positions.Add(newPosition);
-        //    }
-        //}
-
         foreach(MemoryWorldTile worldTile in m_worldTiles)
         {
             Vector3 newPosition = worldTile.transform.localPosition;
