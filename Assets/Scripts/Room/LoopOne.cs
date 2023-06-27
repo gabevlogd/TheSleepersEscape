@@ -10,7 +10,6 @@ public class LoopOne : LoopBase
     {
         base.OnEnter();
 
-
         // set active true darts
         GameManager.Instance.RoomManager.Puzzles[0].SetActive(true);
     }
@@ -22,4 +21,5 @@ public class LoopOne : LoopBase
         // set active false darts
         GameManager.Instance.RoomManager.Puzzles[0].SetActive(false);
     }
+
 }

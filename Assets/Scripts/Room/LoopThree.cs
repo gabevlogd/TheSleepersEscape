@@ -11,6 +11,8 @@ public class LoopThree : LoopBase
     public override void OnEnter()
     {
         base.OnEnter();
+        RoomManager.LoopCounter++;
+
         GameManager.Instance.RoomManager.Puzzles[2].SetActive(true);
 
         LightsManager.GameTriggered = true; //qui solo per il debug, va dopo aver messo l'ultima comobinazione nella porta
@@ -19,8 +21,11 @@ public class LoopThree : LoopBase
     public override void OnExit()
     {
         base.OnExit();
+
         GameManager.Instance.RoomManager.Puzzles[2].SetActive(false);
 
         LightsManager.GameTriggered = false; //qui solo per il debug, va dopo aver finito il gioco delle luci
     }
+
+    
 }

@@ -4,7 +4,8 @@ public static class Enumerators
     {
         PuzzleCompleted,
         StartPuzzle,
-        ResetPuzzle
+        ResetPuzzle,
+        NextLoop
 
     }
 
