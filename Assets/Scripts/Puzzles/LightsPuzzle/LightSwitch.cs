@@ -15,6 +15,7 @@ public class LightSwitch : MonoBehaviour
     private void TriggersSwitch()
     {
         if (!LightsManager.GameTriggered) return;
+        //if (switch animation is running) return;
 
         Triggered = !Triggered;
 

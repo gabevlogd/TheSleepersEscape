@@ -77,6 +77,8 @@ public class MemoryWorldTile : MonoBehaviour, IPointerDownHandler
 
         }
 
+        //test();
+
     }
 
     private void StoreThisTile()
