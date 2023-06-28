@@ -34,6 +34,7 @@ public class ExitPoint : MonoBehaviour
 
         RespawnPlayer();
         ChangeRoomState();
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.CloseDoor);
 
         yield return new WaitForSeconds(TimeBetweenFades);
 

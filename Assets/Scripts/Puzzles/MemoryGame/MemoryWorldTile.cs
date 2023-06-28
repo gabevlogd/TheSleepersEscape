@@ -7,7 +7,6 @@ using UnityEngine.EventSystems;
 
 public class MemoryWorldTile : MonoBehaviour, IPointerDownHandler
 {
-    
     private Grid<MemoryTile> m_grid;
 
     MemoryTile m_data;

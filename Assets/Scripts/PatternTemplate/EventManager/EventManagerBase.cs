@@ -56,10 +56,10 @@ public class EventManagerBase<TKeyEvent>
         {
             List<Action> event_observer = m_eventMap[eventName];
 
+            Debug.Log("Event: " + eventName + " triggered");
+
             foreach (Action notify in event_observer)
                 notify.Invoke();
-
-            Debug.Log("Event: " + eventName + " triggered");
         }
     }
 

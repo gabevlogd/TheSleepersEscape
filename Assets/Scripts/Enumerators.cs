@@ -5,7 +5,8 @@ public static class Enumerators
         PuzzleCompleted,
         StartPuzzle,
         ResetPuzzle,
-        NextLoop
+        OpenDoor,
+        CloseDoor
 
     }
 

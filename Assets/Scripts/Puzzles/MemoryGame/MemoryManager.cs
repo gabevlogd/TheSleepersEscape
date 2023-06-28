@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MemoryManager : MonoBehaviour, IPuzzle
 {
-
+    public Transform CameraTriggerer;
     public Transform WorldOrientation;
     public List<MemoryWorldTile> WordTilePrefabs = new List<MemoryWorldTile>();
 
@@ -179,6 +179,7 @@ public class MemoryManager : MonoBehaviour, IPuzzle
     public void EndGame()
     {
         GameTriggered = false;
+        CameraTriggerer.gameObject.SetActive(false);
     }
 
     public void ResetGame()

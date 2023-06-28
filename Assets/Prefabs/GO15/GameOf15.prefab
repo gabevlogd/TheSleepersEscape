@@ -109,9 +109,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e7983bbb452534281cd08cefc5c8f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CameraTriggerer: {fileID: 4830679462003987722}
   WorldTilePrefab: {fileID: 5779785357761973240, guid: e2b11226648edb746b7aca6264c9533f, type: 3}
   WorldOrientation: {fileID: 3805595289427052340}
-  DefaultTimer: 60
+  DefaultTimer: 240
   GameTriggered: 0
 --- !u!1001 &3805595289349014945
 PrefabInstance:

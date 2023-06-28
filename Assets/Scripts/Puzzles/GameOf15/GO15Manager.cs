@@ -7,6 +7,7 @@ public class GO15Manager : MonoBehaviour, IPuzzle
 {
     public static List<GO15WorldTile> SelectedTiles = new();
 
+    public Transform CameraTriggerer;
     public GO15WorldTile WorldTilePrefab;
     public Transform WorldOrientation;
     public float DefaultTimer;
@@ -189,6 +190,7 @@ public class GO15Manager : MonoBehaviour, IPuzzle
         GameTriggered = false;
         m_timer = 0;
         m_outOfTime = true;
+        CameraTriggerer.gameObject.SetActive(false);
         //maybe other stuff to implement...
     }
 
