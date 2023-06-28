@@ -606,38 +606,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2141740047ba3d44786ba6e4b4f2573b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2030319507 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5350551961368436480, guid: 6e29bc356f3a72e49b04d573d00e88cb, type: 3}
-  m_PrefabInstance: {fileID: 269270203}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2030319509 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5350551961368436483, guid: 6e29bc356f3a72e49b04d573d00e88cb, type: 3}
   m_PrefabInstance: {fileID: 269270203}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2030319510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2030319507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f4472d157123904195c49b517b42d17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Darts: {fileID: 45786530338744343, guid: 127e07a626c3b86439ecc199df95ceaf, type: 3}
-  DartsPosition: {fileID: 1829769875}
-  ViewPoint: {fileID: 473054876}
-  ViewfinderDistanceToThePlayer: 10
-  cam: {fileID: 1618734961}
-  totalThrows: 10
-  throwCooldown: 1
-  throwKey: 323
-  throwForce: 20
-  throwUpwardForce: 5
 --- !u!1001 &2997832627952512721
 PrefabInstance:
   m_ObjectHideFlags: 0
