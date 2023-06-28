@@ -25,7 +25,11 @@ public class ThrowingWeapon : MonoBehaviour
 
     bool readyToThrow;
 
+    public bool GameTriggered;
 
+    public int Score;
+
+    public int PointsForWin;
 
     private void Start()
     {
@@ -33,11 +37,9 @@ public class ThrowingWeapon : MonoBehaviour
         ViewPoint.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, ViewfinderDistanceToThePlayer));
     }
 
-  
-
     private void Update()
     {
-        if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrows > 0)
+        if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrows > 0 && GameTriggered)
         {
             Throw();
         }
@@ -80,5 +82,48 @@ public class ThrowingWeapon : MonoBehaviour
     {
         readyToThrow = true;
     }
+    
 
+    //public void SetScore(int value)
+    //{
+    //    Score += value;
+    //    CheckLoseCondition();
+    //    CheckWinCondition();
+    //}
+
+    private void CheckWinCondition()
+    {
+        if (Score == PointsForWin && totalThrows >= 0)
+        {
+            Debug.Log("win");
+            //GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.PuzzleCompleted);
+        } 
+    }
+
+    private void CheckLoseCondition()
+    {
+        if (Score < PointsForWin && totalThrows == 0)
+        {
+            //GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.ResetPuzzle);
+        }
+    }
+
+
+    public void StartGame()
+    {
+        GameTriggered = true;
+    }
+
+    public void EndGame()
+    {
+        GameTriggered = false;
+        //CameraTriggerer.gameObject.SetActive(false);
+    }
+
+    public void ResetGame()
+    {
+        GameTriggered = false;
+        Score = 0;
+
+    }
 }
