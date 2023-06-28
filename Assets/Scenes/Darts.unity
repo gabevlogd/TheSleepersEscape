@@ -191,8 +191,6 @@ GameObject:
   - component: {fileID: 473054877}
   - component: {fileID: 473054880}
   - component: {fileID: 473054879}
-  - component: {fileID: 473054878}
-  - component: {fileID: 473054881}
   m_Layer: 0
   m_Name: Viewfinder
   m_TagString: Untagged
@@ -215,19 +213,6 @@ Transform:
   m_Father: {fileID: 1618734961}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &473054878
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473054876}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &473054879
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -278,20 +263,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 473054876}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &473054881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473054876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61bfc27ff7e5dc944909aac63ae002e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ViewfinderDistanceToThePlayer: 10
-  Radius: 100
 --- !u!1 &977719696
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,6 +589,23 @@ Transform:
   m_Father: {fileID: 2030319509}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1949366918 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2329881384409709708, guid: 532151ca37b50664db8390a5a46c1554, type: 3}
+  m_PrefabInstance: {fileID: 2997832627952512721}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1949366923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949366918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2141740047ba3d44786ba6e4b4f2573b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2030319507 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5350551961368436480, guid: 6e29bc356f3a72e49b04d573d00e88cb, type: 3}
@@ -642,7 +630,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Darts: {fileID: 45786530338744343, guid: 127e07a626c3b86439ecc199df95ceaf, type: 3}
   DartsPosition: {fileID: 1829769875}
-  Viewfinder: {fileID: 473054877}
+  ViewPoint: {fileID: 473054876}
+  ViewfinderDistanceToThePlayer: 10
+  cam: {fileID: 1618734961}
+  totalThrows: 10
+  throwCooldown: 1
+  throwKey: 323
+  throwForce: 20
+  throwUpwardForce: 5
 --- !u!1001 &2997832627952512721
 PrefabInstance:
   m_ObjectHideFlags: 0
