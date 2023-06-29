@@ -66,58 +66,35 @@ public class Target : MonoBehaviour
     private void Start()
     {
         ReadyToThrow = true;
-        //ViewPoint.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, ViewfinderDistanceToThePlayer));
     }
 
     private void Update()
     {
-
-        m_viewfinderOut.transform.localPosition = new Vector3(m_mousePosition.x, m_mousePosition.y, m_viewfinderOut.transform.localPosition.z);
+        HandleViewfinderOut();
     }
 
 
-    bool test;
-    public float sensibility;
-
-    //private void HandleViewfinderOut()
-    //{
-
-    //    //if (test)
-    //    //{
-    //            m_viewfinderOut.transform.localPosition = m_mousePosition; /** Time.deltaTime * sensibility;*/
-    //    //    test = false;
-
-    //    //}
-
-    //}
+    private void HandleViewfinderOut()
+    {
+        if (m_gameTriggered)
+        {
+            m_viewfinderOut.transform.position = m_mousePosition;
+        }
+    }
 
 
     private void PerformMousePosition(InputAction.CallbackContext context)
     {
-        //Debug.Log(context.ReadValue<Vector2>());
-        Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         if (m_gameTriggered)
         {
-
-            //Vector2 mouseDelta = context.ReadValue<Vector2>();
-            //Vector3 translation = new Vector3(mouseDelta.x, mouseDelta.y, 0);
-            //m_viewfinderOut.transform.localPosition += translation;
-            //Debug.Log("test");
-            //Debug.Log(context.ReadValue<Vector2>());
             Vector2 mousePosition = context.ReadValue<Vector2>();
-            m_mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 0));
-            //test = true;
-            Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            //Debug.Log(mousePosition + " " + m_mousePosition);
-
+            m_mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Vector3.Distance(transform.position, Camera.main.transform.position) - 0.1f));
         }
-       
     }
 
     private void PerformThrow(InputAction.CallbackContext context)
     {
         if (ReadyToThrow && m_totalThrows > 0 && m_gameTriggered) Throw();
-        
     }
 
     private void Throw()
