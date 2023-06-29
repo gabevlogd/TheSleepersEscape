@@ -97,7 +97,9 @@ public class Target : MonoBehaviour
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
 
         Vector3 direction = m_viewfinderIn.transform.position - Camera.main.transform.position;
-        
+
+        projectile.transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+
         Vector3 forceToAdd = direction.normalized * m_throwForceForword + transform.up * m_throwUpwardForce;
         
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
