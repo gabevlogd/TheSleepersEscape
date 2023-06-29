@@ -627,13 +627,33 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7745645913833464697, guid: 532151ca37b50664db8390a5a46c1554, type: 3}
+      propertyPath: m_totalThrows
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7745645913833464697, guid: 532151ca37b50664db8390a5a46c1554, type: 3}
       propertyPath: m_centerRadius
-      value: 0.1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7745645913833464697, guid: 532151ca37b50664db8390a5a46c1554, type: 3}
       propertyPath: m_cameraTriggerer
       value: 
       objectReference: {fileID: 29388162}
+    - target: {fileID: 7745645913833464697, guid: 532151ca37b50664db8390a5a46c1554, type: 3}
+      propertyPath: m_throwUpwardForce
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7745645913833464697, guid: 532151ca37b50664db8390a5a46c1554, type: 3}
+      propertyPath: m_throwForceForword
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7745645913833464697, guid: 532151ca37b50664db8390a5a46c1554, type: 3}
+      propertyPath: m_viewfinderVelocity
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7745645913833464697, guid: 532151ca37b50664db8390a5a46c1554, type: 3}
+      propertyPath: m_viewfinderOutRadius
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 532151ca37b50664db8390a5a46c1554, type: 3}
 --- !u!1 &1745327594
@@ -688,7 +708,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 56bca0827d49e604abfafac4c0c02ffe, type: 2}
+  - {fileID: 2100000, guid: bb02a148304b6e74195406c2b8657265, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
