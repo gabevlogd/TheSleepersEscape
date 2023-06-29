@@ -4,33 +4,31 @@ using UnityEngine;
 
 public class Darts : MonoBehaviour
 {
-    private Rigidbody rb;
-    private bool targetHit;
-    
+    private Rigidbody m_rigidBody;
 
 
-    private void Start()
+    private void OnEnable()
     {
-        rb = GetComponent<Rigidbody>();
-        
+        m_rigidBody = GetComponent<Rigidbody>();
     }
+
 
     private void OnCollisionEnter(Collision collision)
     {
-        // make sure only to stick to the first target you hit
-        if (targetHit)
-            return;
-        else
-            targetHit = true;
-        if(collision.gameObject.TryGetComponent(out RightCenter rightCenter))
+        Target.ReadyToThrow = true;
+        m_rigidBody.isKinematic = true;
+
+        if (collision.gameObject.TryGetComponent(out Target target))
         {
-            
+           
+          
+            Debug.Log(collision.contacts[0].point);
+            if (target.BullEyeHitted(collision.contacts[0].point)) target.SetScore(1);
+            else target.SetScore(0);
+
 
         }
 
-        // make sure projectile sticks to surface
-        rb.isKinematic = true;
- 
     }
 
 
