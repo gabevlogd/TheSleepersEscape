@@ -201,11 +201,87 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b10dbac9-dc16-4f5d-ad20-6d3c2b788f04"",
-                    ""path"": ""<Keyboard>/escape"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Unselect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""75c53587-f867-41f1-b645-546b0dbc5c30"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Value"",
+                    ""id"": ""82829c2e-05ab-49be-b046-e9517ca46bc1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""c239f50e-f30c-496a-95fb-3ffb13f910bd"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Darts"",
+            ""id"": ""41bb5b3c-4af1-4f26-bcba-70a6252a2335"",
+            ""actions"": [
+                {
+                    ""name"": ""Throw"",
+                    ""type"": ""Value"",
+                    ""id"": ""5e8c669e-ebfc-4698-b0fe-d30dc8ec6fe9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MoveTarget"",
+                    ""type"": ""Value"",
+                    ""id"": ""9304bce8-f461-4637-9d85-30162f02bb5d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ed116b25-ed4a-4a71-b91c-b8f6fb66ffe6"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f38b1ed3-007a-4cd2-9b3c-900d2265c9e7"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveTarget"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -226,6 +302,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Selections = asset.FindActionMap("Selections", throwIfNotFound: true);
         m_Selections_ItemSelection = m_Selections.FindAction("ItemSelection", throwIfNotFound: true);
         m_Selections_Unselect = m_Selections.FindAction("Unselect", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
+        // Darts
+        m_Darts = asset.FindActionMap("Darts", throwIfNotFound: true);
+        m_Darts_Throw = m_Darts.FindAction("Throw", throwIfNotFound: true);
+        m_Darts_MoveTarget = m_Darts.FindAction("MoveTarget", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -445,6 +528,106 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public SelectionsActions @Selections => new SelectionsActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
+    private readonly InputAction m_UI_Pause;
+    public struct UIActions
+    {
+        private @PlayerInput m_Wrapper;
+        public UIActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pause => m_Wrapper.m_UI_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void AddCallbacks(IUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
+        }
+
+        private void UnregisterCallbacks(IUIActions instance)
+        {
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
+        }
+
+        public void RemoveCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public UIActions @UI => new UIActions(this);
+
+    // Darts
+    private readonly InputActionMap m_Darts;
+    private List<IDartsActions> m_DartsActionsCallbackInterfaces = new List<IDartsActions>();
+    private readonly InputAction m_Darts_Throw;
+    private readonly InputAction m_Darts_MoveTarget;
+    public struct DartsActions
+    {
+        private @PlayerInput m_Wrapper;
+        public DartsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Throw => m_Wrapper.m_Darts_Throw;
+        public InputAction @MoveTarget => m_Wrapper.m_Darts_MoveTarget;
+        public InputActionMap Get() { return m_Wrapper.m_Darts; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DartsActions set) { return set.Get(); }
+        public void AddCallbacks(IDartsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DartsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DartsActionsCallbackInterfaces.Add(instance);
+            @Throw.started += instance.OnThrow;
+            @Throw.performed += instance.OnThrow;
+            @Throw.canceled += instance.OnThrow;
+            @MoveTarget.started += instance.OnMoveTarget;
+            @MoveTarget.performed += instance.OnMoveTarget;
+            @MoveTarget.canceled += instance.OnMoveTarget;
+        }
+
+        private void UnregisterCallbacks(IDartsActions instance)
+        {
+            @Throw.started -= instance.OnThrow;
+            @Throw.performed -= instance.OnThrow;
+            @Throw.canceled -= instance.OnThrow;
+            @MoveTarget.started -= instance.OnMoveTarget;
+            @MoveTarget.performed -= instance.OnMoveTarget;
+            @MoveTarget.canceled -= instance.OnMoveTarget;
+        }
+
+        public void RemoveCallbacks(IDartsActions instance)
+        {
+            if (m_Wrapper.m_DartsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IDartsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DartsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DartsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public DartsActions @Darts => new DartsActions(this);
     public interface ITraslationActions
     {
         void OnLateral(InputAction.CallbackContext context);
@@ -459,5 +642,14 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     {
         void OnItemSelection(InputAction.CallbackContext context);
         void OnUnselect(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IDartsActions
+    {
+        void OnThrow(InputAction.CallbackContext context);
+        void OnMoveTarget(InputAction.CallbackContext context);
     }
 }

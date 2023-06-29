@@ -5,10 +5,16 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     public MemoryManager MemoryManager;
-    public EventManagerBase<Events> EventManager;
+    public EventManagerBase<Enumerators.Events> EventManager;
     public Player Player;
+    public RoomManager RoomManager;
+    public DartsManager dartsManager;
 
-
+    protected override void Awake()
+    {
+        base.Awake();
+        EventManager = new();
+    }
 
 
 
@@ -17,7 +23,3 @@ public class GameManager : Singleton<GameManager>
 
 
 
-public enum Events
-{
-    
-}

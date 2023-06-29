@@ -22,6 +22,10 @@ public class CameraController
 
         m_input = new();
         m_input.Enable();
+
+        GameManager.Instance.EventManager.Registrer(Enumerators.Events.PuzzleCompleted, BackToPlayer);
+        GameManager.Instance.EventManager.Registrer(Enumerators.Events.ResetPuzzle, BackToPlayer);
+        GameManager.Instance.EventManager.Registrer(Enumerators.Events.OpenDoor, BackToPlayer);
     }
 
 
@@ -54,7 +58,7 @@ public class CameraController
                 m_camera.transform.rotation = m_targetTransform.rotation;
 
                 this.EnableController();
-                if (m_camera.transform.position == m_pov.position) GameManager.instance.Player.PlayerController.EnableController();
+                if (m_camera.transform.position == m_pov.position) GameManager.Instance.Player.PlayerController.EnableController();
 
                 m_targetTransform = null;
             }
@@ -77,27 +81,29 @@ public class CameraController
     {
         if (m_camera.transform.position != m_pov.position) return;
         //Debug.Log("LookForTarget");
-        int layerMask = 1 << 6; //puzzle trigger objects layer mask
+        int puzzleTriggerMask = 1 << 6; //puzzle trigger objects layer mask
+        int interactableTriggerMask = 1 << 7; //interactable trigger objects layer mask
         Vector3 pointedPosition = m_camera.ScreenToWorldPoint(new Vector3(m_camera.pixelWidth * 0.5f, m_camera.pixelHeight * 0.5f, 1f));
         Vector3 direction = pointedPosition - m_camera.transform.position;
         //Debug.DrawRay(m_camera.transform.position, direction);
 
         RaycastHit hitInfo;
-        if (Physics.Raycast(m_camera.transform.position, direction, out hitInfo, m_movementData.MaxInteractionDistance, layerMask))
+        if (Physics.Raycast(m_camera.transform.position, direction, out hitInfo, m_movementData.MaxInteractionDistance, puzzleTriggerMask | interactableTriggerMask))
         {
             //Debug.Log("Hit");
             m_targetTransform = hitInfo.transform;
             m_targetCollider = hitInfo.collider;
 
             m_targetCollider.enabled = false;
-            GameManager.instance.Player.PlayerController.DisableController(); //put into gamemanger
+            GameManager.Instance.Player.PlayerController.DisableController(); //put into gamemanger
             this.DisableController();
-            //GameManager.EventManager.TriggerEvent(Events.StartPuzzle);
+
+            if (hitInfo.collider.gameObject.layer == 6) GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.StartPuzzle);
         }
     }
 
     /// <summary>
-    /// Moves back the camera to the player POV
+    /// Moves back the camera to the player POV (only for debug, the player does not have the possibility to exits from puzzles)
     /// </summary>
     private void BackToPlayer(InputAction.CallbackContext context)
     {
@@ -106,7 +112,16 @@ public class CameraController
 
         if (m_targetCollider != null) m_targetCollider.enabled = true;
         this.DisableController();
-        //GameManager.EventManager.TriggerEvent(Events.ResetPuzzle);
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.ResetPuzzle);
+    }
+
+    public void BackToPlayer()
+    {
+        if (m_camera.transform.position == m_pov.position) return;
+        m_targetTransform = m_pov;
+
+        if (m_targetCollider != null) m_targetCollider.enabled = true;
+        this.DisableController();
     }
 
 
