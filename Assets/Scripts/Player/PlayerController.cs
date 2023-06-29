@@ -24,7 +24,7 @@ public class PlayerController
     public void EnableController()
     {
         //Debug.Log("EnableController");
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
 
         m_inputs.Traslation.Lateral.performed += OnPerformLateral;
         m_inputs.Traslation.Forward.performed += OnPerformForward;

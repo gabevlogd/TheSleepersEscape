@@ -1,42 +1,66 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class Target : MonoBehaviour 
 {
     [SerializeField]
     private Transform m_bullEyePosition;
-
     [SerializeField]
     private GameObject m_darts;
     [SerializeField]
     private Transform m_cameraTriggerer;
-    //[SerializeField]
-    //private float ViewfinderDistanceToThePlayer;
 
+    [SerializeField]
+    private GameObject m_viewfinderIn;
+    [SerializeField]
+    private GameObject m_viewfinderOut;
+   
     [Header("Settings")]
     [SerializeField]
     private int m_totalThrows;
+    private int m_initialThrows;
     [SerializeField]
     private float m_centerRadius;
-
     [Header("Throwing")]
     public KeyCode throwKey = KeyCode.Mouse0;
     [SerializeField]
     private float m_throwForceForword;
     [SerializeField]
     private float m_throwUpwardForce;
-
     public static bool ReadyToThrow;
-
     [SerializeField]
     private bool m_gameTriggered;
-
     [SerializeField]
     private int m_score;
     [SerializeField]
     private int m_pointsForWin;
+
+    private PlayerInput m_inputs;
+
+    private Vector3 m_mousePosition;
+
+
+
+    private void Awake()
+    {
+        m_inputs = new PlayerInput();
+        m_inputs.Enable();
+        m_inputs.Darts.Throw.performed += PerformThrow;
+        m_inputs.Darts.MoveTarget.performed += PerformMousePosition;
+        m_initialThrows = m_totalThrows;
+        GameManager.Instance.EventManager.Registrer(Enumerators.Events.StartPuzzle, StartGame);
+        GameManager.Instance.EventManager.Registrer(Enumerators.Events.ResetPuzzle, ResetGame);
+        GameManager.Instance.EventManager.Registrer(Enumerators.Events.PuzzleCompleted,EndGame);
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.EventManager.Unregistrer(Enumerators.Events.StartPuzzle, StartGame);
+        GameManager.Instance.EventManager.Unregistrer(Enumerators.Events.ResetPuzzle, ResetGame);
+        GameManager.Instance.EventManager.Unregistrer(Enumerators.Events.PuzzleCompleted, EndGame);
+    }
 
 
     private void Start()
@@ -45,19 +69,56 @@ public class Target : MonoBehaviour
         //ViewPoint.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, ViewfinderDistanceToThePlayer));
     }
 
-    /// <summary>
-    /// debug
-    /// </summary>
     private void Update()
     {
-        if (Input.GetKeyDown(throwKey) && ReadyToThrow && m_totalThrows > 0 && m_gameTriggered)
-        {
-            Throw();
-        }
-        
 
+        m_viewfinderOut.transform.localPosition = new Vector3(m_mousePosition.x, m_mousePosition.y, m_viewfinderOut.transform.localPosition.z);
     }
 
+
+    bool test;
+    public float sensibility;
+
+    //private void HandleViewfinderOut()
+    //{
+
+    //    //if (test)
+    //    //{
+    //            m_viewfinderOut.transform.localPosition = m_mousePosition; /** Time.deltaTime * sensibility;*/
+    //    //    test = false;
+
+    //    //}
+
+    //}
+
+
+    private void PerformMousePosition(InputAction.CallbackContext context)
+    {
+        //Debug.Log(context.ReadValue<Vector2>());
+        Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        if (m_gameTriggered)
+        {
+
+            //Vector2 mouseDelta = context.ReadValue<Vector2>();
+            //Vector3 translation = new Vector3(mouseDelta.x, mouseDelta.y, 0);
+            //m_viewfinderOut.transform.localPosition += translation;
+            //Debug.Log("test");
+            //Debug.Log(context.ReadValue<Vector2>());
+            Vector2 mousePosition = context.ReadValue<Vector2>();
+            m_mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 0));
+            //test = true;
+            Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            //Debug.Log(mousePosition + " " + m_mousePosition);
+
+        }
+       
+    }
+
+    private void PerformThrow(InputAction.CallbackContext context)
+    {
+        if (ReadyToThrow && m_totalThrows > 0 && m_gameTriggered) Throw();
+        
+    }
 
     private void Throw()
     {
@@ -72,7 +133,7 @@ public class Target : MonoBehaviour
 
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
 
-        m_totalThrows--;
+        m_initialThrows--;
 
     }
 
@@ -100,7 +161,7 @@ public class Target : MonoBehaviour
         {
 
             Debug.Log("win");
-            //GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.PuzzleCompleted);
+            GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.PuzzleCompleted);
         }
         
 
@@ -108,10 +169,10 @@ public class Target : MonoBehaviour
 
     private void CheckLoseCondition()
     {
-        if (m_score < m_pointsForWin && m_totalThrows == 0)
+        if (m_score < m_pointsForWin && m_initialThrows == 0)
         {
             Debug.Log("loose");
-            //GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.ResetPuzzle);
+            GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.ResetPuzzle);
         }
     }
 
@@ -131,6 +192,7 @@ public class Target : MonoBehaviour
     {
         m_gameTriggered = false;
         m_score = 0;
+        m_initialThrows = m_totalThrows;
 
     }
 
