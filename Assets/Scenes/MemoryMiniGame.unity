@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 532101163}
   - component: {fileID: 532101162}
+  - component: {fileID: 532101164}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -217,6 +218,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &532101164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532101161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+--- !u!114 &554714765 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5350551961368436482, guid: 6e29bc356f3a72e49b04d573d00e88cb, type: 3}
+  m_PrefabInstance: {fileID: 1606678543}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 738afecf3b143de4e8ec9dd25130c7da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &634805293
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,15 +278,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a568d44c76bc42249bfc51fd5b86ec1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WorldOrientation: {fileID: 0}
   WordTilePrefabs:
   - {fileID: 8877749165303872969, guid: c07fa53f8eb5ced4c93a2dd716bcc3f9, type: 3}
-  - {fileID: 8877749165303872969, guid: ac52cd89d8a1a544a8c1d80b40315837, type: 3}
-  - {fileID: 8877749165303872969, guid: 5d3147eb7d376644482383f2b92aecbe, type: 3}
-  - {fileID: 8877749165303872969, guid: 749e7ca23529e8a47bb354da13be7ef7, type: 3}
-  - {fileID: 8877749165303872969, guid: 363a5c6d40cdfa040912469e1382b0fc, type: 3}
-  - {fileID: 8877749165303872969, guid: 49b5a47c58207ab47b55909281057d7e, type: 3}
-  - {fileID: 8877749165303872969, guid: c5c5c7974da4b3e4fbc4804c39c986bd, type: 3}
-  - {fileID: 8877749165303872969, guid: 0f6504dd67af35145bc7c06e410dd742, type: 3}
+  - {fileID: 8877749165303872969, guid: 265670e42d714034a94c8a0781c691fa, type: 3}
+  - {fileID: 8877749165303872969, guid: 81b39d67204da0b46b9024ce4d2db4d7, type: 3}
+  - {fileID: 8877749165303872969, guid: 63bef2226ea06d045a1b979b7ff8df21, type: 3}
+  - {fileID: 8877749165303872969, guid: 765ee165c4859b049a389604e75d123a, type: 3}
+  - {fileID: 8877749165303872969, guid: 8d7f0e11977818e4cb89c9f65bac3c26, type: 3}
+  - {fileID: 8877749165303872969, guid: 0eb85dd60ed6b964bbe96fad28e60de9, type: 3}
+  - {fileID: 8877749165303872969, guid: 4fc889fad36e2964f8f212e3b5d8f61a, type: 3}
   SelectedTiles: []
   CanChackTwoPair: 0
   VelocityAfterTurnTheRotationTo0: 2
@@ -345,6 +378,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1317247136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1317247138}
+  - component: {fileID: 1317247137}
+  m_Layer: 0
+  m_Name: room
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1317247137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317247136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c87408fee7178247b2208ab60e7b066, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Puzzles: []
+--- !u!4 &1317247138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317247136}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.57233196, y: -2.965739, z: 4.4252753}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1606678543
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -431,7 +509,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c69a4fffdd1734c802cd61040f32a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  memoryManager: {fileID: 634805294}
+  MemoryManager: {fileID: 634805294}
+  Player: {fileID: 554714765}
+  RoomManager: {fileID: 1317247137}
 --- !u!4 &2111556125
 Transform:
   m_ObjectHideFlags: 0

@@ -14,6 +14,9 @@ public class LightSwitch : MonoBehaviour
 
     private void TriggersSwitch()
     {
+        if (!LightsManager.GameTriggered) return;
+        //if (switch animation is running) return;
+
         Triggered = !Triggered;
 
         //placeholder
@@ -29,8 +32,8 @@ public class LightSwitch : MonoBehaviour
     {
         foreach(Light light in LinkedLights)
         {
-            if (light.Brightness.isPlaying) light.Brightness.Stop();
-            else light.Brightness.Play();
+            if (light.Particle.activeInHierarchy) light.Particle.SetActive(false);
+            else light.Particle.SetActive(true);
         }
     }
 }

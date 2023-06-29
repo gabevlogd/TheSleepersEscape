@@ -75,17 +75,17 @@ public class PlayerController
     #region Movements:
     private void MoveForward()
     {
-        if (m_movementData.ForwardInput > 0 && !Physics.Raycast(Player.playerTransform.position, Player.playerTransform.forward, 0.5f))
+        if (m_movementData.ForwardInput > 0 && !Physics.Raycast(Player.playerTransform.position, Player.playerTransform.forward, 0.5f, -1 ,QueryTriggerInteraction.Ignore))
             m_transform.Translate(new Vector3(0f, 0f, m_movementData.ForwardInput * m_movementData.Speed * Time.deltaTime));
-        else if (m_movementData.ForwardInput < 0 && !Physics.Raycast(Player.playerTransform.position, -Player.playerTransform.forward, 0.5f))
+        else if (m_movementData.ForwardInput < 0 && !Physics.Raycast(Player.playerTransform.position, -Player.playerTransform.forward, 0.5f, -1, QueryTriggerInteraction.Ignore))
             m_transform.Translate(new Vector3(0f, 0f, m_movementData.ForwardInput * m_movementData.Speed * Time.deltaTime));
     }
 
     private void MoveLateral()
     {
-        if (m_movementData.LateralInput > 0 && !Physics.Raycast(Player.playerTransform.position, Player.playerTransform.right, 0.5f))
+        if (m_movementData.LateralInput > 0 && !Physics.Raycast(Player.playerTransform.position, Player.playerTransform.right, 0.5f, -1 ,QueryTriggerInteraction.Ignore))
             m_transform.Translate(new Vector3(m_movementData.LateralInput * m_movementData.Speed * Time.deltaTime, 0f, 0f));
-        else if (m_movementData.LateralInput < 0 && !Physics.Raycast(Player.playerTransform.position, -Player.playerTransform.right, 0.5f))
+        else if (m_movementData.LateralInput < 0 && !Physics.Raycast(Player.playerTransform.position, -Player.playerTransform.right, 0.5f, -1 ,QueryTriggerInteraction.Ignore))
             m_transform.Translate(new Vector3(m_movementData.LateralInput * m_movementData.Speed * Time.deltaTime, 0f, 0f));
     }
 

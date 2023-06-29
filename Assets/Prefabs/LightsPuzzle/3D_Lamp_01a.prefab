@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 503f54fb8de08b84db31be1b3663caf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Brightness: {fileID: 0}
+  Particle: {fileID: 6498238765959124694}
 --- !u!1 &3656172994614500894
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,7 +347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5267406521664422494
 Transform:
   m_ObjectHideFlags: 0
@@ -379,8 +379,8 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
   looping: 1
-  prewarm: 0
-  playOnAwake: 0
+  prewarm: 1
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:

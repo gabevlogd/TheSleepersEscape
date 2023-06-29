@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class GO15Manager : MonoBehaviour
+public class GO15Manager : MonoBehaviour, IPuzzle
 {
     public static List<GO15WorldTile> SelectedTiles = new();
 
+    public Transform CameraTriggerer;
     public GO15WorldTile WorldTilePrefab;
     public Transform WorldOrientation;
     public float DefaultTimer;
@@ -31,9 +32,24 @@ public class GO15Manager : MonoBehaviour
         m_instance = this;
         m_timer = 0f;
         m_outOfTime = true;
+
         GeneratePuzzle();
         ShuffleTile();
         if (WorldOrientation != null) SetPositionAndRotation(WorldOrientation);
+    }
+
+    private void Start()
+    {
+        GameManager.Instance.EventManager.Registrer(Enumerators.Events.StartPuzzle, StartGame);
+        GameManager.Instance.EventManager.Registrer(Enumerators.Events.ResetPuzzle, ResetGame);
+        GameManager.Instance.EventManager.Registrer(Enumerators.Events.PuzzleCompleted, EndGame);
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.EventManager.Unregistrer(Enumerators.Events.StartPuzzle, StartGame);
+        GameManager.Instance.EventManager.Unregistrer(Enumerators.Events.ResetPuzzle, ResetGame);
+        GameManager.Instance.EventManager.Unregistrer(Enumerators.Events.PuzzleCompleted, EndGame);
     }
 
     private void Update() => UpdateTimer();
@@ -127,6 +143,7 @@ public class GO15Manager : MonoBehaviour
                 if (nextNumber == 17)
                 {
                     Debug.Log("win");
+                    GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.PuzzleCompleted); //win condition
                     break;
                 }
             }
@@ -148,8 +165,9 @@ public class GO15Manager : MonoBehaviour
     {
         if (!m_outOfTime)
         {
+            //Debug.Log(m_timer);
             if (m_timer >= 0f) m_timer -= Time.deltaTime;
-            else EndGame();
+            else GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.ResetPuzzle); //lose condition
         }
     }
 
@@ -172,6 +190,19 @@ public class GO15Manager : MonoBehaviour
         GameTriggered = false;
         m_timer = 0;
         m_outOfTime = true;
+        CameraTriggerer.gameObject.SetActive(false);
+        //maybe other stuff to implement...
+    }
+
+    /// <summary>
+    /// Reset game event
+    /// </summary>
+    public void ResetGame()
+    {
+        GameTriggered = false;
+        m_timer = 0;
+        m_outOfTime = true;
+        ShuffleTile();
         //maybe other stuff to implement...
     }
 }
