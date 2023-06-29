@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController
 {
+    public bool Enabled;
+
     private PlayerInput m_inputs;
     private Transform m_transform;
     private Transform m_cameraTransform;
@@ -23,6 +25,7 @@ public class PlayerController
 
     public void EnableController()
     {
+        Enabled = true;
         //Debug.Log("EnableController");
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -41,6 +44,7 @@ public class PlayerController
 
     public void DisableController()
     {
+        Enabled = false;
         //Debug.Log("DisableController");
         Cursor.lockState = CursorLockMode.None;
 

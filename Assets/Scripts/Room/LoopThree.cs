@@ -12,7 +12,7 @@ public class LoopThree : LoopBase
     {
         base.OnEnter();
         RoomManager.LoopCounter++;
-
+        Radio.CanInteract = true; //per adesso qui poi chiedo ai designer dove
         GameManager.Instance.RoomManager.Puzzles[2].SetActive(true);
 
         LightsManager.GameTriggered = true; //qui solo per il debug, va dopo aver messo l'ultima comobinazione nella porta

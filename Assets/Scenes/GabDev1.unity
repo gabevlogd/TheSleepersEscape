@@ -1063,16 +1063,35 @@ MonoBehaviour:
   RadioDialogues:
   - DialogueName: intro
     m_speakers:
+    - SpeakerName: gino
+      Script:
+      - 'Bla bla bla bla bla... '
+      - 'Bla bla bla bla bla... '
+      - 'Bla bla bla bla bla... '
+    - SpeakerName: giorgio
+      Script:
+      - Ble ble ble ble ble...
+      - Ble ble ble ble ble...
+      - Ble ble ble ble ble...
+    m_speakersOrder:
+    - gino
+    - giorgio
+    - gino
+    - gino
+    - giorgio
+    - giorgio
+  - DialogueName: intro
+    m_speakers:
     - SpeakerName: a
       Script:
-      - 1
-      - 2
-      - 3
+      - 'Bla bla bla bla bla... '
+      - 'Bla bla bla bla bla... '
+      - 'Bla bla bla bla bla... '
     - SpeakerName: b
       Script:
-      - 1
-      - 2
-      - 3
+      - Ble ble ble ble...
+      - Ble ble ble ble...
+      - Ble ble ble ble...
     m_speakersOrder:
     - a
     - b
@@ -1080,6 +1099,9 @@ MonoBehaviour:
     - a
     - b
     - b
+  TextSpeed: 10
+  m_canvas: {fileID: 970878766}
+  m_printedText: {fileID: 1342089688}
 --- !u!4 &287238524
 Transform:
   m_ObjectHideFlags: 0

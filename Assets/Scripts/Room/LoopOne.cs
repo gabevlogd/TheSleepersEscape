@@ -10,6 +10,8 @@ public class LoopOne : LoopBase
     {
         base.OnEnter();
 
+        Radio.CanInteract = true; //per adesso qui poi chiedo ai designer dove
+
         // set active true darts
         GameManager.Instance.RoomManager.Puzzles[0].SetActive(true);
     }

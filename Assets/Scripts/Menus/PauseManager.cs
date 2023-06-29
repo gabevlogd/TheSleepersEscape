@@ -22,7 +22,8 @@ public class PauseManager : MonoBehaviour
     public void OnResume()
     {
         PauseUI.SetActive(false);
-        GameManager.Instance.Player.PlayerController.EnableController();
+        if (Camera.main.transform.localPosition.z == 0f) //meaning: if it false it mean that player is running a puzzles so the player controller needs to rest disabled 
+            GameManager.Instance.Player.PlayerController.EnableController();
     }
 
     public void OnPause(InputAction.CallbackContext context)
