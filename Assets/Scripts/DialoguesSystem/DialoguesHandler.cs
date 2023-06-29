@@ -3,33 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class DialoguesManager : MonoBehaviour
+public class DialoguesHandler 
 {
-    public static DialoguesManager Instance;
 
-    public List<Dialogue> Dialogues;
-    public List<Speaker> Speakers;
-
-    [HideInInspector]
     public List<List<string>> DialoguesScriptLines;
-    [HideInInspector]
     public List<string> DialoguesNames;
 
-    public void Awake()
+    private List<Dialogue> m_dialogues;
+
+
+    public DialoguesHandler(List<Dialogue> dialogues)
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        m_dialogues = dialogues;
         GenerateDialogues();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P)) PlayDialogue();
-    }
 
 
-
-    public void PlayDialogue()
+    public void PlayDialogue() //for debug
     {
         string dialogueName = DialoguesNames[0];
         List<string> dialogue = DialoguesScriptLines[0];
@@ -45,11 +36,23 @@ public class DialoguesManager : MonoBehaviour
         }
     }
 
+    public List<string> GetDialogue(out string dialogueName)
+    {
+        dialogueName = DialoguesNames[0];
+        List<string> dialogue = DialoguesScriptLines[0];
+
+        DialoguesScriptLines.Remove(dialogue);
+        DialoguesNames.Remove(dialogueName);
+
+        return dialogue;
+    }
+
     public void GenerateDialogues()
     {
-        DialoguesScriptLines = new List<List<string>>();
-        Debug.Log(Dialogues);
-        foreach(Dialogue dialogue in Dialogues)
+        DialoguesScriptLines = new();
+        DialoguesNames = new();
+
+        foreach(Dialogue dialogue in m_dialogues)
         {
             DialoguesScriptLines.Add(dialogue.GetDialogue());
             DialoguesNames.Add(dialogue.DialogueName);

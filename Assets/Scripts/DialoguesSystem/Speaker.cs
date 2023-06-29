@@ -10,6 +10,12 @@ public class Speaker
 
     public string Speak()
     {
+        if (Script.Count == 0)
+        {
+            Debug.Log("You're trying to call " + SpeakerName + " more times than there are lines in the script.");
+            return null;
+        }
+
         string result = Script[0];
 
         Script.Remove(result);
