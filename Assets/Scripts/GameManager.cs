@@ -8,6 +8,7 @@ public class GameManager : Singleton<GameManager>
     public EventManagerBase<Enumerators.Events> EventManager;
     public Player Player;
     public RoomManager RoomManager;
+    public DartsManager dartsManager;
 
     protected override void Awake()
     {
