@@ -16,9 +16,11 @@ public class CameraController
     public CameraController(Camera camera, Transform pov, CameraMovementData data)
     {
         m_camera = camera;
-        m_movementData = data;
-
+        m_movementData = data;     
         m_pov = pov;
+
+        m_camera.transform.position = m_pov.position;
+        m_camera.transform.rotation = m_pov.rotation;
 
         m_input = new();
         m_input.Enable();
@@ -31,14 +33,14 @@ public class CameraController
 
     public void EnableController()
     {
-        m_input.Selections.ItemSelection.performed += LookForTarget;
+        m_input.Selections.ItemSelection.canceled += LookForTarget;
         m_input.Selections.Unselect.performed += BackToPlayer;
     }
 
 
     public void DisableController()
     {
-        m_input.Selections.ItemSelection.performed -= LookForTarget;
+        m_input.Selections.ItemSelection.canceled -= LookForTarget;
         m_input.Selections.Unselect.performed -= BackToPlayer;
     }
 
@@ -48,9 +50,6 @@ public class CameraController
         if (m_targetTransform != null)
         {
             MoveCamera(m_targetTransform);
-
-            //Debug.Log("position " + (Vector3.Distance(m_camera.transform.position, m_targetTransform.position) <= 0.0001));
-            //Debug.Log("rotation " + (Mathf.Abs(Quaternion.Dot(m_camera.transform.rotation, m_targetTransform.rotation) - 1f) <= 0.0001f));
 
             if (Vector3.Distance(m_camera.transform.position, m_targetTransform.position) <= 0.0001 && Mathf.Abs(Quaternion.Dot(m_camera.transform.rotation, m_targetTransform.rotation) - 1f) <= 0.0001f)
             {
@@ -66,7 +65,7 @@ public class CameraController
     }
 
     /// <summary>
-    /// Move the camera to the position and rotation of the passed target
+    /// Move the camera towards the position and rotation of the passed target
     /// </summary>
     private void MoveCamera(Transform target)
     {

@@ -32,7 +32,7 @@ public class Radio : MonoBehaviour
     private void Update() => HandlePrintProcess();
     
 
-    private void OnMouseDown()
+    private void OnMouseUp()
     {
         if (CanInteract) TurnOnRadio();
     }

@@ -6,7 +6,9 @@ public static class Enumerators
         StartPuzzle,
         ResetPuzzle,
         OpenDoor,
-        CloseDoor
+        CloseDoor,
+        OpenInventory,
+        CloseInventory
 
     }
 
@@ -15,5 +17,6 @@ public static class Enumerators
         LoopOne,
         LoopTwo,
         LoopThree
+        
     }
 }

@@ -134,7 +134,8 @@ public class Target : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(GameManager.Instance.dartsManager.EnableThrowAbility());
+        //StartCoroutine(GameManager.Instance.dartsManager.EnableThrowAbility()); //not needed anymore, problem fixed in the camera controller
+        GameManager.Instance.dartsManager.ReadyToThrow = true;
         Cursor.visible = false;
         m_viewfinderIn.SetActive(true);
         m_viewfinderOut.SetActive(true);
