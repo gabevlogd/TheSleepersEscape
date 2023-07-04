@@ -24,6 +24,7 @@ public class InventoryManager : MonoBehaviour
         m_itemsWheel.UpdateWheel(); //just for debug
     }
 
+
     private void Update()
     {
         m_itemsWheel.HandleWheelRotation();

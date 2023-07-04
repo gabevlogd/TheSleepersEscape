@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1629481408239963424}
-  - component: {fileID: 1629481408239963425}
+  - component: {fileID: 7550480594390127359}
   - component: {fileID: 1629481408239963431}
+  - component: {fileID: 4346884355174247442}
   m_Layer: 0
   m_Name: Radio
   m_TagString: Untagged
@@ -36,8 +37,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1629481408239963425
-BoxCollider:
+--- !u!135 &7550480594390127359
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -47,7 +48,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1629481408239963431
 MonoBehaviour:
@@ -122,6 +123,20 @@ MonoBehaviour:
   Canvas: {fileID: 1629481408655231858}
   PrintedText: {fileID: 1629481408955108740}
   TextSpeed: 30
+--- !u!114 &4346884355174247442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629481408239963430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79be073749cdce43a4dbbe06175216d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InteractablePoint: {fileID: 0}
+  MinTriggerDistance: 2
 --- !u!1 &1629481408655231862
 GameObject:
   m_ObjectHideFlags: 0

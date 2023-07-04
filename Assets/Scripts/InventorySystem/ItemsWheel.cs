@@ -12,6 +12,8 @@ public class ItemsWheel
     private Quaternion m_defaultRotation;
     private Quaternion m_targetRotation;
 
+    private Vector3 m_raycastDirection;
+
     private float m_angularSpeed = 100f;
 
     public ItemsWheel(ref InventoryData inventoryData)
@@ -49,6 +51,17 @@ public class ItemsWheel
         if (Mathf.Abs(Quaternion.Dot(m_transform.rotation, m_targetRotation) - 1f) <= 0.0001f)
         {
             m_transform.rotation = m_targetRotation;
+            ShowSelectedItemInfo();
+        }
+    }
+
+    private void ShowSelectedItemInfo()
+    {
+        RaycastHit hitInfo;
+        Physics.Raycast(m_transform.position, m_raycastDirection, out hitInfo);
+        if (hitInfo.collider != null)
+        {
+
         }
     }
 
@@ -81,6 +94,7 @@ public class ItemsWheel
     public void UpdateWheel()
     {
         m_transform.rotation = m_defaultRotation * Quaternion.Euler(0f, 90f, 0f);
+        m_raycastDirection = m_transform.right;
         m_targetRotation = m_transform.rotation;
         m_itemsPositions = GetPositions(m_inventoryData.Items.Count);
         PlaceItems();
