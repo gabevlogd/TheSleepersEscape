@@ -32,6 +32,8 @@ public class InventoryManager : MonoBehaviour
 
     private void ToggleInventory(InputAction.CallbackContext context)
     {
+        if (Camera.main.transform.localPosition.z != 0f) return;
+
         InventoryCanvas.gameObject.SetActive(!InventoryCanvas.gameObject.activeInHierarchy);
 
         if (InventoryCanvas.gameObject.activeInHierarchy) GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.OpenInventory);

@@ -78,6 +78,8 @@ public class CameraController
     /// </summary>
     private void LookForTarget(InputAction.CallbackContext context)
     {
+        if (GameManager.Instance.InventoryManager.InventoryCanvas.gameObject.activeInHierarchy) return;
+        if (GameManager.Instance.PauseManager.PauseUI.activeInHierarchy) return;
         if (m_camera.transform.position != m_pov.position) return;
         //Debug.Log("LookForTarget");
         int puzzleTriggerMask = 1 << 6; //puzzle trigger objects layer mask
