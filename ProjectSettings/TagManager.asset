@@ -15,8 +15,8 @@ TagManager:
   - Interactable
   - Dart
   - InventoryUI
-  - 
-  - 
+  - TextBoxUI
+  - PauseMenuUI
   - 
   - 
   - 
