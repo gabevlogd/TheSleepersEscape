@@ -34,6 +34,9 @@ public class Radio : MonoBehaviour
 
     private void OnMouseUp()
     {
+        if (GameManager.Instance.InventoryManager.InventoryCanvas.gameObject.activeInHierarchy) return;
+        if (GameManager.Instance.PauseManager.PauseUI.activeInHierarchy) return;
+
         if (CanInteract) TurnOnRadio();
     }
 
