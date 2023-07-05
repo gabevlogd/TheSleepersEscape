@@ -25,8 +25,6 @@ public class Radio : MonoBehaviour
     {
         m_dialoguesManager = new(RadioDialogues);
         m_currentDialogue = new();
-        //m_canvas = GetComponentInChildren<Canvas>();
-        //m_printedText = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     private void Update() => HandlePrintProcess();
@@ -53,6 +51,15 @@ public class Radio : MonoBehaviour
         PrintedText.text = "";
         m_scriptLineIndex = -1;
         m_time = 0;   
+    }
+
+    /// <summary>
+    /// Stops the radio (Close UI text box)
+    /// </summary>
+    public void TurnOffRadio()
+    {
+        m_runDialogue = false;
+        Canvas.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -112,13 +119,11 @@ public class Radio : MonoBehaviour
                 m_scriptLineToPrint = m_currentDialogue[0];
                 PrintedText.text = "";
             }
-            else if (m_currentDialogue.Count == 1)
-            {
-                m_runDialogue = false;
-                Canvas.gameObject.SetActive(false);
-            }
+            else if (m_currentDialogue.Count == 1) TurnOffRadio();
         }
     }
+
+    
 
     private void HandlePrintProcess()
     {

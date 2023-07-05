@@ -19,4 +19,12 @@ public static class Enumerators
         LoopThree
         
     }
+
+    public enum PlayerState
+    {
+        Navigation,
+        RunningPuzzle,
+        RunningInteractable,
+        OnInventory
+    }
 }

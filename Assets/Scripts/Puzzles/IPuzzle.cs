@@ -4,4 +4,5 @@ public interface IPuzzle
     public void EndGame();
     public void ResetGame();
 
+
 }
