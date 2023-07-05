@@ -6513,6 +6513,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Radio
       objectReference: {fileID: 0}
+    - target: {fileID: 1629481408239963430, guid: c941b4bd520e66a4386427084170c9c1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4346884355174247442, guid: c941b4bd520e66a4386427084170c9c1, type: 3}
       propertyPath: InteractablePoint
       value: 

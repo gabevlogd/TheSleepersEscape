@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [Tooltip("position of the camera (point of view)")]
     public Transform POV;
 
+    public PlayerStateMachine PlayerStateMachine;
     public PlayerController PlayerController;
     public CameraController CameraController;
 
@@ -21,10 +22,12 @@ public class Player : MonoBehaviour
         playerTransform = transform;
 
         CameraController = new(GetComponentInChildren<Camera>(), POV, CameraMovementData);
-        CameraController.EnableController();
+        //CameraController.EnableController();
 
         PlayerController = new(transform, PlayerMovementData);
-        PlayerController.EnableController();
+        //PlayerController.EnableController();
+
+        PlayerStateMachine = new();
 
 
     }
@@ -32,6 +35,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        PlayerStateMachine.CurrentState.OnUpdate();
         PlayerController.HandlePlayerMovement();
         CameraController.HandleCameraMovement();
         

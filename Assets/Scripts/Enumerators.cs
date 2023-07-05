@@ -8,7 +8,11 @@ public static class Enumerators
         OpenDoor,
         CloseDoor,
         OpenInventory,
-        CloseInventory
+        CloseInventory,
+        StartInteraction,
+        StopInteraction,
+        ResumeGame,
+        PauseGame
 
     }
 
@@ -25,6 +29,8 @@ public static class Enumerators
         Navigation,
         RunningPuzzle,
         RunningInteractable,
-        OnInventory
+        OnInventory,
+        OnDialogue,
+        OnPause
     }
 }

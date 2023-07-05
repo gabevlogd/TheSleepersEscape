@@ -14,7 +14,9 @@ public class InventoryManager : MonoBehaviour
     {
         InventoryData.Inputs = new();
         InventoryData.Inputs.Enable();
-        InventoryData.Inputs.UI.ToggleInventory.performed += ToggleInventory;
+        //InventoryData.Inputs.UI.ToggleInventory.performed += ToggleInventory;
+        GameManager.Instance.EventManager.Registrer(Enumerators.Events.OpenInventory, ToggleInventory);
+        GameManager.Instance.EventManager.Registrer(Enumerators.Events.CloseInventory, ToggleInventory);
 
         m_itemsWheel = new(ref InventoryData);
     }
@@ -40,4 +42,6 @@ public class InventoryManager : MonoBehaviour
         if (InventoryCanvas.gameObject.activeInHierarchy) GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.OpenInventory);
         else GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.CloseInventory);
     }
+
+    public void ToggleInventory() => InventoryCanvas.gameObject.SetActive(!InventoryCanvas.gameObject.activeInHierarchy);
 }
