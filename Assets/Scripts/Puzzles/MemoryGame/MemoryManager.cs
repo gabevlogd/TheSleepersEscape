@@ -102,7 +102,24 @@ public class MemoryManager : MonoBehaviour, IPuzzle
         }
     }
 
-    
+    private void ShuffleAnimation()
+    {
+        foreach (MemoryWorldTile worldTile in m_worldTiles)
+        {
+            worldTile.RotateCard(true);
+
+        }
+    }
+
+    private IEnumerator Shuffle()
+    {
+        CanChackTwoPair = false;
+        ShuffleAnimation();
+        yield return new WaitForSeconds(4f);
+        ShuffleTile();
+        CanChackTwoPair = true;
+    }
+
 
     private void ShuffleTile()
     {
@@ -112,16 +129,20 @@ public class MemoryManager : MonoBehaviour, IPuzzle
         {
             Vector3 newPosition = worldTile.transform.localPosition;
             positions.Add(newPosition);
+            
         }
 
         foreach (MemoryWorldTile worldTile in m_worldTiles)
         {
             Vector3 newPosition = positions[Random.Range(0, positions.Count)];
 
+           
+
             worldTile.NewLocalPosition(newPosition);
 
             worldTile.transform.localRotation = Quaternion.identity; // added by gabe
-            worldTile.RotateCard(180);
+            //worldTile.RotateCard(180);
+            
             worldTile.Paired = false; //added by gabe
 
             positions.Remove(newPosition);
@@ -130,7 +151,7 @@ public class MemoryManager : MonoBehaviour, IPuzzle
 
     }
 
-    /////////////////////////////// added by gabevlogd /////////////////////////////////
+    
 
     private void SetPositionAndRotation(Transform targetTransform)
     {
@@ -161,11 +182,20 @@ public class MemoryManager : MonoBehaviour, IPuzzle
         if (Score <= 0) GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.ResetPuzzle);
     }
 
+    //private void TurnFaceUp()
+    //{
+    //    foreach (MemoryWorldTile worldTile in m_worldTiles)
+    //    {
+    //        worldTile.transform.localRotation = Quaternion.identity;
+
+    //    }
+    //}
     private void TurnFaceUp()
     {
-        foreach(MemoryWorldTile worldTile in m_worldTiles)
+        foreach (MemoryWorldTile worldTile in m_worldTiles)
         {
-            worldTile.transform.localRotation = Quaternion.identity;
+            worldTile.RotateCard(false);
+
         }
     }
 
@@ -173,7 +203,7 @@ public class MemoryManager : MonoBehaviour, IPuzzle
     {
         GameTriggered = true;
         Score = InitialScore;
-        ShuffleTile();
+        StartCoroutine(Shuffle());
     }
 
     public void EndGame()
