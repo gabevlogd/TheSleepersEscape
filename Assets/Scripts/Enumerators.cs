@@ -7,7 +7,7 @@ public static class Enumerators
         ResetPuzzle,
         OpenDoor,
         CloseDoor
-
+        
     }
 
     public enum RoomState
@@ -16,4 +16,12 @@ public static class Enumerators
         LoopTwo,
         LoopThree
     }
+
+
+    public enum MusicEvents
+    {
+       PlayeSound
+
+    }
+
 }

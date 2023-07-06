@@ -10,10 +10,16 @@ public class GameManager : Singleton<GameManager>
     public RoomManager RoomManager;
     public DartsManager dartsManager;
 
+    public SoundEventManager<Enumerators.MusicEvents> SoundEventManager;
+    public SoundManager SoundManager;
+
+
     protected override void Awake()
     {
         base.Awake();
         EventManager = new();
+        SoundEventManager = new();
+
     }
 
 
