@@ -41,4 +41,5 @@ public static class Enumerators
         OnDialogue,
         OnPause
     }
+
 }
