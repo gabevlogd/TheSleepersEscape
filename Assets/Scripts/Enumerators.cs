@@ -27,9 +27,10 @@ public static class Enumerators
         EnableDials,
         RemoveWalkman,
         EnterLoopChange,
-        ExitLoopChange
+        ExitLoopChange,
+		GameOver
 
-    }
+	}
 
     public enum RoomState
     {
