@@ -1504,6 +1504,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 667282815}
     m_Modifications:
+    - target: {fileID: 774417723763728247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 66e2092ae5b9f074592ef2eafa27ad45, type: 2}
+    - target: {fileID: 2263186635297857247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 66e2092ae5b9f074592ef2eafa27ad45, type: 2}
     - target: {fileID: 2761247587977076700, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Name
       value: 3D_Lamp_01a (5)
@@ -1522,7 +1530,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3249976746123412838, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.06
+      value: 8.092
       objectReference: {fileID: 0}
     - target: {fileID: 3249976746123412838, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1551,6 +1559,50 @@ PrefabInstance:
     - target: {fileID: 3249976746123412838, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6498238765959124694, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119797188159806764, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 66e2092ae5b9f074592ef2eafa27ad45, type: 2}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: lengthInSec
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: LightsModule.rangeCurve.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: LightsModule.intensityCurve.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.41229087
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.7502379
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.8018868
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
@@ -1749,6 +1801,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 667282815}
     m_Modifications:
+    - target: {fileID: 774417723763728247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: be054672f3e59cf4c99fbb8c0d8c33db, type: 2}
+    - target: {fileID: 2263186635297857247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: be054672f3e59cf4c99fbb8c0d8c33db, type: 2}
     - target: {fileID: 2761247587977076700, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Name
       value: 3D_Lamp_01a (2)
@@ -1796,6 +1856,50 @@ PrefabInstance:
     - target: {fileID: 3249976746123412838, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6498238765959124694, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119797188159806764, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: be054672f3e59cf4c99fbb8c0d8c33db, type: 2}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: lengthInSec
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: LightsModule.rangeCurve.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: LightsModule.intensityCurve.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.41229087
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.7502379
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.8018868
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
@@ -1847,6 +1951,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 667282815}
     m_Modifications:
+    - target: {fileID: 774417723763728247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ec7921d0c107a454d8c0bce957233999, type: 2}
+    - target: {fileID: 2263186635297857247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ec7921d0c107a454d8c0bce957233999, type: 2}
     - target: {fileID: 2761247587977076700, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Name
       value: 3D_Lamp_01a
@@ -1894,6 +2006,142 @@ PrefabInstance:
     - target: {fileID: 3249976746123412838, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6498238765959124694, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119797188159806764, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ec7921d0c107a454d8c0bce957233999, type: 2}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: lengthInSec
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.rotation3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.m_BurstCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: LightsModule.rangeCurve.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: LightsModule.intensityCurve.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.41229087
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.7502379
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.8018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].time
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].cycleCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].probability
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_PreInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_PreInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_PostInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_PostInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_RotationOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_RotationOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[1].value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
@@ -2030,6 +2278,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 667282815}
     m_Modifications:
+    - target: {fileID: 774417723763728247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: be054672f3e59cf4c99fbb8c0d8c33db, type: 2}
+    - target: {fileID: 2263186635297857247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: be054672f3e59cf4c99fbb8c0d8c33db, type: 2}
     - target: {fileID: 2761247587977076700, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Name
       value: 3D_Lamp_01a (3)
@@ -2077,6 +2333,50 @@ PrefabInstance:
     - target: {fileID: 3249976746123412838, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6498238765959124694, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119797188159806764, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: be054672f3e59cf4c99fbb8c0d8c33db, type: 2}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: lengthInSec
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: LightsModule.rangeCurve.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: LightsModule.intensityCurve.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.41229087
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.7502379
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.8018868
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
@@ -3317,6 +3617,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 667282815}
     m_Modifications:
+    - target: {fileID: 774417723763728247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 66e2092ae5b9f074592ef2eafa27ad45, type: 2}
+    - target: {fileID: 2263186635297857247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 66e2092ae5b9f074592ef2eafa27ad45, type: 2}
     - target: {fileID: 2761247587977076700, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Name
       value: 3D_Lamp_01a (1)
@@ -3364,6 +3672,62 @@ PrefabInstance:
     - target: {fileID: 3249976746123412838, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3747333525959281955, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.14255723
+      objectReference: {fileID: 0}
+    - target: {fileID: 3956923826499652233, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.032863975
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917387642791192092, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6498238765959124694, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119797188159806764, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 66e2092ae5b9f074592ef2eafa27ad45, type: 2}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: lengthInSec
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: LightsModule.rangeCurve.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: LightsModule.intensityCurve.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.41229087
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.7502379
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.8018868
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
@@ -5392,6 +5756,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 667282815}
     m_Modifications:
+    - target: {fileID: 774417723763728247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: be054672f3e59cf4c99fbb8c0d8c33db, type: 2}
+    - target: {fileID: 2263186635297857247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: be054672f3e59cf4c99fbb8c0d8c33db, type: 2}
     - target: {fileID: 2761247587977076700, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Name
       value: 3D_Lamp_01a (6)
@@ -5439,6 +5811,50 @@ PrefabInstance:
     - target: {fileID: 3249976746123412838, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6498238765959124694, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119797188159806764, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: be054672f3e59cf4c99fbb8c0d8c33db, type: 2}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: lengthInSec
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: LightsModule.rangeCurve.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: LightsModule.intensityCurve.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.41229087
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.7502379
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.8018868
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
@@ -6921,6 +7337,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 667282815}
     m_Modifications:
+    - target: {fileID: 774417723763728247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9cee38b441a18a64c9cf0722b6bbc3fd, type: 2}
+    - target: {fileID: 2263186635297857247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9cee38b441a18a64c9cf0722b6bbc3fd, type: 2}
     - target: {fileID: 2761247587977076700, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Name
       value: 3D_Lamp_01a (7)
@@ -6968,6 +7392,50 @@ PrefabInstance:
     - target: {fileID: 3249976746123412838, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6498238765959124694, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119797188159806764, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9cee38b441a18a64c9cf0722b6bbc3fd, type: 2}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: lengthInSec
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: LightsModule.rangeCurve.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: LightsModule.intensityCurve.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.41229087
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.7502379
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.8018868
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
@@ -7220,6 +7688,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 667282815}
     m_Modifications:
+    - target: {fileID: 774417723763728247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ec7921d0c107a454d8c0bce957233999, type: 2}
+    - target: {fileID: 2263186635297857247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ec7921d0c107a454d8c0bce957233999, type: 2}
     - target: {fileID: 2761247587977076700, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Name
       value: 3D_Lamp_01a (4)
@@ -7267,6 +7743,50 @@ PrefabInstance:
     - target: {fileID: 3249976746123412838, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6498238765959124694, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119797188159806764, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ec7921d0c107a454d8c0bce957233999, type: 2}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: lengthInSec
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: LightsModule.rangeCurve.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: LightsModule.intensityCurve.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.41229087
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.7502379
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.8018868
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
