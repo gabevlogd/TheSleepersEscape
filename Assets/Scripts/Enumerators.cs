@@ -6,8 +6,8 @@ public static class Enumerators
         StartPuzzle,
         ResetPuzzle,
         OpenDoor,
-        CloseDoor
-
+        CloseDoor,
+        GameOver
     }
 
     public enum RoomState
@@ -16,4 +16,6 @@ public static class Enumerators
         LoopTwo,
         LoopThree
     }
+
+
 }
