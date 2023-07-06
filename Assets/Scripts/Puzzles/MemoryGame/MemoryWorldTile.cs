@@ -137,6 +137,7 @@ public class MemoryWorldTile : MonoBehaviour, IPointerDownHandler
         tileA.RotateCard(true);
         tileB.RotateCard(true);
         m_memoryManager.SetScore(-1);
+        yield return new WaitForSeconds(m_memoryManager.VelocityAfterTurnTheRotationTo0);
         m_memoryManager.CanChackTwoPair = true;
         yield return new WaitForSeconds(m_memoryManager.VelocityAfterTurnTheRotationTo0);
         
