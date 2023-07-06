@@ -1507,11 +1507,11 @@ PrefabInstance:
     - target: {fileID: 774417723763728247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 66e2092ae5b9f074592ef2eafa27ad45, type: 2}
+      objectReference: {fileID: 2100000, guid: ec7921d0c107a454d8c0bce957233999, type: 2}
     - target: {fileID: 2263186635297857247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 66e2092ae5b9f074592ef2eafa27ad45, type: 2}
+      objectReference: {fileID: 2100000, guid: e83fca3143559f14d8e934d8ff06e43b, type: 2}
     - target: {fileID: 2761247587977076700, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Name
       value: 3D_Lamp_01a (5)
@@ -1567,7 +1567,7 @@ PrefabInstance:
     - target: {fileID: 8119797188159806764, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 66e2092ae5b9f074592ef2eafa27ad45, type: 2}
+      objectReference: {fileID: 2100000, guid: ec7921d0c107a454d8c0bce957233999, type: 2}
     - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: lengthInSec
       value: 50
@@ -1804,11 +1804,11 @@ PrefabInstance:
     - target: {fileID: 774417723763728247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: be054672f3e59cf4c99fbb8c0d8c33db, type: 2}
+      objectReference: {fileID: 2100000, guid: ec7921d0c107a454d8c0bce957233999, type: 2}
     - target: {fileID: 2263186635297857247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: be054672f3e59cf4c99fbb8c0d8c33db, type: 2}
+      objectReference: {fileID: 2100000, guid: ba987332a0c0a1649a09dc449b5e727c, type: 2}
     - target: {fileID: 2761247587977076700, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Name
       value: 3D_Lamp_01a (2)
@@ -1864,7 +1864,7 @@ PrefabInstance:
     - target: {fileID: 8119797188159806764, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: be054672f3e59cf4c99fbb8c0d8c33db, type: 2}
+      objectReference: {fileID: 2100000, guid: ec7921d0c107a454d8c0bce957233999, type: 2}
     - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: lengthInSec
       value: 50
@@ -1958,7 +1958,7 @@ PrefabInstance:
     - target: {fileID: 2263186635297857247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ec7921d0c107a454d8c0bce957233999, type: 2}
+      objectReference: {fileID: 2100000, guid: cfc041ece88827f478192347a66f2aad, type: 2}
     - target: {fileID: 2761247587977076700, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Name
       value: 3D_Lamp_01a
@@ -2281,11 +2281,11 @@ PrefabInstance:
     - target: {fileID: 774417723763728247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: be054672f3e59cf4c99fbb8c0d8c33db, type: 2}
+      objectReference: {fileID: 2100000, guid: ec7921d0c107a454d8c0bce957233999, type: 2}
     - target: {fileID: 2263186635297857247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: be054672f3e59cf4c99fbb8c0d8c33db, type: 2}
+      objectReference: {fileID: 2100000, guid: f6ee3c1a0ae29284aa4a0a2c942384c2, type: 2}
     - target: {fileID: 2761247587977076700, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Name
       value: 3D_Lamp_01a (3)
@@ -2341,7 +2341,7 @@ PrefabInstance:
     - target: {fileID: 8119797188159806764, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: be054672f3e59cf4c99fbb8c0d8c33db, type: 2}
+      objectReference: {fileID: 2100000, guid: ec7921d0c107a454d8c0bce957233999, type: 2}
     - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: lengthInSec
       value: 50
@@ -3620,11 +3620,11 @@ PrefabInstance:
     - target: {fileID: 774417723763728247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 66e2092ae5b9f074592ef2eafa27ad45, type: 2}
+      objectReference: {fileID: 2100000, guid: ec7921d0c107a454d8c0bce957233999, type: 2}
     - target: {fileID: 2263186635297857247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 66e2092ae5b9f074592ef2eafa27ad45, type: 2}
+      objectReference: {fileID: 2100000, guid: e83fca3143559f14d8e934d8ff06e43b, type: 2}
     - target: {fileID: 2761247587977076700, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Name
       value: 3D_Lamp_01a (1)
@@ -3692,7 +3692,7 @@ PrefabInstance:
     - target: {fileID: 8119797188159806764, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 66e2092ae5b9f074592ef2eafa27ad45, type: 2}
+      objectReference: {fileID: 2100000, guid: ec7921d0c107a454d8c0bce957233999, type: 2}
     - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: lengthInSec
       value: 50
@@ -5759,11 +5759,11 @@ PrefabInstance:
     - target: {fileID: 774417723763728247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: be054672f3e59cf4c99fbb8c0d8c33db, type: 2}
+      objectReference: {fileID: 2100000, guid: ec7921d0c107a454d8c0bce957233999, type: 2}
     - target: {fileID: 2263186635297857247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: be054672f3e59cf4c99fbb8c0d8c33db, type: 2}
+      objectReference: {fileID: 2100000, guid: ba987332a0c0a1649a09dc449b5e727c, type: 2}
     - target: {fileID: 2761247587977076700, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Name
       value: 3D_Lamp_01a (6)
@@ -5819,7 +5819,7 @@ PrefabInstance:
     - target: {fileID: 8119797188159806764, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: be054672f3e59cf4c99fbb8c0d8c33db, type: 2}
+      objectReference: {fileID: 2100000, guid: ec7921d0c107a454d8c0bce957233999, type: 2}
     - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: lengthInSec
       value: 50
@@ -7340,11 +7340,11 @@ PrefabInstance:
     - target: {fileID: 774417723763728247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9cee38b441a18a64c9cf0722b6bbc3fd, type: 2}
+      objectReference: {fileID: 2100000, guid: ec7921d0c107a454d8c0bce957233999, type: 2}
     - target: {fileID: 2263186635297857247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9cee38b441a18a64c9cf0722b6bbc3fd, type: 2}
+      objectReference: {fileID: 2100000, guid: f6ee3c1a0ae29284aa4a0a2c942384c2, type: 2}
     - target: {fileID: 2761247587977076700, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Name
       value: 3D_Lamp_01a (7)
@@ -7400,7 +7400,7 @@ PrefabInstance:
     - target: {fileID: 8119797188159806764, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9cee38b441a18a64c9cf0722b6bbc3fd, type: 2}
+      objectReference: {fileID: 2100000, guid: ec7921d0c107a454d8c0bce957233999, type: 2}
     - target: {fileID: 8856551014742818708, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: lengthInSec
       value: 50
@@ -7695,7 +7695,7 @@ PrefabInstance:
     - target: {fileID: 2263186635297857247, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ec7921d0c107a454d8c0bce957233999, type: 2}
+      objectReference: {fileID: 2100000, guid: cfc041ece88827f478192347a66f2aad, type: 2}
     - target: {fileID: 2761247587977076700, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
       propertyPath: m_Name
       value: 3D_Lamp_01a (4)
