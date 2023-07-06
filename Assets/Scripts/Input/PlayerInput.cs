@@ -184,6 +184,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""PickUp"",
+                    ""type"": ""Value"",
+                    ""id"": ""e3420cb4-05e6-4819-be4f-3cf4cb8901a1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -206,6 +215,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Unselect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""51a7dd29-6e45-4af4-a00b-1615497d4b6c"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PickUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -302,6 +322,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Selections = asset.FindActionMap("Selections", throwIfNotFound: true);
         m_Selections_ItemSelection = m_Selections.FindAction("ItemSelection", throwIfNotFound: true);
         m_Selections_Unselect = m_Selections.FindAction("Unselect", throwIfNotFound: true);
+        m_Selections_PickUp = m_Selections.FindAction("PickUp", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
@@ -480,12 +501,14 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private List<ISelectionsActions> m_SelectionsActionsCallbackInterfaces = new List<ISelectionsActions>();
     private readonly InputAction m_Selections_ItemSelection;
     private readonly InputAction m_Selections_Unselect;
+    private readonly InputAction m_Selections_PickUp;
     public struct SelectionsActions
     {
         private @PlayerInput m_Wrapper;
         public SelectionsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @ItemSelection => m_Wrapper.m_Selections_ItemSelection;
         public InputAction @Unselect => m_Wrapper.m_Selections_Unselect;
+        public InputAction @PickUp => m_Wrapper.m_Selections_PickUp;
         public InputActionMap Get() { return m_Wrapper.m_Selections; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -501,6 +524,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Unselect.started += instance.OnUnselect;
             @Unselect.performed += instance.OnUnselect;
             @Unselect.canceled += instance.OnUnselect;
+            @PickUp.started += instance.OnPickUp;
+            @PickUp.performed += instance.OnPickUp;
+            @PickUp.canceled += instance.OnPickUp;
         }
 
         private void UnregisterCallbacks(ISelectionsActions instance)
@@ -511,6 +537,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Unselect.started -= instance.OnUnselect;
             @Unselect.performed -= instance.OnUnselect;
             @Unselect.canceled -= instance.OnUnselect;
+            @PickUp.started -= instance.OnPickUp;
+            @PickUp.performed -= instance.OnPickUp;
+            @PickUp.canceled -= instance.OnPickUp;
         }
 
         public void RemoveCallbacks(ISelectionsActions instance)
@@ -642,6 +671,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     {
         void OnItemSelection(InputAction.CallbackContext context);
         void OnUnselect(InputAction.CallbackContext context);
+        void OnPickUp(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

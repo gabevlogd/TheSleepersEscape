@@ -11,8 +11,8 @@ public class Door : MonoBehaviour
     {
         m_closedPosition = transform.position;
         m_animator = GetComponent<Animator>();
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.OpenDoor, OpenDoor);
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.CloseDoor, CloseDoor);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.OpenDoor, OpenDoor);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.CloseDoor, CloseDoor);
     }
 
     public void OpenDoor()

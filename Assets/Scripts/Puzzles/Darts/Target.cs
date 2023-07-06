@@ -40,9 +40,9 @@ public class Target : MonoBehaviour
         m_inputs.Darts.Throw.performed += PerformThrow;
         m_inputs.Darts.MoveTarget.performed += PerformMousePosition;
         m_inputs.Enable();
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.StartPuzzle, StartGame);
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.ResetPuzzle, ResetGame);
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.PuzzleCompleted, EndGame);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.StartPuzzle, StartGame);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.ResetPuzzle, ResetGame);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.PuzzleCompleted, EndGame);
     }
 
     private void OnDisable()
@@ -67,7 +67,7 @@ public class Target : MonoBehaviour
 
     private void HandleViewfinderOut()
     {
-        if (GameManager.Instance.dartsManager.m_gameTriggered)
+        if (GameManager.Instance.DartsManager.m_gameTriggered)
         {
             m_viewfinderOut.transform.position = m_mousePosition;
         }
@@ -75,7 +75,7 @@ public class Target : MonoBehaviour
 
     private void PerformMousePosition(InputAction.CallbackContext context)
     {
-        if (GameManager.Instance.dartsManager.m_gameTriggered)
+        if (GameManager.Instance.DartsManager.m_gameTriggered)
         {
             Vector2 mousePosition = context.ReadValue<Vector2>();
             m_mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Vector3.Distance(transform.position, Camera.main.transform.position) - 0.1f));
@@ -84,12 +84,12 @@ public class Target : MonoBehaviour
 
     private void PerformThrow(InputAction.CallbackContext context)
     {
-        if (GameManager.Instance.dartsManager.ReadyToThrow && GameManager.Instance.dartsManager.initialThrows > 0 && GameManager.Instance.dartsManager.m_gameTriggered) Throw();
+        if (GameManager.Instance.DartsManager.ReadyToThrow && GameManager.Instance.DartsManager.initialThrows > 0 && GameManager.Instance.DartsManager.m_gameTriggered) Throw();
     }
 
     private void Throw()
     {
-        GameManager.Instance.dartsManager.ReadyToThrow = false;
+        GameManager.Instance.DartsManager.ReadyToThrow = false;
 
        
         GameObject projectile = Instantiate(m_darts, m_cameraTriggerer.position, Quaternion.identity);
@@ -104,9 +104,9 @@ public class Target : MonoBehaviour
         
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
 
-        GameManager.Instance.dartsManager.m_throwedDarts.Add(projectile);
+        GameManager.Instance.DartsManager.m_throwedDarts.Add(projectile);
 
-        GameManager.Instance.dartsManager.initialThrows--;
+        GameManager.Instance.DartsManager.initialThrows--;
 
     }
 
@@ -124,7 +124,7 @@ public class Target : MonoBehaviour
 
     private void MoveToRandomPosition()
     {
-        if (GameManager.Instance.dartsManager.m_gameTriggered)
+        if (GameManager.Instance.DartsManager.m_gameTriggered)
         {
             m_viewfinderIn.transform.localPosition = Vector3.MoveTowards(m_viewfinderIn.transform.localPosition, m_viewfinderInTarget, m_viewfinderVelocity * Time.deltaTime);
             if (Vector3.Distance(m_viewfinderIn.transform.localPosition, m_viewfinderInTarget) <= 0.001f) SetRandomPosition();
@@ -134,19 +134,19 @@ public class Target : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(GameManager.Instance.dartsManager.EnableThrowAbility());
+        StartCoroutine(GameManager.Instance.DartsManager.EnableThrowAbility());
         Cursor.visible = false;
         m_viewfinderIn.SetActive(true);
         m_viewfinderOut.SetActive(true);
-        if (GameManager.Instance.dartsManager.m_throwedDarts != null)
-            foreach (GameObject darts in GameManager.Instance.dartsManager.m_throwedDarts) Destroy(darts.gameObject);
-        GameManager.Instance.dartsManager.m_throwedDarts = new List<GameObject>();
-        GameManager.Instance.dartsManager.m_gameTriggered = true;
+        if (GameManager.Instance.DartsManager.m_throwedDarts != null)
+            foreach (GameObject darts in GameManager.Instance.DartsManager.m_throwedDarts) Destroy(darts.gameObject);
+        GameManager.Instance.DartsManager.m_throwedDarts = new List<GameObject>();
+        GameManager.Instance.DartsManager.m_gameTriggered = true;
     }
 
     public void EndGame()
     {
-        GameManager.Instance.dartsManager.m_gameTriggered = false;
+        GameManager.Instance.DartsManager.m_gameTriggered = false;
         m_cameraTriggerer.gameObject.SetActive(false);
         Cursor.visible = true;
         m_viewfinderIn.SetActive(false);
@@ -157,12 +157,12 @@ public class Target : MonoBehaviour
     {
         m_viewfinderIn.SetActive(false);
         m_viewfinderOut.SetActive(false);
-        GameManager.Instance.dartsManager.m_gameTriggered = false;
-        GameManager.Instance.dartsManager.score = 0;
-        GameManager.Instance.dartsManager.initialThrows = GameManager.Instance.dartsManager.totalThrows;
+        GameManager.Instance.DartsManager.m_gameTriggered = false;
+        GameManager.Instance.DartsManager.score = 0;
+        GameManager.Instance.DartsManager.initialThrows = GameManager.Instance.DartsManager.totalThrows;
         Cursor.visible = true;
         m_viewfinderOut.transform.localPosition = new Vector3(0, 0, -0.09f);
         m_viewfinderIn.transform.localPosition = new Vector3(0, 0, -0.1f);
-        GameManager.Instance.dartsManager.ReadyToThrow = false;
+        GameManager.Instance.DartsManager.ReadyToThrow = false;
     }
 }

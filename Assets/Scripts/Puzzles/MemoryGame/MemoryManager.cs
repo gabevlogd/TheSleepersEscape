@@ -43,9 +43,9 @@ public class MemoryManager : MonoBehaviour, IPuzzle
 
     private void Start()
     {
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.StartPuzzle, StartGame);
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.ResetPuzzle, ResetGame);
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.PuzzleCompleted, EndGame);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.StartPuzzle, StartGame);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.ResetPuzzle, ResetGame);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.PuzzleCompleted, EndGame);
     }
 
     private void OnDisable()
