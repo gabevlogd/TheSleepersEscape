@@ -115,7 +115,7 @@ public class MemoryManager : MonoBehaviour, IPuzzle
     {
         CanChackTwoPair = false;
         ShuffleAnimation();
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
         ShuffleTile();
         CanChackTwoPair = true;
     }

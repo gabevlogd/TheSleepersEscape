@@ -96,6 +96,7 @@ public class MemoryWorldTile : MonoBehaviour, IPointerDownHandler
     //    yield return new WaitForSeconds(m_memoryManager.VelocityAfterTurnTheRotationTo0);
     //    tileA.RotateCard(180);
     //    tileB.RotateCard(180);
+    //    m_memoryManager.SetScore(-1);
     //    m_memoryManager.CanChackTwoPair = true;
     //    //Debug.Log(m_memoryManager.CanChackTwoPair);
     //}
@@ -131,16 +132,11 @@ public class MemoryWorldTile : MonoBehaviour, IPointerDownHandler
 
     private IEnumerator NotMatchedTiles(MemoryWorldTile tileA, MemoryWorldTile tileB)
     {
-        m_memoryManager.CanChackTwoPair = false;
-        //Debug.Log(m_memoryManager.CanChackTwoPair);
-        yield return new WaitForSeconds(m_memoryManager.VelocityAfterTurnTheRotationTo0 + 0.3f);
+        yield return new WaitForSeconds(m_memoryManager.VelocityAfterTurnTheRotationTo0);
         tileA.RotateCard(true);
         tileB.RotateCard(true);
         m_memoryManager.SetScore(-1);
-        yield return new WaitForSeconds(m_memoryManager.VelocityAfterTurnTheRotationTo0);
         m_memoryManager.CanChackTwoPair = true;
-        yield return new WaitForSeconds(m_memoryManager.VelocityAfterTurnTheRotationTo0);
-        
     }
 
 
@@ -165,9 +161,11 @@ public class MemoryWorldTile : MonoBehaviour, IPointerDownHandler
                 m_memoryManager.SelectedTiles[0].Paired = true;
                 m_memoryManager.SelectedTiles[1].Paired = true;
                 m_memoryManager.SetScore(m_memoryManager.IncreaseNumber);
+                m_memoryManager.CanChackTwoPair = true;
             }
             else
             {
+                m_memoryManager.CanChackTwoPair = false;
                 StartCoroutine(NotMatchedTiles(m_memoryManager.SelectedTiles[0], m_memoryManager.SelectedTiles[1]));
 
             }
@@ -175,12 +173,13 @@ public class MemoryWorldTile : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    private IEnumerator Rotate(MemoryWorldTile tileA,bool canRotate)
+
+    private IEnumerator Rotate(MemoryWorldTile tileA, bool canRotate)
     {
         m_memoryManager.CanChackTwoPair = false;
         tileA.RotateCard(canRotate);
         yield return new WaitForSeconds(m_memoryManager.VelocityAfterTurnTheRotationTo0);
-        m_memoryManager.CanChackTwoPair = true;
+        if(m_memoryManager.SelectedTiles.Count == 1) m_memoryManager.CanChackTwoPair = true;
 
     }
 
