@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Radio : MonoBehaviour
+public class Walkman : MonoBehaviour
 {
-    //public static bool CanInteract;
-
     public List<Dialogue> Dialogues;
     public Canvas Canvas;
     public TextMeshProUGUI PrintedText;
@@ -26,48 +24,35 @@ public class Radio : MonoBehaviour
     {
         m_dialoguesManager = new(Dialogues);
         m_currentDialogue = new();
-        m_collider = GetComponent<Collider>();
 
-        GameManager.Instance.EventManager.Register(Enumerators.Events.EnableRadio, EnableRadioInteraction);
-        GameManager.Instance.EventManager.Register(Enumerators.Events.DisableRadio, DisableRadioInteraction);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.PlayWalkman, TurnOnWalkman);
+
     }
 
     private void Update() => HandlePrintProcess();
 
 
-    private void OnMouseUp()
-    {
-        //if (GameManager.Instance.InventoryManager.InventoryCanvas.gameObject.activeInHierarchy) return;
-        //if (GameManager.Instance.PauseManager.PauseUI.activeInHierarchy) return;
-        if (GameManager.Instance.Player.PlayerStateMachine.CurrentState.StateID != Enumerators.PlayerState.Navigation) return;
-
-        /*if (CanInteract)*/ TurnOnRadio();
-    }
-
-    public void EnableRadioInteraction() => m_collider.enabled = true;
-    public void DisableRadioInteraction() => m_collider.enabled = false;
 
     /// <summary>
     /// Triggers the radio starting a new dialogue (UI text box)
     /// </summary>
-    public void TurnOnRadio()
+    public void TurnOnWalkman()
     {
         //CanInteract = false;
         GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.StartDialogue);
-        DisableRadioInteraction();
         m_currentDialogue = m_dialoguesManager.GetDialogue(out m_currentDialogueName);
         m_scriptLineToPrint = m_currentDialogue[0];
         Canvas.gameObject.SetActive(true);
         m_runDialogue = true;
         PrintedText.text = "";
         m_scriptLineIndex = -1;
-        m_time = 0;   
+        m_time = 0;
     }
 
     /// <summary>
     /// Stops the radio (Close UI text box)
     /// </summary>
-    public void TurnOffRadio()
+    public void TurnOffWalkman()
     {
         GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.StopDialogue);
         m_runDialogue = false;
@@ -131,11 +116,11 @@ public class Radio : MonoBehaviour
                 m_scriptLineToPrint = m_currentDialogue[0];
                 PrintedText.text = "";
             }
-            else if (m_currentDialogue.Count == 1) TurnOffRadio();
+            else if (m_currentDialogue.Count == 1) TurnOffWalkman();
         }
     }
 
-    
+
 
     private void HandlePrintProcess()
     {
@@ -147,6 +132,4 @@ public class Radio : MonoBehaviour
             LoadNextScriptLine();
         }
     }
-
-    
 }

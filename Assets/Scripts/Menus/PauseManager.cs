@@ -17,8 +17,8 @@ public class PauseManager : MonoBehaviour
         //m_inputs = new();
         //m_inputs.UI.Pause.performed += OnPause;
         //m_inputs.Enable();
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.ResumeGame, OnResume);
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.PauseGame, OnPause);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.ResumeGame, OnResume);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.PauseGame, OnPause);
     }
 
     public void OnResume()

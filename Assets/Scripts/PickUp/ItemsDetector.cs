@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class InteractableComponent : MonoBehaviour
+public class ItemsDetector : MonoBehaviour
 {
 
     private List<ItemBase> m_interactablesSpotted = new List<ItemBase>();
 
-    public List<ItemData> ItemBases = new List<ItemData>();
+    public List<ItemData> ItemsDatas = new List<ItemData>();
 
     private PlayerInput m_inputs;
 
@@ -21,11 +21,7 @@ public class InteractableComponent : MonoBehaviour
 
     private void Update()
     {
-        if (m_inputs.Selections.PickUp.WasReleasedThisFrame() && m_interactablesSpotted.Count > 0)
-        {
-            PickUp();
-
-        }
+        TryPickUp();
     }
 
 
@@ -34,9 +30,9 @@ public class InteractableComponent : MonoBehaviour
     {
         if (other.TryGetComponent(out ItemBase interactable))
         {
-            Debug.Log("item");
+            //Debug.Log("item");
             Spotted(interactable);
-            
+
         }
 
     }
@@ -45,11 +41,12 @@ public class InteractableComponent : MonoBehaviour
     {
         if (other.TryGetComponent(out ItemBase interactable))
         {
-            Debug.Log("itemNo");
+            //Debug.Log("itemNo");
             Unspotted(interactable);
 
         }
     }
+
 
     private void Spotted(ItemBase interactable)
     {
@@ -68,9 +65,20 @@ public class InteractableComponent : MonoBehaviour
 
     private void PickUp()
     {
-        ItemBases.Add(m_interactablesSpotted[0].data);
+        ItemsDatas.Add(m_interactablesSpotted[0].data);
         Destroy(m_interactablesSpotted[0].gameObject, 0.2f);
         Unspotted(m_interactablesSpotted[0]);
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.ItemCollected);
+    }
+
+    private void TryPickUp()
+    {
+        if (m_inputs.Selections.PickUp.WasReleasedThisFrame() && m_interactablesSpotted.Count > 0)
+        {
+            if (GameManager.Instance.Player.PlayerStateMachine.CurrentState.StateID != Enumerators.PlayerState.Navigation) return;
+            if (m_interactablesSpotted[0].data.name == "Walkman") GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.PlayWalkman);
+            PickUp();
+        }
     }
 
 }

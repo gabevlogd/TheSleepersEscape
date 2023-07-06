@@ -15,6 +15,8 @@ public class LoopOne : LoopBase
 
         // set active true darts
         GameManager.Instance.RoomManager.Puzzles[0].SetActive(true);
+        //set active true walkman
+        GameManager.Instance.RoomManager.Items[0].SetActive(true);
     }
 
     public override void OnExit()

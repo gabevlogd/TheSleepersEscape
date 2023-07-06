@@ -17,17 +17,17 @@ public class Darts : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        GameManager.Instance.DartsManager.ReadyToThrow = true;
+        GameManager.Instance.dartsManager.ReadyToThrow = true;
         m_rigidBody.isKinematic = true;
 
         if (collision.gameObject.TryGetComponent(out Target target))
         {
             Debug.Log(collision.contacts[0].point);
-            if (target.BullEyeHitted(collision.contacts[0].point)) GameManager.Instance.DartsManager.SetScore(1);
+            if (target.BullEyeHitted(collision.contacts[0].point)) GameManager.Instance.dartsManager.SetScore(1);
             
         }
 
-        GameManager.Instance.DartsManager.CheckLoseCondition();
+        GameManager.Instance.dartsManager.CheckLoseCondition();
 
     }
 

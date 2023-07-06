@@ -25,10 +25,10 @@ public class CameraController
         m_input = new();
         m_input.Enable();
 
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.PuzzleCompleted, BackToPlayer);
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.ResetPuzzle, BackToPlayer);
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.OpenDoor, BackToPlayer);
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.StopInteraction, BackToPlayer);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.PuzzleCompleted, BackToPlayer);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.ResetPuzzle, BackToPlayer);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.OpenDoor, BackToPlayer);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.StopInteraction, BackToPlayer);
     }
 
 

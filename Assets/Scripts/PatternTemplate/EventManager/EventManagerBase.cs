@@ -54,7 +54,7 @@ public class EventManagerBase<TKeyEvent>
     /// </summary>
     /// <param name="eventName"></param>
     /// <param name="observer"></param>
-    public void Unregistrer(TKeyEvent eventName, Action observer)
+    public void Unregister(TKeyEvent eventName, Action observer)
     {
         if (!ValidPreCondition(eventName, observer)) return;
 

@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public PlayerStateMachine PlayerStateMachine;
     public PlayerController PlayerController;
     public CameraController CameraController;
+    public ItemsDetector ItemsDetector;
 
     public PlayerMovementData PlayerMovementData;
     public CameraMovementData CameraMovementData;

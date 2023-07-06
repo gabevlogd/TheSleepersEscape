@@ -22,8 +22,8 @@ public class PlayerController
         m_inputs = new();
         m_inputs.Enable();
 
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.OpenInventory, DisableController);
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.CloseInventory, EnableController);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.OpenInventory, DisableController);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.CloseInventory, EnableController);
     }
 
     public void EnableController()

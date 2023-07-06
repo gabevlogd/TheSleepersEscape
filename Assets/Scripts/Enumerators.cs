@@ -20,7 +20,9 @@ public static class Enumerators
         StartDialogue,
         StopDialogue, 
         EnableRadio,
-        DisableRadio
+        DisableRadio,
+        ItemCollected,
+        PlayWalkman
 
     }
 

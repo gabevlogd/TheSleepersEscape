@@ -11,11 +11,11 @@ public class HUDManager : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.ShowHud, ShowHUD);
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.HideHud, HideHUD);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.ShowHud, ShowHUD);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.HideHud, HideHUD);
 
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.ShowInteractablePoint, ShowInteractableFeedback);
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.HideInteractablePoint, HideInteractableFeedback);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.ShowInteractablePoint, ShowInteractableFeedback);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.HideInteractablePoint, HideInteractableFeedback);
     }
 
     public void ShowHUD() => HUD.SetActive(true);

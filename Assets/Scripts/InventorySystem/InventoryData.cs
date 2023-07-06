@@ -6,6 +6,8 @@ using UnityEngine;
 public struct InventoryData 
 {
     public Transform ItemsWheel;
-    public List<GameObject> Items;
+    public List<ItemBase> Items;
     public PlayerInput Inputs;
+    public Camera InventoryCamera;
+
 }

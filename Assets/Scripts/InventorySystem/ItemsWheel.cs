@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 
 public class ItemsWheel
@@ -24,12 +25,18 @@ public class ItemsWheel
         m_defaultRotation = m_transform.rotation;
         m_targetRotation = m_defaultRotation;
 
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.OpenInventory, Enable);
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.CloseInventory, Disable);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.OpenInventory, Enable);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.CloseInventory, Disable);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.ItemCollected, AddNewItem);
         
     }
 
-    public void Enable() => m_inventoryData.Inputs.UI.SlideItems.performed += SlideItems;
+    public void Enable()
+    {
+        m_inventoryData.Inputs.UI.SlideItems.performed += SlideItems;
+        ShowSelectedItemInfo();
+    }
+
     public void Disable() => m_inventoryData.Inputs.UI.SlideItems.performed -= SlideItems;
 
 
@@ -61,8 +68,9 @@ public class ItemsWheel
         Physics.Raycast(m_transform.position, m_raycastDirection, out hitInfo);
         if (hitInfo.collider != null)
         {
-
+            Debug.Log(hitInfo.collider.name);
         }
+        else Debug.Log("no items");
     }
 
 
@@ -98,6 +106,28 @@ public class ItemsWheel
         m_targetRotation = m_transform.rotation;
         m_itemsPositions = GetPositions(m_inventoryData.Items.Count);
         PlaceItems();
+    }
+
+    public void AddNewItem()
+    {
+        ItemData newItemData = GameManager.Instance.Player.ItemsDetector.ItemsDatas[0];
+
+        GameObject newItem = MonoBehaviour.Instantiate(newItemData.ItemMesh, m_inventoryData.ItemsWheel);
+        ItemBase newItemBase = newItem.AddComponent<ItemBase>();
+        newItemBase.data = newItemData;
+
+        newItemBase.gameObject.layer = newItemData.LayerUI;
+
+        ConstraintSource targetSource = new ConstraintSource();
+        targetSource.sourceTransform = m_inventoryData.InventoryCamera.transform;
+        newItemBase.GetComponent<LookAtConstraint>().SetSource(0, targetSource);
+
+        if (m_inventoryData.Items == null) m_inventoryData.Items = new List<ItemBase>();
+        m_inventoryData.Items.Add(newItemBase);
+        GameManager.Instance.Player.ItemsDetector.ItemsDatas.Remove(newItemData);
+
+        UpdateWheel();
+
     }
 
 

@@ -5,8 +5,8 @@ public class OnDialogue : PlayerState
 {
     public OnDialogue(Enumerators.PlayerState stateID, StatesMachine<Enumerators.PlayerState> stateMachine = null) : base(stateID, stateMachine)
     {
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.StartDialogue, StartDialogue);
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.StopDialogue, StopDialogue);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.StartDialogue, StartDialogue);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.StopDialogue, StopDialogue);
     }
 
     public override void OnEnter()

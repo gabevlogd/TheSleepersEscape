@@ -5,8 +5,8 @@ public class Navigation : PlayerState
     public Navigation(Enumerators.PlayerState stateID, StatesMachine<Enumerators.PlayerState> stateMachine = null) : base(stateID, stateMachine)
     {
         m_inputs = new();
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.ResetPuzzle, EnterNavigationState);
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.PuzzleCompleted, EnterNavigationState);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.ResetPuzzle, EnterNavigationState);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.PuzzleCompleted, EnterNavigationState);
     }
 
     public override void OnEnter()
