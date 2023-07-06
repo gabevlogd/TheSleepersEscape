@@ -22,7 +22,12 @@ public static class Enumerators
         EnableRadio,
         DisableRadio,
         ItemCollected,
-        PlayWalkman
+        PlayWalkman,
+        EnableDarts,
+        EnableDials,
+        RemoveWalkman,
+        EnterLoopChange,
+        ExitLoopChange
 
     }
 
@@ -41,7 +46,8 @@ public static class Enumerators
         RunningInteractable,
         OnInventory,
         OnDialogue,
-        OnPause
+        OnPause,
+        OnLoopChange
     }
 
 }

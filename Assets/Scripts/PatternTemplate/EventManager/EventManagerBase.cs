@@ -97,6 +97,7 @@ public class EventManagerBase<TKeyEvent>
             foreach (Action notify in event_observer)
                 notify.Invoke();
         }
+        else Debug.Log("Event: " + eventName + " does not exist");
     }
 
     /// <summary>

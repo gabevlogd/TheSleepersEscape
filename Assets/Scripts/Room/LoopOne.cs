@@ -11,7 +11,7 @@ public class LoopOne : LoopBase
         base.OnEnter();
 
         //Radio.CanInteract = true; //per adesso qui poi chiedo ai designer dove
-        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableRadio); //per adesso qui poi chiedo ai designer dove
+        //GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableRadio); //per adesso qui poi chiedo ai designer dove
 
         // set active true darts
         GameManager.Instance.RoomManager.Puzzles[0].SetActive(true);
@@ -25,6 +25,9 @@ public class LoopOne : LoopBase
 
         // set active false darts
         GameManager.Instance.RoomManager.Puzzles[0].SetActive(false);
+
+        //remove walkman from inventory
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.RemoveWalkman);
     }
 
 }

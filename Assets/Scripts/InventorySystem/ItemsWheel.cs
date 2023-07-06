@@ -28,6 +28,7 @@ public class ItemsWheel
         GameManager.Instance.EventManager.Register(Enumerators.Events.OpenInventory, Enable);
         GameManager.Instance.EventManager.Register(Enumerators.Events.CloseInventory, Disable);
         GameManager.Instance.EventManager.Register(Enumerators.Events.ItemCollected, AddNewItem);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.RemoveWalkman, RemoveWalkman);
         
     }
 
@@ -128,6 +129,12 @@ public class ItemsWheel
 
         UpdateWheel();
 
+    }
+
+    public void RemoveWalkman()
+    {
+        m_inventoryData.Items.Remove(m_inventoryData.Items[0]);
+        UpdateWheel();
     }
 
 

@@ -46,7 +46,7 @@ SphereCollider:
   m_GameObject: {fileID: 1629481408239963430}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -62,64 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70f24632ce0fd54999bd7bc96bab8cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RadioDialogues:
-  - DialogueName: loop one
-    m_speakers:
-    - SpeakerName: gino
-      Script:
-      - 'Bla bla bla bla bla... '
-      - 'Bla bla bla bla bla... '
-      - 'Bla bla bla bla bla... '
-    - SpeakerName: giorgio
-      Script:
-      - Ble ble ble ble ble...
-      - Ble ble ble ble ble...
-      - Ble ble ble ble ble...
-    m_speakersOrder:
-    - gino
-    - giorgio
-    - gino
-    - gino
-    - giorgio
-    - giorgio
-  - DialogueName: loop two
-    m_speakers:
-    - SpeakerName: a
-      Script:
-      - 'Bla bla bla bla bla... '
-      - 'Bla bla bla bla bla... '
-      - 'Bla bla bla bla bla... '
-    - SpeakerName: b
-      Script:
-      - Ble ble ble ble...
-      - Ble ble ble ble...
-      - Ble ble ble ble...
-    m_speakersOrder:
-    - a
-    - b
-    - a
-    - a
-    - b
-    - b
-  - DialogueName: loop three
-    m_speakers:
-    - SpeakerName: a
-      Script:
-      - 'Bla bla bla bla bla... '
-      - 'Bla bla bla bla bla... '
-      - 'Bla bla bla bla bla... '
-    - SpeakerName: b
-      Script:
-      - Ble ble ble ble...
-      - Ble ble ble ble...
-      - Ble ble ble ble...
-    m_speakersOrder:
-    - a
-    - b
-    - a
-    - a
-    - b
-    - b
+  Dialogues: []
   Canvas: {fileID: 1629481408655231858}
   PrintedText: {fileID: 1629481408955108740}
   TextSpeed: 30

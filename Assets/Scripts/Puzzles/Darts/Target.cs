@@ -43,6 +43,7 @@ public class Target : MonoBehaviour
         GameManager.Instance.EventManager.Register(Enumerators.Events.StartPuzzle, StartGame);
         GameManager.Instance.EventManager.Register(Enumerators.Events.ResetPuzzle, ResetGame);
         GameManager.Instance.EventManager.Register(Enumerators.Events.PuzzleCompleted, EndGame);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.EnableDarts, EnableDartsInteraction);
     }
 
     private void OnDisable()
@@ -147,6 +148,7 @@ public class Target : MonoBehaviour
 
     public void EndGame()
     {
+        GameManager.Instance.RoomManager.Items[1].SetActive(true); //active the note 1 pick up
         GameManager.Instance.dartsManager.m_gameTriggered = false;
         m_cameraTriggerer.gameObject.SetActive(false);
         Cursor.visible = true;
@@ -165,5 +167,10 @@ public class Target : MonoBehaviour
         m_viewfinderOut.transform.localPosition = new Vector3(0, 0, -0.09f);
         m_viewfinderIn.transform.localPosition = new Vector3(0, 0, -0.1f);
         GameManager.Instance.dartsManager.ReadyToThrow = false;
+    }
+
+    public void EnableDartsInteraction()
+    {
+        m_cameraTriggerer.gameObject.SetActive(true);
     }
 }

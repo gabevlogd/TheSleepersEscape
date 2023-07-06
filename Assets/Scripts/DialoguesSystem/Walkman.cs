@@ -55,6 +55,7 @@ public class Walkman : MonoBehaviour
     public void TurnOffWalkman()
     {
         GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.StopDialogue);
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableDarts);
         m_runDialogue = false;
         Canvas.gameObject.SetActive(false);
     }

@@ -76,7 +76,11 @@ public class ItemsDetector : MonoBehaviour
         if (m_inputs.Selections.PickUp.WasReleasedThisFrame() && m_interactablesSpotted.Count > 0)
         {
             if (GameManager.Instance.Player.PlayerStateMachine.CurrentState.StateID != Enumerators.PlayerState.Navigation) return;
-            if (m_interactablesSpotted[0].data.name == "Walkman") GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.PlayWalkman);
+
+            if (m_interactablesSpotted[0].data.ItemName == "Walkman") GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.PlayWalkman);
+            else if (m_interactablesSpotted[0].data.ItemName == "Note 1") GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableRadio);
+            else if (m_interactablesSpotted[0].data.ItemName == "Paper") GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableDials);
+
             PickUp();
         }
     }

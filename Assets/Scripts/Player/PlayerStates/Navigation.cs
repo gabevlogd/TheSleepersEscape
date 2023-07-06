@@ -7,6 +7,9 @@ public class Navigation : PlayerState
         m_inputs = new();
         GameManager.Instance.EventManager.Register(Enumerators.Events.ResetPuzzle, EnterNavigationState);
         GameManager.Instance.EventManager.Register(Enumerators.Events.PuzzleCompleted, EnterNavigationState);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.OpenDoor, EnterNavigationState);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.ExitLoopChange, EnterNavigationState);
+
     }
 
     public override void OnEnter()

@@ -319,14 +319,11 @@ MonoBehaviour:
   m_cameraTriggerer: {fileID: 4817155204696602657}
   m_viewfinderIn: {fileID: 7486383522379880057}
   m_viewfinderOut: {fileID: 3432178768173560315}
-  m_totalThrows: 10
   m_centerRadius: 0.05
-  throwKey: 323
   m_throwForceForword: 10
   m_throwUpwardForce: 3
-  m_gameTriggered: 0
-  m_score: 0
-  m_pointsForWin: 2
+  m_viewfinderVelocity: 0
+  m_viewfinderOutRadius: 0
 --- !u!1 &7486383522379880057
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,6 +501,10 @@ PrefabInstance:
     - target: {fileID: 8636274200371892396, guid: f5b9f8c08f7bd66468323bdbb88a9bbb, type: 3}
       propertyPath: m_Name
       value: PuzzleTriggerer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636274200371892396, guid: f5b9f8c08f7bd66468323bdbb88a9bbb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5b9f8c08f7bd66468323bdbb88a9bbb, type: 3}
