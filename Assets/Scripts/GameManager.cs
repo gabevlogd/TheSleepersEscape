@@ -9,6 +9,8 @@ public class GameManager : Singleton<GameManager>
     public Player Player;
     public RoomManager RoomManager;
     public DartsManager dartsManager;
+    public InventoryManager InventoryManager;
+    public PauseManager PauseManager;
 
     protected override void Awake()
     {

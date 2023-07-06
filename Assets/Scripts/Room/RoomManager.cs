@@ -8,6 +8,7 @@ public class RoomManager : MonoBehaviour
 
     public RoomStatesMachine RoomStatesMachine;
     public List<GameObject> Puzzles;
+    public List<GameObject> Items;
 
     private void Awake()
     {

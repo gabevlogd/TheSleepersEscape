@@ -26,7 +26,8 @@ public class ExitPoint : MonoBehaviour
 
     private IEnumerator PerformLoopChange()
     {
-        GameManager.Instance.Player.PlayerController.DisableController(); 
+        //GameManager.Instance.Player.PlayerController.DisableController(); 
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnterLoopChange);
 
         StartFade(); 
 
@@ -42,7 +43,8 @@ public class ExitPoint : MonoBehaviour
 
         yield return new WaitUntil(() => m_canFade == false);
 
-        GameManager.Instance.Player.PlayerController.EnableController();
+        //GameManager.Instance.Player.PlayerController.EnableController();
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.ExitLoopChange);
     }
 
     private void RespawnPlayer()

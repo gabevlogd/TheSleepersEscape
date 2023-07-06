@@ -12,7 +12,10 @@ public class LoopTwo : LoopBase
     {
         base.OnEnter();
         RoomManager.LoopCounter++;
-        Radio.CanInteract = true; //per adesso qui poi chiedo ai designer dove
+
+        //Radio.CanInteract = true; //per adesso qui poi chiedo ai designer dove
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableRadio); //per adesso qui poi chiedo ai designer dove
+
         GameManager.Instance.RoomManager.Puzzles[1].SetActive(true);
     }
 

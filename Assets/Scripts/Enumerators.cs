@@ -6,7 +6,28 @@ public static class Enumerators
         StartPuzzle,
         ResetPuzzle,
         OpenDoor,
-        CloseDoor
+        CloseDoor,
+        OpenInventory,
+        CloseInventory,
+        StartInteraction,
+        StopInteraction,
+        ResumeGame,
+        PauseGame,
+        ShowHud,
+        HideHud,
+        ShowInteractablePoint,
+        HideInteractablePoint,
+        StartDialogue,
+        StopDialogue, 
+        EnableRadio,
+        DisableRadio,
+        ItemCollected,
+        PlayWalkman,
+        EnableDarts,
+        EnableDials,
+        RemoveWalkman,
+        EnterLoopChange,
+        ExitLoopChange
 
     }
 
@@ -15,5 +36,18 @@ public static class Enumerators
         LoopOne,
         LoopTwo,
         LoopThree
+        
     }
+
+    public enum PlayerState
+    {
+        Navigation,
+        RunningPuzzle,
+        RunningInteractable,
+        OnInventory,
+        OnDialogue,
+        OnPause,
+        OnLoopChange
+    }
+
 }

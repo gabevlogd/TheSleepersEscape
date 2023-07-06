@@ -25,7 +25,7 @@ public class DartsManager : MonoBehaviour
         initialThrows = totalThrows;
     }
 
-    public IEnumerator EnableThrowAbility()
+    public IEnumerator EnableThrowAbility() //not needed anymore, problem fixed in the camera controller
     {
         yield return new WaitForSeconds(1f);
         ReadyToThrow = true;

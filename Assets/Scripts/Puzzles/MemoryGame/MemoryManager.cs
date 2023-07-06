@@ -43,16 +43,16 @@ public class MemoryManager : MonoBehaviour, IPuzzle
 
     private void Start()
     {
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.StartPuzzle, StartGame);
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.ResetPuzzle, ResetGame);
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.PuzzleCompleted, EndGame);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.StartPuzzle, StartGame);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.ResetPuzzle, ResetGame);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.PuzzleCompleted, EndGame);
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.EventManager.Unregistrer(Enumerators.Events.StartPuzzle, StartGame);
-        GameManager.Instance.EventManager.Unregistrer(Enumerators.Events.ResetPuzzle, ResetGame);
-        GameManager.Instance.EventManager.Unregistrer(Enumerators.Events.PuzzleCompleted, EndGame);
+        GameManager.Instance.EventManager.Unregister(Enumerators.Events.StartPuzzle, StartGame);
+        GameManager.Instance.EventManager.Unregister(Enumerators.Events.ResetPuzzle, ResetGame);
+        GameManager.Instance.EventManager.Unregister(Enumerators.Events.PuzzleCompleted, EndGame);
     }
 
 
@@ -188,6 +188,7 @@ public class MemoryManager : MonoBehaviour, IPuzzle
         Score = InitialScore;
         TurnFaceUp();
     }
+
 
 
 }
