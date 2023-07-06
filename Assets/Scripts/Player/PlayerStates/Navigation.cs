@@ -18,6 +18,8 @@ public class Navigation : PlayerState
         GameManager.Instance.Player.PlayerController.EnableController();
         GameManager.Instance.Player.CameraController.EnableController();
 
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.ShowHud);
+
     }
 
     public override void OnUpdate()
@@ -35,6 +37,8 @@ public class Navigation : PlayerState
 
         GameManager.Instance.Player.PlayerController.DisableController();
         GameManager.Instance.Player.CameraController.DisableController();
+
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.HideHud);
     }
 
     private void HandleInventoryOpening()

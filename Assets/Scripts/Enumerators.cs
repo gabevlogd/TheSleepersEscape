@@ -12,7 +12,15 @@ public static class Enumerators
         StartInteraction,
         StopInteraction,
         ResumeGame,
-        PauseGame
+        PauseGame,
+        ShowHud,
+        HideHud,
+        ShowInteractablePoint,
+        HideInteractablePoint,
+        StartDialogue,
+        StopDialogue, 
+        EnableRadio,
+        DisableRadio
 
     }
 

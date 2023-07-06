@@ -18,7 +18,7 @@ public class InteractionPoint : MonoBehaviour
     private void OnMouseOver()
     {
 
-        if (Camera.main.transform.localPosition.z != 0f) return;
+        //if (Camera.main.transform.localPosition.z != 0f) return;
 
         if (!InteractablePoint.gameObject.activeInHierarchy && Vector3.Distance(Camera.main.transform.position, m_collider.ClosestPoint(Camera.main.transform.position)) <= MinTriggerDistance)
         {
@@ -33,7 +33,7 @@ public class InteractionPoint : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (Camera.main.transform.localPosition.z != 0f) return;
+        //if (Camera.main.transform.localPosition.z != 0f) return;
 
         InteractablePoint.gameObject.SetActive(false);
     }

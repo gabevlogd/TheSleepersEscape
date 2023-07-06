@@ -11,6 +11,7 @@ public class PlayerStateMachine : StatesMachine<Enumerators.PlayerState>
         AllStates.Add(Enumerators.PlayerState.RunningInteractable, new RunningInteractable(Enumerators.PlayerState.RunningInteractable, this));
         AllStates.Add(Enumerators.PlayerState.OnInventory, new OnInventory(Enumerators.PlayerState.OnInventory, this));
         AllStates.Add(Enumerators.PlayerState.OnPause, new OnPause(Enumerators.PlayerState.OnPause, this));
+        AllStates.Add(Enumerators.PlayerState.OnDialogue, new OnDialogue(Enumerators.PlayerState.OnDialogue, this));
 
         CurrentState = AllStates[Enumerators.PlayerState.Navigation];
         CurrentState.OnEnter();
