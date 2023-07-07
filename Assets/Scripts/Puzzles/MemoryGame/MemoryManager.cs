@@ -104,6 +104,7 @@ public class MemoryManager : MonoBehaviour, IPuzzle
 
     private void ShuffleAnimation()
     {
+        GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundPlayer, GameManager.Instance.SoundManager.SelectedTiled);
         foreach (MemoryWorldTile worldTile in m_worldTiles)
         {
             worldTile.RotateCard(true);

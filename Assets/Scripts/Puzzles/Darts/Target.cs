@@ -86,13 +86,16 @@ public class Target : MonoBehaviour
     private void PerformThrow(InputAction.CallbackContext context)
     {
         if (GameManager.Instance.dartsManager.ReadyToThrow && GameManager.Instance.dartsManager.initialThrows > 0 && GameManager.Instance.dartsManager.m_gameTriggered) Throw();
+
     }
 
     private void Throw()
     {
         GameManager.Instance.dartsManager.ReadyToThrow = false;
 
-       
+        GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundPlayer, GameManager.Instance.SoundManager.ThrowDart);
+
+
         GameObject projectile = Instantiate(m_darts, m_cameraTriggerer.position, Quaternion.identity);
 
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();

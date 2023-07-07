@@ -127,6 +127,8 @@ public class GO15Manager : MonoBehaviour, IPuzzle
         m_instance.m_worldTiles[index0] = SelectedTiles[1];
         m_instance.m_worldTiles[index1] = SelectedTiles[0];
 
+        //da capire gabri
+        GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundPlayer, GameManager.Instance.SoundManager.GO15SwitchTile);
 
         CheckWinCondition();
     }
@@ -176,6 +178,8 @@ public class GO15Manager : MonoBehaviour, IPuzzle
     /// </summary>
     public void StartGame()
     {
+        //da capire
+        GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundWatch, GameManager.Instance.SoundManager.Watch);
         GameTriggered = true;
         m_timer = DefaultTimer;
         m_outOfTime = false;

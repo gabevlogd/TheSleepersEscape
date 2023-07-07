@@ -6,39 +6,85 @@ public class SoundManager : MonoBehaviour
 {
 
     [SerializeField]
-    private AudioSource m_audioSource;
+    private AudioSource m_audioSourcePlayer;
 
     [SerializeField]
-    private AudioSource m_BackGroundAudioSource;
+    private AudioSource m_generatorSound;
 
-    public AudioClip PlayerStep, PickUp, ThrowDart, TargetBoard, GO15SwitchTile, Watch, SelectedTiled, Pair, NoPair, SuccessPuzzle, FailedPuzzle, SwitchLight, MasterSwitch, LampOn, LampOff, AllLightPowerOn, AllLightPowerOff, DoorDial, DoorLight, DoorOpen, WalkmanPlay, WalkmanStop, Radio,Fax;
+    [SerializeField]
+    private AudioSource m_audioSourceDoor;
+
+    [SerializeField]
+    private AudioSource m_audioSourceRadio;
+
+    [SerializeField]
+    private AudioSource m_audioSourceWatch;
+
+
+    public AudioClip PlayerStep, PickUp, ThrowDart, TargetBoard,TargetWall, GO15SwitchTile, Watch, SelectedTiled, Pair, NoPair, SuccessPuzzle, FailedPuzzle, SwitchLight, MasterSwitch, LampOn, LampOff, AllLightPowerOn, AllLightPowerOff, DoorDial, DoorLight, DoorOpen, WalkmanPlay, WalkmanStop, Radio,Fax;
 
 
     private void OnEnable()
     {
-        GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlayeSound, ChangeClipAndPlay);
+        GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundPlayer, ChangeClipAndPlayForPlayer);
+        GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundDoor, ChangeClipAndPlayForDoor);
+        GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundRadio, ChangeClipAndPlayForRadio);
+        GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundDoor, ChangeClipAndPlayForPlayer);
+        GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundWatch, ChangeClipAndPlayForWatch);
+        GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundGenerator, ChangeClipAndPlayForGenerator);
     }
 
 
     private void OnDisable()
     {
-        GameManager.Instance.SoundEventManager.Unregister<AudioClip>(Enumerators.MusicEvents.PlayeSound, ChangeClipAndPlay);
+        GameManager.Instance.SoundEventManager.Unregister<AudioClip>(Enumerators.MusicEvents.PlaySoundPlayer, ChangeClipAndPlayForPlayer);
+        GameManager.Instance.SoundEventManager.Unregister<AudioClip>(Enumerators.MusicEvents.PlaySoundDoor, ChangeClipAndPlayForDoor);
+        GameManager.Instance.SoundEventManager.Unregister<AudioClip>(Enumerators.MusicEvents.PlaySoundRadio, ChangeClipAndPlayForRadio);
+        GameManager.Instance.SoundEventManager.Unregister<AudioClip>(Enumerators.MusicEvents.PlaySoundWatch, ChangeClipAndPlayForWatch);
+        GameManager.Instance.SoundEventManager.Unregister<AudioClip>(Enumerators.MusicEvents.PlaySoundGenerator, ChangeClipAndPlayForGenerator);
     }
 
-    private void Start()
+
+
+    private void ChangeClipAndPlayForPlayer(AudioClip audioClip)
     {
-        m_audioSource.enabled = true;
-        m_BackGroundAudioSource.enabled = true;
+        m_audioSourcePlayer.clip = audioClip;
+        m_audioSourcePlayer.Play();
+
     }
 
-
-    private void ChangeClipAndPlay(AudioClip audioClip)
+    private void ChangeClipAndPlayForDoor(AudioClip audioClip)
     {
-        m_audioSource.clip = audioClip;
-        m_audioSource.Play();
+        m_audioSourceDoor.clip = audioClip;
+        m_audioSourceDoor.Play();
 
     }
 
+
+    private void ChangeClipAndPlayForRadio(AudioClip audioClip)
+    {
+        m_audioSourceRadio.clip = audioClip;
+        m_audioSourceRadio.Play();
+
+    }
+
+
+    private void ChangeClipAndPlayForWatch(AudioClip audioClip)
+    {
+        m_audioSourceWatch.clip = audioClip;
+        m_audioSourceWatch.Play();
+
+    }
+
+
+
+
+    private void ChangeClipAndPlayForGenerator(AudioClip audioClip)
+    {
+        m_generatorSound.clip = audioClip;
+        m_generatorSound.Play();
+
+    }
 
 
 }

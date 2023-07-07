@@ -85,7 +85,8 @@ public class MemoryWorldTile : MonoBehaviour, IPointerDownHandler
 
     private void StoreThisTile()
     {
-        if(m_memoryManager.SelectedTiles.Count == 2) m_memoryManager.SelectedTiles.Clear();
+        GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundPlayer, GameManager.Instance.SoundManager.SelectedTiled);
+        if (m_memoryManager.SelectedTiles.Count == 2) m_memoryManager.SelectedTiles.Clear();
         m_memoryManager.SelectedTiles.Add(this);
     }
 
@@ -132,6 +133,7 @@ public class MemoryWorldTile : MonoBehaviour, IPointerDownHandler
 
     private IEnumerator NotMatchedTiles(MemoryWorldTile tileA, MemoryWorldTile tileB)
     {
+        //GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundPlayer, GameManager.Instance.SoundManager.NoPair);
         yield return new WaitForSeconds(m_memoryManager.VelocityAfterTurnTheRotationTo0);
         tileA.RotateCard(true);
         tileB.RotateCard(true);
@@ -162,6 +164,7 @@ public class MemoryWorldTile : MonoBehaviour, IPointerDownHandler
                 m_memoryManager.SelectedTiles[1].Paired = true;
                 m_memoryManager.SetScore(m_memoryManager.IncreaseNumber);
                 m_memoryManager.CanChackTwoPair = true;
+                //GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundPlayer, GameManager.Instance.SoundManager.Pair);
             }
             else
             {
@@ -180,7 +183,7 @@ public class MemoryWorldTile : MonoBehaviour, IPointerDownHandler
         tileA.RotateCard(canRotate);
         yield return new WaitForSeconds(m_memoryManager.VelocityAfterTurnTheRotationTo0);
         if(m_memoryManager.SelectedTiles.Count == 1) m_memoryManager.CanChackTwoPair = true;
-
+        
     }
 
 

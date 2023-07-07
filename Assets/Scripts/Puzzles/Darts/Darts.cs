@@ -24,9 +24,11 @@ public class Darts : MonoBehaviour
         {
             Debug.Log(collision.contacts[0].point);
             if (target.BullEyeHitted(collision.contacts[0].point)) GameManager.Instance.dartsManager.SetScore(1);
+            GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundPlayer, GameManager.Instance.SoundManager.TargetBoard);
             
-        }
 
+        }
+        GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundPlayer, GameManager.Instance.SoundManager.TargetWall);
         GameManager.Instance.dartsManager.CheckLoseCondition();
 
     }
