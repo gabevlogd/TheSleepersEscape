@@ -19,15 +19,19 @@ public class InteractionPoint : MonoBehaviour
     {
 
         //if (Camera.main.transform.localPosition.z != 0f) return;
+        //GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.ShowInteractablePoint);
+        //GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.HideInteractablePoint);
 
         if (!InteractablePoint.gameObject.activeInHierarchy && Vector3.Distance(Camera.main.transform.position, m_collider.ClosestPoint(Camera.main.transform.position)) <= MinTriggerDistance)
         {
             InteractablePoint.gameObject.SetActive(true);
+            //GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.ShowInteractablePoint);
             return;
         }
         else if (InteractablePoint.gameObject.activeInHierarchy && Vector3.Distance(Camera.main.transform.position, m_collider.ClosestPoint(Camera.main.transform.position)) > MinTriggerDistance)
         {
             InteractablePoint.gameObject.SetActive(false);
+            //GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.HideInteractablePoint);
         }
     }
 
@@ -36,5 +40,13 @@ public class InteractionPoint : MonoBehaviour
         //if (Camera.main.transform.localPosition.z != 0f) return;
 
         InteractablePoint.gameObject.SetActive(false);
+        //GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.HideInteractablePoint);
     }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.HideInteractablePoint);
+    }
+
+
 }

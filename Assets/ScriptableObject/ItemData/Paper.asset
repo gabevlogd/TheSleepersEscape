@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Paper
   m_EditorClassIdentifier: 
   m_itemName: Paper
-  m_id: 4
+  m_layerUI: 9
   m_description: Bla Bla Bla...
   m_itemMesh: {fileID: 1214351361538647191, guid: 9c4e4cb956ad9f0418acda384265508b, type: 3}

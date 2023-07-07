@@ -478,7 +478,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 100
-  field of view: 60
+  field of view: 70
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1399,8 +1399,12 @@ PrefabInstance:
       value: PickUpWalkman
       objectReference: {fileID: 0}
     - target: {fileID: 117198198453621220, guid: 327b9665ac4a65946a5c5f566b42e3a7, type: 3}
-      propertyPath: m_IsActive
+      propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 117198198453621220, guid: 327b9665ac4a65946a5c5f566b42e3a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 117198198453621247, guid: 327b9665ac4a65946a5c5f566b42e3a7, type: 3}
       propertyPath: m_RootOrder
@@ -1446,6 +1450,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2648506613606667539, guid: 327b9665ac4a65946a5c5f566b42e3a7, type: 3}
+      propertyPath: InteractablePoint
+      value: 
+      objectReference: {fileID: 1594940419}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 327b9665ac4a65946a5c5f566b42e3a7, type: 3}
 --- !u!1 &376616604
@@ -2480,8 +2488,12 @@ PrefabInstance:
       value: PickUpNote_1
       objectReference: {fileID: 0}
     - target: {fileID: 117198198453621220, guid: 0824482fe8f4ead4cb1a2f53e1e74dda, type: 3}
-      propertyPath: m_IsActive
+      propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 117198198453621220, guid: 0824482fe8f4ead4cb1a2f53e1e74dda, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 117198198453621247, guid: 0824482fe8f4ead4cb1a2f53e1e74dda, type: 3}
       propertyPath: m_RootOrder
@@ -2815,8 +2827,12 @@ PrefabInstance:
       value: PickUpNote_3
       objectReference: {fileID: 0}
     - target: {fileID: 117198198453621220, guid: e271c1b0660f5ad499756d711e39dac9, type: 3}
-      propertyPath: m_IsActive
+      propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 117198198453621220, guid: e271c1b0660f5ad499756d711e39dac9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 117198198453621247, guid: e271c1b0660f5ad499756d711e39dac9, type: 3}
       propertyPath: m_RootOrder
@@ -3421,8 +3437,12 @@ PrefabInstance:
       value: PickUpNote_2
       objectReference: {fileID: 0}
     - target: {fileID: 117198198453621220, guid: e2f2caa7c7d0ff743b2dfd8e08d33078, type: 3}
-      propertyPath: m_IsActive
+      propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 117198198453621220, guid: e2f2caa7c7d0ff743b2dfd8e08d33078, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 117198198453621247, guid: e2f2caa7c7d0ff743b2dfd8e08d33078, type: 3}
       propertyPath: m_RootOrder
@@ -4245,7 +4265,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 185970787}
-  m_PlaneDistance: 13
+  m_PlaneDistance: 9
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -5622,8 +5642,12 @@ PrefabInstance:
       value: PickUpPaper
       objectReference: {fileID: 0}
     - target: {fileID: 117198198453621220, guid: 5a6fa3f952ad4314da59826c737309bd, type: 3}
-      propertyPath: m_IsActive
+      propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 117198198453621220, guid: 5a6fa3f952ad4314da59826c737309bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 117198198453621247, guid: 5a6fa3f952ad4314da59826c737309bd, type: 3}
       propertyPath: m_RootOrder
@@ -6148,6 +6172,10 @@ PrefabInstance:
       propertyPath: m_Cameras.Array.data[2]
       value: 
       objectReference: {fileID: 1924287846483783887}
+    - target: {fileID: 5350551961246917458, guid: 6e29bc356f3a72e49b04d573d00e88cb, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 1015
+      objectReference: {fileID: 0}
     - target: {fileID: 5350551961246917460, guid: 6e29bc356f3a72e49b04d573d00e88cb, type: 3}
       propertyPath: m_Enabled
       value: 1

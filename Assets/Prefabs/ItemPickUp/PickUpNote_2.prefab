@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 117198198453621242}
   - component: {fileID: 117198198453621243}
   - component: {fileID: 8204327826943694453}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: PickUpNote_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
