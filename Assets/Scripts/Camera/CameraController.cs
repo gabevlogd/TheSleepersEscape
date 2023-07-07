@@ -16,30 +16,33 @@ public class CameraController
     public CameraController(Camera camera, Transform pov, CameraMovementData data)
     {
         m_camera = camera;
-        m_movementData = data;
-
+        m_movementData = data;     
         m_pov = pov;
+
+        m_camera.transform.position = m_pov.position;
+        m_camera.transform.rotation = m_pov.rotation;
 
         m_input = new();
         m_input.Enable();
 
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.PuzzleCompleted, BackToPlayer);
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.ResetPuzzle, BackToPlayer);
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.OpenDoor, BackToPlayer);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.PuzzleCompleted, BackToPlayer);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.ResetPuzzle, BackToPlayer);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.OpenDoor, BackToPlayer);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.StopInteraction, BackToPlayer);
     }
 
 
     public void EnableController()
     {
-        m_input.Selections.ItemSelection.performed += LookForTarget;
-        m_input.Selections.Unselect.performed += BackToPlayer;
+        m_input.Selections.ItemSelection.canceled += LookForTarget;
+        //m_input.Selections.Unselect.performed += BackToPlayer;
     }
 
 
     public void DisableController()
     {
-        m_input.Selections.ItemSelection.performed -= LookForTarget;
-        m_input.Selections.Unselect.performed -= BackToPlayer;
+        m_input.Selections.ItemSelection.canceled -= LookForTarget;
+        //m_input.Selections.Unselect.performed -= BackToPlayer;
     }
 
 
@@ -48,9 +51,6 @@ public class CameraController
         if (m_targetTransform != null)
         {
             MoveCamera(m_targetTransform);
-
-            //Debug.Log("position " + (Vector3.Distance(m_camera.transform.position, m_targetTransform.position) <= 0.0001));
-            //Debug.Log("rotation " + (Mathf.Abs(Quaternion.Dot(m_camera.transform.rotation, m_targetTransform.rotation) - 1f) <= 0.0001f));
 
             if (Vector3.Distance(m_camera.transform.position, m_targetTransform.position) <= 0.0001 && Mathf.Abs(Quaternion.Dot(m_camera.transform.rotation, m_targetTransform.rotation) - 1f) <= 0.0001f)
             {
@@ -66,7 +66,7 @@ public class CameraController
     }
 
     /// <summary>
-    /// Move the camera to the position and rotation of the passed target
+    /// Move the camera towards the position and rotation of the passed target
     /// </summary>
     private void MoveCamera(Transform target)
     {
@@ -79,7 +79,10 @@ public class CameraController
     /// </summary>
     private void LookForTarget(InputAction.CallbackContext context)
     {
-        if (m_camera.transform.position != m_pov.position) return;
+        //if (GameManager.Instance.InventoryManager.InventoryCanvas.gameObject.activeInHierarchy) return;
+        //if (GameManager.Instance.PauseManager.PauseUI.activeInHierarchy) return;
+        //if (m_camera.transform.position != m_pov.position) return;
+
         //Debug.Log("LookForTarget");
         int puzzleTriggerMask = 1 << 6; //puzzle trigger objects layer mask
         int interactableTriggerMask = 1 << 7; //interactable trigger objects layer mask
@@ -95,10 +98,20 @@ public class CameraController
             m_targetCollider = hitInfo.collider;
 
             m_targetCollider.enabled = false;
-            GameManager.Instance.Player.PlayerController.DisableController(); //put into gamemanger
-            this.DisableController();
 
-            if (hitInfo.collider.gameObject.layer == 6) GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.StartPuzzle);
+            //GameManager.Instance.Player.PlayerController.DisableController(); //put into gamemanger
+            //this.DisableController();
+
+            if (hitInfo.collider.gameObject.layer == 6)
+            {
+                GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.StartPuzzle);
+                GameManager.Instance.Player.PlayerStateMachine.ChangeState(Enumerators.PlayerState.RunningPuzzle);
+            }
+            else
+            {
+                GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.StartInteraction);
+                GameManager.Instance.Player.PlayerStateMachine.ChangeState(Enumerators.PlayerState.RunningInteractable);
+            }
         }
     }
 
@@ -121,7 +134,7 @@ public class CameraController
         m_targetTransform = m_pov;
 
         if (m_targetCollider != null) m_targetCollider.enabled = true;
-        this.DisableController();
+        //this.DisableController();
     }
 
 

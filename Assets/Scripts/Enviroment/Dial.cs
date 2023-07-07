@@ -22,6 +22,8 @@ public class Dial : MonoBehaviour, IPointerClickHandler
     private void Awake()
     {
         CurrentNumber = StartingSelectedNumber;
+
+        GameManager.Instance.EventManager.Register(Enumerators.Events.EnableDials, EnableDials);
     }
 
     private void Update() => HandleRotation();
@@ -90,5 +92,11 @@ public class Dial : MonoBehaviour, IPointerClickHandler
         CameraTriggerer.gameObject.SetActive(false);
         Twin.enabled = false;
         this.enabled = false;
+    }
+
+    public void EnableDials()
+    {
+        //ricordati di settare il discorso dei dial corretti da attivare (possibile soluzione itrodurre un id per ogni dial e controllare il Loop Counter del room manager)
+        CameraTriggerer.gameObject.SetActive(true);
     }
 }

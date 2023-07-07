@@ -5,44 +5,56 @@ using TMPro;
 
 public class Radio : MonoBehaviour
 {
-    public static bool CanInteract;
+    //public static bool CanInteract;
 
-    public List<Dialogue> RadioDialogues;
+    public List<Dialogue> Dialogues;
     public Canvas Canvas;
     public TextMeshProUGUI PrintedText;
     public float TextSpeed;
 
-    private DialoguesHandler m_dialoguesManager;
-    private bool m_runDialogue;
-    private int m_scriptLineIndex;
-    private float m_time;
-    private string m_scriptLineToPrint;
-    private string m_currentDialogueName;
-    private List<string> m_currentDialogue;
+    protected Collider m_collider;
+    protected DialoguesHandler m_dialoguesManager;
+    protected bool m_runDialogue;
+    protected int m_scriptLineIndex;
+    protected float m_time;
+    protected string m_scriptLineToPrint;
+    protected string m_currentDialogueName;
+    protected List<string> m_currentDialogue;
 
 
     private void Awake()
     {
-        m_dialoguesManager = new(RadioDialogues);
+        m_dialoguesManager = new(Dialogues);
         m_currentDialogue = new();
-        //m_canvas = GetComponentInChildren<Canvas>();
-        //m_printedText = GetComponentInChildren<TextMeshProUGUI>();
+        m_collider = GetComponent<Collider>();
+
+        GameManager.Instance.EventManager.Register(Enumerators.Events.EnableRadio, EnableRadioInteraction);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.DisableRadio, DisableRadioInteraction);
     }
 
     private void Update() => HandlePrintProcess();
-    
 
-    private void OnMouseDown()
+
+    private void OnMouseUp()
     {
-        if (CanInteract) TurnOnRadio();
+        //if (GameManager.Instance.InventoryManager.InventoryCanvas.gameObject.activeInHierarchy) return;
+        //if (GameManager.Instance.PauseManager.PauseUI.activeInHierarchy) return;
+        if (GameManager.Instance.Player.PlayerStateMachine.CurrentState.StateID != Enumerators.PlayerState.Navigation) return;
+
+        /*if (CanInteract)*/ TurnOnRadio();
     }
+
+    public void EnableRadioInteraction() => m_collider.enabled = true;
+    public void DisableRadioInteraction() => m_collider.enabled = false;
 
     /// <summary>
     /// Triggers the radio starting a new dialogue (UI text box)
     /// </summary>
     public void TurnOnRadio()
     {
-        CanInteract = false;
+        //CanInteract = false;
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.StartDialogue);
+        DisableRadioInteraction();
         m_currentDialogue = m_dialoguesManager.GetDialogue(out m_currentDialogueName);
         m_scriptLineToPrint = m_currentDialogue[0];
         Canvas.gameObject.SetActive(true);
@@ -50,6 +62,18 @@ public class Radio : MonoBehaviour
         PrintedText.text = "";
         m_scriptLineIndex = -1;
         m_time = 0;   
+    }
+
+    /// <summary>
+    /// Stops the radio (Close UI text box)
+    /// </summary>
+    public void TurnOffRadio()
+    {
+
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.StopDialogue);
+        if (RoomManager.LoopCounter == 1) GameManager.Instance.RoomManager.Items[2].SetActive(true); //active the paper pick up;
+        m_runDialogue = false;
+        Canvas.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -109,13 +133,11 @@ public class Radio : MonoBehaviour
                 m_scriptLineToPrint = m_currentDialogue[0];
                 PrintedText.text = "";
             }
-            else if (m_currentDialogue.Count == 1)
-            {
-                m_runDialogue = false;
-                Canvas.gameObject.SetActive(false);
-            }
+            else if (m_currentDialogue.Count == 1) TurnOffRadio();
         }
     }
+
+    
 
     private void HandlePrintProcess()
     {

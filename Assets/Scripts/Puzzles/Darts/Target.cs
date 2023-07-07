@@ -40,16 +40,17 @@ public class Target : MonoBehaviour
         m_inputs.Darts.Throw.performed += PerformThrow;
         m_inputs.Darts.MoveTarget.performed += PerformMousePosition;
         m_inputs.Enable();
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.StartPuzzle, StartGame);
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.ResetPuzzle, ResetGame);
-        GameManager.Instance.EventManager.Registrer(Enumerators.Events.PuzzleCompleted, EndGame);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.StartPuzzle, StartGame);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.ResetPuzzle, ResetGame);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.PuzzleCompleted, EndGame);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.EnableDarts, EnableDartsInteraction);
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.EventManager.Unregistrer(Enumerators.Events.StartPuzzle, StartGame);
-        GameManager.Instance.EventManager.Unregistrer(Enumerators.Events.ResetPuzzle, ResetGame);
-        GameManager.Instance.EventManager.Unregistrer(Enumerators.Events.PuzzleCompleted, EndGame);
+        GameManager.Instance.EventManager.Unregister(Enumerators.Events.StartPuzzle, StartGame);
+        GameManager.Instance.EventManager.Unregister(Enumerators.Events.ResetPuzzle, ResetGame);
+        GameManager.Instance.EventManager.Unregister(Enumerators.Events.PuzzleCompleted, EndGame);
     }
 
     private void Start()
@@ -134,7 +135,8 @@ public class Target : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(GameManager.Instance.dartsManager.EnableThrowAbility());
+        //StartCoroutine(GameManager.Instance.dartsManager.EnableThrowAbility()); //not needed anymore, problem fixed in the camera controller
+        GameManager.Instance.dartsManager.ReadyToThrow = true;
         Cursor.visible = false;
         m_viewfinderIn.SetActive(true);
         m_viewfinderOut.SetActive(true);
@@ -146,6 +148,7 @@ public class Target : MonoBehaviour
 
     public void EndGame()
     {
+        GameManager.Instance.RoomManager.Items[1].SetActive(true); //active the note 1 pick up
         GameManager.Instance.dartsManager.m_gameTriggered = false;
         m_cameraTriggerer.gameObject.SetActive(false);
         Cursor.visible = true;
@@ -164,5 +167,10 @@ public class Target : MonoBehaviour
         m_viewfinderOut.transform.localPosition = new Vector3(0, 0, -0.09f);
         m_viewfinderIn.transform.localPosition = new Vector3(0, 0, -0.1f);
         GameManager.Instance.dartsManager.ReadyToThrow = false;
+    }
+
+    public void EnableDartsInteraction()
+    {
+        m_cameraTriggerer.gameObject.SetActive(true);
     }
 }
