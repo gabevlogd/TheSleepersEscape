@@ -51,4 +51,8 @@ public static class Enumerators
         OnLoopChange
     }
 
+	public enum MusicEvents
+	{
+		PlayeSound
+	}
 }
