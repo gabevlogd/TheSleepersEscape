@@ -29,6 +29,8 @@ public class ItemsWheel
         GameManager.Instance.EventManager.Register(Enumerators.Events.CloseInventory, Disable);
         GameManager.Instance.EventManager.Register(Enumerators.Events.ItemCollected, AddNewItem);
         GameManager.Instance.EventManager.Register(Enumerators.Events.RemoveWalkman, RemoveWalkman);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.PickUpNote, AddNote2);
+
         
     }
 
@@ -75,9 +77,15 @@ public class ItemsWheel
     }
 
 
-
+    /// <summary>
+    /// returns the angle between two successive positions on the invenotry wheel
+    /// </summary>
+    /// <returns></returns>
     private float GetAngle() => (360f / m_inventoryData.Items.Count);
 
+    /// <summary>
+    /// Gets all the correct positions on the inventory wheel where to place the items
+    /// </summary>
     private List<Vector3> GetPositions(int itemsCount)
     {
         float theta = 0;
@@ -92,6 +100,9 @@ public class ItemsWheel
         return itemsPositions;
     }
 
+    /// <summary>
+    /// Places the inventory items on the correct inventory wheel's positions
+    /// </summary>
     private void PlaceItems()
     {
         for (int i = 0; i < m_inventoryData.Items.Count; i++)
@@ -100,6 +111,9 @@ public class ItemsWheel
         }
     }
 
+    /// <summary>
+    /// Updates the showed items in the inventory wheel
+    /// </summary>
     public void UpdateWheel()
     {
         m_transform.rotation = m_defaultRotation * Quaternion.Euler(0f, 90f, 0f);
@@ -109,6 +123,9 @@ public class ItemsWheel
         PlaceItems();
     }
 
+    /// <summary>
+    /// Adds new item to the inventory
+    /// </summary>
     public void AddNewItem()
     {
         ItemData newItemData = GameManager.Instance.Player.ItemsDetector.ItemsDatas[0];
@@ -128,12 +145,38 @@ public class ItemsWheel
         GameManager.Instance.Player.ItemsDetector.ItemsDatas.Remove(newItemData);
 
         UpdateWheel();
-
     }
 
+    /// <summary>
+    /// Remove walkman event
+    /// </summary>
     public void RemoveWalkman()
     {
-        m_inventoryData.Items.Remove(m_inventoryData.Items[0]);
+        //m_inventoryData.Items.Remove(m_inventoryData.Items[0]);
+        UpdateWheel();
+    }
+
+    /// <summary>
+    /// Add note 2 event
+    /// </summary>
+    public void AddNote2()
+    {
+        ItemData newItemData = GameManager.Instance.RoomManager.Items[3].GetComponent<ItemBase>().data;
+
+        GameObject newItem = MonoBehaviour.Instantiate(newItemData.ItemMesh, m_inventoryData.ItemsWheel);
+        ItemBase newItemBase = newItem.AddComponent<ItemBase>();
+        newItemBase.data = newItemData;
+
+        newItemBase.gameObject.layer = newItemData.LayerUI;
+
+        ConstraintSource targetSource = new ConstraintSource();
+        targetSource.sourceTransform = m_inventoryData.InventoryCamera.transform;
+        newItemBase.GetComponent<LookAtConstraint>().SetSource(0, targetSource);
+
+        if (m_inventoryData.Items == null) m_inventoryData.Items = new List<ItemBase>();
+        m_inventoryData.Items.Add(newItemBase);
+        GameManager.Instance.Player.ItemsDetector.ItemsDatas.Remove(newItemData);
+
         UpdateWheel();
     }
 

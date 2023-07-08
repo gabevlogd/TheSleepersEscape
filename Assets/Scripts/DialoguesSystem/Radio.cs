@@ -72,6 +72,7 @@ public class Radio : MonoBehaviour
 
         GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.StopDialogue);
         if (RoomManager.LoopCounter == 1) GameManager.Instance.RoomManager.Items[2].SetActive(true); //active the paper pick up;
+        if (RoomManager.LoopCounter == 2) GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableDials);
         m_runDialogue = false;
         Canvas.gameObject.SetActive(false);
     }

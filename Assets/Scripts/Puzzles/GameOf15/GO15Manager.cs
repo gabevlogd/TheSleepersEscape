@@ -143,7 +143,7 @@ public class GO15Manager : MonoBehaviour, IPuzzle
                 if (nextNumber == 17)
                 {
                     Debug.Log("win");
-                    GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.PuzzleCompleted); //win condition
+                    m_instance.StartCoroutine(m_instance.WinEvent());
                     break;
                 }
             }
@@ -153,6 +153,15 @@ public class GO15Manager : MonoBehaviour, IPuzzle
                 break;
             }
         }
+    }
+
+    private IEnumerator WinEvent()
+    {
+        GameTriggered = false;
+        //illuminare numero 6
+        //trigger audio note 2
+        yield return new WaitForSeconds(3f);
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.PuzzleCompleted); //win condition
     }
 
     private void SetPositionAndRotation(Transform targetTransform)
@@ -192,6 +201,8 @@ public class GO15Manager : MonoBehaviour, IPuzzle
         m_outOfTime = true;
         CameraTriggerer.gameObject.SetActive(false);
         //maybe other stuff to implement...
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableRadio);
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.PickUpNote);
     }
 
     /// <summary>

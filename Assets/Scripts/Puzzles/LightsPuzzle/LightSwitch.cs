@@ -9,12 +9,21 @@ public class LightSwitch : MonoBehaviour
     [HideInInspector]
     public bool Triggered;
 
+    private Collider m_collider;
+
+    private void Awake()
+    {
+        m_collider = GetComponent<Collider>();
+        GameManager.Instance.EventManager.Register(Enumerators.Events.EnableSwitch, EnableSwitch);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.DisableSwitch, DisableSwitch);
+    }
+
     private void OnMouseDown() => TriggersSwitch();
    
 
     private void TriggersSwitch()
     {
-        if (!LightsManager.GameTriggered) return;
+        //if (!LightsManager.GameTriggered) return;
         //if (switch animation is running) return;
 
         Triggered = !Triggered;
@@ -36,4 +45,7 @@ public class LightSwitch : MonoBehaviour
             else light.Particle.SetActive(true);
         }
     }
+
+    public void EnableSwitch() => m_collider.enabled = true;
+    public void DisableSwitch() => m_collider.enabled = false;
 }

@@ -24,6 +24,7 @@ public class Dial : MonoBehaviour, IPointerClickHandler
         CurrentNumber = StartingSelectedNumber;
 
         GameManager.Instance.EventManager.Register(Enumerators.Events.EnableDials, EnableDials);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.DisableDials, DisableDials);
     }
 
     private void Update() => HandleRotation();
@@ -40,8 +41,12 @@ public class Dial : MonoBehaviour, IPointerClickHandler
         if (Mathf.Abs(Quaternion.Dot(transform.localRotation, m_targetRotation) - 1f) <= 0.0001f)
         {
             transform.localRotation = m_targetRotation;
-            if (CheckCombination()) OpenDoor();
-            else m_mustRotate = false;
+            if (CheckCombination())
+            {
+                if (RoomManager.LoopCounter == 3) GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.TurnOffLights);
+                else OpenDoor();
+            }
+            /*else*/ m_mustRotate = false;
         }
     }
 
@@ -59,13 +64,13 @@ public class Dial : MonoBehaviour, IPointerClickHandler
 
         if (eventData.position.y >= Camera.main.pixelHeight * 0.5f)
         {
-            SetCurrentNumber(-1);
-            return 36f;
+            SetCurrentNumber(1);
+            return -36f;
         }
         else
         {
-            SetCurrentNumber(1);
-            return -36f;
+            SetCurrentNumber(-1);
+            return 36f;
         }
     }
 
@@ -98,5 +103,10 @@ public class Dial : MonoBehaviour, IPointerClickHandler
     {
         //ricordati di settare il discorso dei dial corretti da attivare (possibile soluzione itrodurre un id per ogni dial e controllare il Loop Counter del room manager)
         CameraTriggerer.gameObject.SetActive(true);
+    }
+
+    public void DisableDials()
+    {
+        CameraTriggerer.gameObject.SetActive(false);
     }
 }

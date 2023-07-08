@@ -199,6 +199,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pocketwatch
       objectReference: {fileID: 0}
+    - target: {fileID: 7755847591318998779, guid: 8ba0eb88d8a8a764cb8153611f672a92, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ba0eb88d8a8a764cb8153611f672a92, type: 3}
 --- !u!1 &36838678
@@ -1600,6 +1604,10 @@ PrefabInstance:
       propertyPath: m_Size.z
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7539441494442313979, guid: ed51802af94631e4393bbd0eec97e024, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7539441494442313981, guid: ed51802af94631e4393bbd0eec97e024, type: 3}
       propertyPath: m_Name
       value: LightSwitch (1)
@@ -1661,6 +1669,23 @@ MonoBehaviour:
   - {fileID: 1875135246}
   - {fileID: 1199854624}
   - {fileID: 1583554623}
+  GameObjects:
+  - {fileID: 2231932027628837506}
+  - {fileID: 1969359238}
+  RoomLights:
+  - {fileID: 1266991628}
+  - {fileID: 1537681807}
+  - {fileID: 1831463716}
+  - {fileID: 1197069183}
+  PuzzleLights:
+  - {fileID: 549538553}
+  - {fileID: 1469921414}
+  - {fileID: 1524010647}
+  - {fileID: 862584337}
+  - {fileID: 1120550756}
+  - {fileID: 771633862}
+  - {fileID: 1378951698}
+  - {fileID: 1412187381}
 --- !u!1 &220155121
 GameObject:
   m_ObjectHideFlags: 0
@@ -3687,6 +3712,10 @@ PrefabInstance:
       propertyPath: m_Size.z
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7539441494442313979, guid: ed51802af94631e4393bbd0eec97e024, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7539441494442313981, guid: ed51802af94631e4393bbd0eec97e024, type: 3}
       propertyPath: m_Name
       value: LightSwitch (3)
@@ -4110,6 +4139,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dea3aadbd175b824fa38bcd7e3194b23, type: 3}
+--- !u!1 &549538553 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6498238765959124694, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+  m_PrefabInstance: {fileID: 520898033}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &549663979
 GameObject:
   m_ObjectHideFlags: 0
@@ -5499,6 +5533,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dea3aadbd175b824fa38bcd7e3194b23, type: 3}
+--- !u!1 &771633862 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6498238765959124694, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+  m_PrefabInstance: {fileID: 354902158}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &780133849
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6068,6 +6107,10 @@ PrefabInstance:
       propertyPath: m_Size.z
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7539441494442313979, guid: ed51802af94631e4393bbd0eec97e024, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7539441494442313981, guid: ed51802af94631e4393bbd0eec97e024, type: 3}
       propertyPath: m_Name
       value: LightSwitch
@@ -6215,6 +6258,11 @@ PrefabInstance:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3805595288559034552, guid: 0c0aceed1a52d5d4f889147f4d579ccc, type: 3}
   m_PrefabInstance: {fileID: 862378227}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &862584337 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6498238765959124694, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+  m_PrefabInstance: {fileID: 522513060}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &865248174 stripped
 Transform:
@@ -6628,6 +6676,10 @@ PrefabInstance:
     - target: {fileID: 7539441494442313979, guid: ed51802af94631e4393bbd0eec97e024, type: 3}
       propertyPath: m_Size.z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7539441494442313979, guid: ed51802af94631e4393bbd0eec97e024, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7539441494442313981, guid: ed51802af94631e4393bbd0eec97e024, type: 3}
       propertyPath: m_Name
@@ -7241,6 +7293,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8527278463147383266, guid: e5e170c5222f3f94fac094fda421f7a2, type: 3}
   m_PrefabInstance: {fileID: 2124319208}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1120550756 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6498238765959124694, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+  m_PrefabInstance: {fileID: 1953231975}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1129069021 stripped
 Transform:
@@ -18253,10 +18310,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8527278463147383266, guid: e5e170c5222f3f94fac094fda421f7a2, type: 3}
   m_PrefabInstance: {fileID: 106533932}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1378951698 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6498238765959124694, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+  m_PrefabInstance: {fileID: 1563106568}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1392621828 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4955913701048570706, guid: fc621ed700573834a9c91c997409618e, type: 3}
   m_PrefabInstance: {fileID: 780133849}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1412187381 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6498238765959124694, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+  m_PrefabInstance: {fileID: 1887659258}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1452445142
 GameObject:
@@ -18480,12 +18547,21 @@ PrefabInstance:
       propertyPath: m_Size.z
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7539441494442313979, guid: ed51802af94631e4393bbd0eec97e024, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7539441494442313981, guid: ed51802af94631e4393bbd0eec97e024, type: 3}
       propertyPath: m_Name
       value: LightSwitch (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed51802af94631e4393bbd0eec97e024, type: 3}
+--- !u!1 &1469921414 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6498238765959124694, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+  m_PrefabInstance: {fileID: 888100807}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1484796132
 GameObject:
   m_ObjectHideFlags: 0
@@ -18762,6 +18838,11 @@ Transform:
   m_Father: {fileID: 340214588}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1524010647 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6498238765959124694, guid: 28bad6e40e469d046840d300ca6528ee, type: 3}
+  m_PrefabInstance: {fileID: 442656533}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1528195023
 GameObject:
   m_ObjectHideFlags: 0
@@ -24730,7 +24811,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -31330,6 +31411,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 503f54fb8de08b84db31be1b3663caf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1969359238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7755847591318998779, guid: 8ba0eb88d8a8a764cb8153611f672a92, type: 3}
+  m_PrefabInstance: {fileID: 23945353}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1983239891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32312,6 +32398,7 @@ GameObject:
   - component: {fileID: 1319005719778317402}
   - component: {fileID: 4456299290347881108}
   - component: {fileID: 1319005719778317403}
+  - component: {fileID: 4456299290347881109}
   m_Layer: 0
   m_Name: LightsManager
   m_TagString: Untagged
@@ -32644,7 +32731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &2299599484514418012
 GameObject:
   m_ObjectHideFlags: 0
@@ -33217,10 +33304,24 @@ BoxCollider:
   m_GameObject: {fileID: 1319005719778317400}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4456299290347881109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319005719778317400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79be073749cdce43a4dbbe06175216d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InteractablePoint: {fileID: 1259277134}
+  MinTriggerDistance: 3
 --- !u!23 &4497819238045736133
 MeshRenderer:
   m_ObjectHideFlags: 0

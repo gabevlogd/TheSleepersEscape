@@ -6,10 +6,10 @@ using UnityEngine;
 public class ItemsDetector : MonoBehaviour
 {
 
-    private List<ItemBase> m_interactablesSpotted = new List<ItemBase>();
 
     public List<ItemData> ItemsDatas = new List<ItemData>();
 
+    private List<ItemBase> m_interactablesSpotted = new List<ItemBase>();
     private PlayerInput m_inputs;
 
     private void Awake()
@@ -19,10 +19,7 @@ public class ItemsDetector : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        TryPickUp();
-    }
+    private void Update() => TryPickUp();
 
 
 
@@ -32,9 +29,7 @@ public class ItemsDetector : MonoBehaviour
         {
             //Debug.Log("item");
             Spotted(interactable);
-
         }
-
     }
 
     private void OnTriggerExit(Collider other)
@@ -43,16 +38,11 @@ public class ItemsDetector : MonoBehaviour
         {
             //Debug.Log("itemNo");
             Unspotted(interactable);
-
         }
     }
 
 
-    private void Spotted(ItemBase interactable)
-    {
-        m_interactablesSpotted.Add(interactable);
-        
-    }
+    private void Spotted(ItemBase interactable) => m_interactablesSpotted.Add(interactable);
 
     private void Unspotted(ItemBase interactable)
     {
@@ -79,7 +69,8 @@ public class ItemsDetector : MonoBehaviour
 
             if (m_interactablesSpotted[0].data.ItemName == "Walkman") GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.PlayWalkman);
             else if (m_interactablesSpotted[0].data.ItemName == "Note 1") GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableRadio);
-            else if (m_interactablesSpotted[0].data.ItemName == "Paper") GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableDials);
+            else /*if (m_interactablesSpotted[0].data.ItemName == "Paper")*/ GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableDials);
+            //else if (m_interactablesSpotted[0].data.ItemName == "Note 3")
 
             PickUp();
         }

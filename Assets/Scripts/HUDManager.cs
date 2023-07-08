@@ -21,8 +21,15 @@ public class HUDManager : MonoBehaviour
     public void ShowHUD() => HUD.SetActive(true);
     public void HideHUD() => HUD.SetActive(false);
 
-    public void ShowInteractableFeedback() => InteractablePointFeedback.gameObject.SetActive(true);
-    public void HideInteractableFeedback() => InteractablePointFeedback.gameObject.SetActive(false);
+    public void ShowInteractableFeedback()
+    {
+        if (InteractablePointFeedback != null)
+            InteractablePointFeedback.gameObject.SetActive(true);
+    }
 
-
+    public void HideInteractableFeedback()
+    {
+        if (InteractablePointFeedback != null)
+            InteractablePointFeedback?.gameObject.SetActive(false);
+    }
 }

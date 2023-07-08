@@ -25,9 +25,15 @@ public static class Enumerators
         PlayWalkman,
         EnableDarts,
         EnableDials,
+        DisableDials,
         RemoveWalkman,
         EnterLoopChange,
         ExitLoopChange,
+        PickUpNote,
+        TurnOffLights,
+        TurnOnLights,
+        EnableSwitch,
+        DisableSwitch,
 		GameOver
 
 	}

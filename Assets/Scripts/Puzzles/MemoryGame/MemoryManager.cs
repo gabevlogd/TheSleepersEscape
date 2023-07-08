@@ -210,6 +210,7 @@ public class MemoryManager : MonoBehaviour, IPuzzle
     {
         GameTriggered = false;
         CameraTriggerer.gameObject.SetActive(false);
+        GameManager.Instance.RoomManager.Items[4].SetActive(true); //set active true note 3
     }
 
     public void ResetGame()

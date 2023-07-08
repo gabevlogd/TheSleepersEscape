@@ -10,7 +10,15 @@ public class LightsManager : MonoBehaviour
 
     public bool[] TargetPattern;
 
-    private void Awake() => GameTriggered = false;
+    private Collider m_collider;
+
+    private void Awake()
+    {
+        //GameTriggered = false;
+        m_collider = GetComponent<Collider>();
+        GameManager.Instance.EventManager.Register(Enumerators.Events.EnableSwitch, EnableLightsPuzzle);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.DisableSwitch, DisableLightsPuzzle);
+    }
 
     private void OnMouseDown() => CheckWinCondition();
 
@@ -32,13 +40,15 @@ public class LightsManager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < LightSwitches.Count; i++)
-        {
-            LightSwitches[i].GetComponent<Collider>().enabled = false;
-            LightSwitches[i].GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
-        }
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.DisableSwitch);
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.TurnOnLights);
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.OpenDoor);
+
         Debug.Log("win");
     }
+
+    public void EnableLightsPuzzle() => m_collider.enabled = true;
+    public void DisableLightsPuzzle() => m_collider.enabled = false; 
 
 }
 
