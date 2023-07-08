@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 630a000ec88e23649bc5cba5330d4180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemRewardTransform: {fileID: 1845939885146289670, guid: 6ef90fbaf935b3546a8de50e27807ba9, type: 3}
   Paired: 0
 --- !u!1 &3157399584979283811
 GameObject:

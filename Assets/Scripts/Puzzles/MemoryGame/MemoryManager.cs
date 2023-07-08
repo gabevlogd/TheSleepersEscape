@@ -7,6 +7,7 @@ public class MemoryManager : MonoBehaviour, IPuzzle
     public Transform CameraTriggerer;
     public Transform WorldOrientation;
     public List<MemoryWorldTile> WordTilePrefabs = new List<MemoryWorldTile>();
+    public ItemBase ItemReward;
 
     [HideInInspector] public List<MemoryWorldTile> SelectedTiles = new List<MemoryWorldTile>();
 
@@ -159,14 +160,14 @@ public class MemoryManager : MonoBehaviour, IPuzzle
         transform.position = targetTransform.position;
     }
 
-    public void SetScore(int value)
+    public void SetScore(int value, Transform itemRewardTransform = null)
     {
         Score += value;
         CheckLoseCondition();
-        CheckWinCondition();
+        CheckWinCondition(itemRewardTransform);
     }
 
-    private void CheckWinCondition()
+    private void CheckWinCondition(Transform itemRewardTransform)
     {
         foreach(MemoryWorldTile worldTile in m_worldTiles)
         {
@@ -175,6 +176,9 @@ public class MemoryManager : MonoBehaviour, IPuzzle
 
         Debug.Log("win");
         GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.PuzzleCompleted);
+        ItemReward.transform.position = itemRewardTransform.position;
+        ItemReward.transform.rotation = itemRewardTransform.rotation;
+
     }
 
     private void CheckLoseCondition()

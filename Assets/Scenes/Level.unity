@@ -2523,6 +2523,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Clock
       objectReference: {fileID: 0}
+    - target: {fileID: 75498994051348421, guid: 51d33d5b2e696c74eb2c0bd676aa4126, type: 3}
+      propertyPath: Timer
+      value: 1200
+      objectReference: {fileID: 0}
     - target: {fileID: 75498994051348423, guid: 51d33d5b2e696c74eb2c0bd676aa4126, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -24282,6 +24286,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 117198198453621220, guid: e271c1b0660f5ad499756d711e39dac9, type: 3}
   m_PrefabInstance: {fileID: 1583554621}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1583554625 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 117198198453621243, guid: e271c1b0660f5ad499756d711e39dac9, type: 3}
+  m_PrefabInstance: {fileID: 1583554621}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583554623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca67894f2f8685c4d95400d0d4cd2f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1587118907 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9162906315617162322, guid: 366637f5122ab0344a476b443243a597, type: 3}
@@ -30567,6 +30582,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 5215512880015633138, guid: 1ce8436444893a546971e381ecb09f2f, type: 3}
+      propertyPath: ItemReward
+      value: 
+      objectReference: {fileID: 1583554625}
     - target: {fileID: 5714156400880986995, guid: 1ce8436444893a546971e381ecb09f2f, type: 3}
       propertyPath: InteractablePoint
       value: 

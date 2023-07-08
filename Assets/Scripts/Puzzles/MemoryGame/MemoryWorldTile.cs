@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class MemoryWorldTile : MonoBehaviour, IPointerDownHandler
 {
+    public Transform ItemRewardTransform;
+
     private Grid<MemoryTile> m_grid;
 
     MemoryTile m_data;
@@ -160,7 +162,7 @@ public class MemoryWorldTile : MonoBehaviour, IPointerDownHandler
             {
                 m_memoryManager.SelectedTiles[0].Paired = true;
                 m_memoryManager.SelectedTiles[1].Paired = true;
-                m_memoryManager.SetScore(m_memoryManager.IncreaseNumber);
+                m_memoryManager.SetScore(m_memoryManager.IncreaseNumber, ItemRewardTransform);
                 m_memoryManager.CanChackTwoPair = true;
             }
             else
