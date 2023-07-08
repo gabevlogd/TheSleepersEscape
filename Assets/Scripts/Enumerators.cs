@@ -54,7 +54,8 @@ public static class Enumerators
         OnInventory,
         OnDialogue,
         OnPause,
-        OnLoopChange
+        OnLoopChange,
+        OnGameOver
     }
 
 }

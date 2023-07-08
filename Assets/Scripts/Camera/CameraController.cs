@@ -35,14 +35,12 @@ public class CameraController
     public void EnableController()
     {
         m_input.Selections.ItemSelection.canceled += LookForTarget;
-        //m_input.Selections.Unselect.performed += BackToPlayer;
     }
 
 
     public void DisableController()
     {
         m_input.Selections.ItemSelection.canceled -= LookForTarget;
-        //m_input.Selections.Unselect.performed -= BackToPlayer;
     }
 
 
@@ -79,10 +77,6 @@ public class CameraController
     /// </summary>
     private void LookForTarget(InputAction.CallbackContext context)
     {
-        //if (GameManager.Instance.InventoryManager.InventoryCanvas.gameObject.activeInHierarchy) return;
-        //if (GameManager.Instance.PauseManager.PauseUI.activeInHierarchy) return;
-        //if (m_camera.transform.position != m_pov.position) return;
-
         //Debug.Log("LookForTarget");
         int puzzleTriggerMask = 1 << 6; //puzzle trigger objects layer mask
         int interactableTriggerMask = 1 << 7; //interactable trigger objects layer mask
@@ -99,9 +93,6 @@ public class CameraController
 
             m_targetCollider.enabled = false;
 
-            //GameManager.Instance.Player.PlayerController.DisableController(); //put into gamemanger
-            //this.DisableController();
-
             if (hitInfo.collider.gameObject.layer == 6)
             {
                 GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.StartPuzzle);
@@ -113,19 +104,6 @@ public class CameraController
                 GameManager.Instance.Player.PlayerStateMachine.ChangeState(Enumerators.PlayerState.RunningInteractable);
             }
         }
-    }
-
-    /// <summary>
-    /// Moves back the camera to the player POV (only for debug, the player does not have the possibility to exits from puzzles)
-    /// </summary>
-    private void BackToPlayer(InputAction.CallbackContext context)
-    {
-        if (m_camera.transform.position == m_pov.position) return;
-        m_targetTransform = m_pov;
-
-        if (m_targetCollider != null) m_targetCollider.enabled = true;
-        this.DisableController();
-        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.ResetPuzzle);
     }
 
     public void BackToPlayer()

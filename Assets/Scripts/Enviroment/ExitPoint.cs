@@ -31,12 +31,12 @@ public class ExitPoint : MonoBehaviour
 
         StartFade(); 
 
-        yield return new WaitUntil(() => m_canFade == false); 
+        yield return new WaitUntil(() => m_canFade == false);
 
-        RespawnPlayer();
         ChangeRoomState();
+        RespawnPlayer();
         GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.CloseDoor);
-
+        
         yield return new WaitForSeconds(TimeBetweenFades);
 
         StartFade();
@@ -86,7 +86,12 @@ public class ExitPoint : MonoBehaviour
     {
         if (RoomManager.LoopCounter == 1) GameManager.Instance.RoomManager.RoomStatesMachine.ChangeState(Enumerators.RoomState.LoopTwo);
         else if (RoomManager.LoopCounter == 2) GameManager.Instance.RoomManager.RoomStatesMachine.ChangeState(Enumerators.RoomState.LoopThree);
-        else if (RoomManager.LoopCounter == 3) Debug.Log("End game");
+        else if (RoomManager.LoopCounter == 3)
+        {
+            Debug.Log("End game");
+            GameManager.PlayerWin = true;
+            GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.GameOver);
+        }
     }
 
 

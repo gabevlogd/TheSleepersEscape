@@ -31,6 +31,7 @@ public class Clock : MonoBehaviour
             if (Timer <= 0f)
             {
                 Timer = 0f;
+                GameManager.PlayerWin = false;
                 GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.GameOver);
             }
 

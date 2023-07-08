@@ -13,6 +13,7 @@ public class PlayerStateMachine : StatesMachine<Enumerators.PlayerState>
         AllStates.Add(Enumerators.PlayerState.OnPause, new OnPause(Enumerators.PlayerState.OnPause, this));
         AllStates.Add(Enumerators.PlayerState.OnDialogue, new OnDialogue(Enumerators.PlayerState.OnDialogue, this));
         AllStates.Add(Enumerators.PlayerState.OnLoopChange, new OnLoopChange(Enumerators.PlayerState.OnLoopChange, this));
+        AllStates.Add(Enumerators.PlayerState.OnGameOver, new OnGameOver(Enumerators.PlayerState.OnGameOver, this));
 
         CurrentState = AllStates[Enumerators.PlayerState.Navigation];
         CurrentState.OnEnter();
