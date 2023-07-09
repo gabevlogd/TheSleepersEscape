@@ -63,7 +63,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70f24632ce0fd54999bd7bc96bab8cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Dialogues: []
+  Dialogues:
+  - DialogueName: First_Loop
+    m_speakers:
+    - SpeakerName: Stranger
+      Script:
+      - Hell-o  Hell-o. Who is this?
+      - 'Ahahah. Of course you know how to get out, you have to go through hell before
+        you can, after all you''ve done. '
+      - 'You know exactly what you''ve done, don''t play dumb with me. NOW it''s
+        my turn to have fun. '
+      - 'You can yell all you want. No one will hear you but me. If that''s the way
+        you want to play, I''ll refresh your memory. '
+    - SpeakerName: Sleeper
+      Script:
+      - Help! Can anyone hear me? Please help me?
+      - 'Oh thank you. I don''t know where I am, I''m locked in a room I don''t know
+        where and I can''t get out!!! '
+      - What the f... What does that mean? Help me please, I didn't do anything!
+        I have no idea what you are talking about!!
+      - 'What the f**k are you talking about??? Who are you???? HEEEEEELP!!!! HEEEEEELPPP!!!! '
+      - 'Wait! What does it all mean??? Listen to me there must be a mistake, you
+        made a mess with someone else, I didn''t do anything!!! '
+      - 'Hello? Are you still there? HELLO??? '
+      - F**K!!!
+    m_speakersOrder:
+    - Sleeper
+    - Stranger
+    - Sleeper
+    - Stranger
+    - Sleeper
+    - Stranger
+    - Sleeper
+    - Stranger
+    - Sleeper
+    - Sleeper
+    - Sleeper
+  - DialogueName: Second_Loop
+    m_speakers:
+    - SpeakerName: Stranger
+      Script:
+      - Great, you move well, I'm surprised.
+      - 'I don''t think you will be able to see the light again. Ahahahah '
+    - SpeakerName: Sleeper
+      Script:
+      - 'How long will I have to stay here? How many more times? GET ME OUT!!!! LET
+        ME OUT!!! '
+    m_speakersOrder:
+    - Stranger
+    - Sleeper
+    - Stranger
   Canvas: {fileID: 1629481408655231858}
   PrintedText: {fileID: 1629481408955108740}
   TextSpeed: 30
