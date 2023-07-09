@@ -45,6 +45,8 @@ public class ItemsWheel
 
     public void SlideItems(InputAction.CallbackContext context)
     {
+        if (GameManager.Instance.Player.PlayerStateMachine.CurrentState.StateID != Enumerators.PlayerState.OnInventory) return;
+
         if (m_targetRotation != m_transform.rotation) return;
         Debug.Log("SlideItem");
 

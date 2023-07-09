@@ -306,6 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   POV: {fileID: 1612646804424201708}
+  ClockView: {fileID: 4081085965196267955, guid: 8b0c185d34e5af64485844ac6f0dbb53, type: 3}
   ItemsDetector: {fileID: 9006870159942506406}
   PlayerMovementData:
     Speed: 5

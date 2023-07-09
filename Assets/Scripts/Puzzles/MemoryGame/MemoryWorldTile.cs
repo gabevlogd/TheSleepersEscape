@@ -80,7 +80,7 @@ public class MemoryWorldTile : MonoBehaviour, IPointerDownHandler
         //    m_memoryManager.SelectedTiles.Clear();
 
         //}
-
+        if (GameManager.Instance.Player.PlayerStateMachine.CurrentState.StateID != Enumerators.PlayerState.RunningPuzzle) return;
         Test();
 
     }

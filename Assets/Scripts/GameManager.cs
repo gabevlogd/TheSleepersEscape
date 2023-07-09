@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.Universal;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -12,6 +13,7 @@ public class GameManager : Singleton<GameManager>
     public DartsManager dartsManager;
     public InventoryManager InventoryManager;
     public PauseManager PauseManager;
+    public HUDManager HUDManager;
     public static bool PlayerWin;
 
     protected override void Awake()
@@ -22,9 +24,38 @@ public class GameManager : Singleton<GameManager>
         //DontDestroyOnLoad(this.gameObject);
     }
 
-    public void GameOver() => SceneManager.LoadScene("GameOver");
+    public void GameOver() => StartCoroutine(PerformGameOver());
 
+    private IEnumerator PerformGameOver()
+    {
+        EventManager.TriggerEvent(Enumerators.Events.StartFade); //fade out
 
+        Camera.main.GetUniversalAdditionalCameraData().cameraStack.Clear(); //remove all canvas from the screen
+
+        yield return new WaitUntil(() => HUDManager.CanFade == false); //wait for fade end
+
+        EventManager.TriggerEvent(Enumerators.Events.SetClockView);
+
+        //yield return new WaitForSeconds(1f); //wait one second
+
+        EventManager.TriggerEvent(Enumerators.Events.StartFade); //fade in
+
+        yield return new WaitUntil(() => HUDManager.CanFade == false); //wait for fade end
+
+        yield return new WaitForSeconds(3f); //wait three seconds
+
+        EventManager.TriggerEvent(Enumerators.Events.OpenDoorOnGameOver);
+
+        yield return new WaitForSeconds(4f); //wait three seconds
+
+        EventManager.TriggerEvent(Enumerators.Events.StartFade); //fade out
+
+        yield return new WaitUntil(() => HUDManager.CanFade == false); //wait for fade end
+
+        SceneManager.LoadScene("GameOver");
+
+        
+    }
 
 
 }

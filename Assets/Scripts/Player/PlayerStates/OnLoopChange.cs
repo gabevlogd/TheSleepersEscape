@@ -8,6 +8,7 @@ public class OnLoopChange : PlayerState
         GameManager.Instance.EventManager.Register(Enumerators.Events.EnterLoopChange, EnterState);
     }
 
+
     public void EnterState() => m_stateMachine.ChangeState(Enumerators.PlayerState.OnLoopChange);
 }
 

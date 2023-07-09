@@ -8,6 +8,15 @@ public class HUDManager : MonoBehaviour
     public GameObject HUD;
     public Image CrossAir;
     public Image InteractablePointFeedback;
+    public Image FadeEffect;
+
+    public float FadeSpeed;
+    public float TimeBetweenFades;
+    public bool CanFade { get => m_canFade; } 
+
+    private bool m_canFade;
+    private int m_fadeDirection;
+    private Color m_fadeColor;
 
     private void Awake()
     {
@@ -16,7 +25,13 @@ public class HUDManager : MonoBehaviour
 
         GameManager.Instance.EventManager.Register(Enumerators.Events.ShowInteractablePoint, ShowInteractableFeedback);
         GameManager.Instance.EventManager.Register(Enumerators.Events.HideInteractablePoint, HideInteractableFeedback);
+
+        GameManager.Instance.EventManager.Register(Enumerators.Events.StartFade, StartFade);
+
     }
+
+    private void Update() => HandleFade();
+
 
     public void ShowHUD() => HUD.SetActive(true);
     public void HideHUD() => HUD.SetActive(false);
@@ -32,4 +47,38 @@ public class HUDManager : MonoBehaviour
         if (InteractablePointFeedback != null)
             InteractablePointFeedback?.gameObject.SetActive(false);
     }
+
+
+    private void StartFade()
+    {
+        m_fadeColor = FadeEffect.color;
+        if (m_fadeColor.a <= 0)
+        {
+            m_fadeDirection = 1;
+            m_fadeColor.a = 0;
+        }
+        else if (m_fadeColor.a >= 1)
+        {
+            m_fadeDirection = -1;
+            m_fadeColor.a = 1;
+        }
+        else return;
+
+        m_canFade = true;
+    }
+
+    private void HandleFade()
+    {
+        if (m_canFade)
+        {
+            m_fadeColor.a += Time.deltaTime * FadeSpeed * m_fadeDirection;
+            FadeEffect.color = m_fadeColor;
+
+            if (m_fadeColor.a <= 0f || m_fadeColor.a >= 1f) m_canFade = false;
+        }
+    }
+
+    
+
+
 }

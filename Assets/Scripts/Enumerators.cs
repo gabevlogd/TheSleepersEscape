@@ -6,6 +6,7 @@ public static class Enumerators
         StartPuzzle,
         ResetPuzzle,
         OpenDoor,
+        OpenDoorOnGameOver,
         CloseDoor,
         OpenInventory,
         CloseInventory,
@@ -34,6 +35,9 @@ public static class Enumerators
         TurnOnLights,
         EnableSwitch,
         DisableSwitch,
+        UpdateSettings,
+        StartFade,
+        SetClockView,
 		GameOver
 
 	}

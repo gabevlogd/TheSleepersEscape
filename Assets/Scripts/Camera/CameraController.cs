@@ -8,16 +8,18 @@ public class CameraController
 {
     private Transform m_targetTransform;
     private Transform m_pov;
+    private Transform m_clockView;
     private Collider m_targetCollider;
     private PlayerInput m_input;
     private Camera m_camera;
     private CameraMovementData m_movementData;
 
-    public CameraController(Camera camera, Transform pov, CameraMovementData data)
+    public CameraController(Camera camera, Transform pov, Transform clockView, CameraMovementData data)
     {
         m_camera = camera;
         m_movementData = data;     
         m_pov = pov;
+        m_clockView = clockView;
 
         m_camera.transform.position = m_pov.position;
         m_camera.transform.rotation = m_pov.rotation;
@@ -29,6 +31,7 @@ public class CameraController
         GameManager.Instance.EventManager.Register(Enumerators.Events.ResetPuzzle, BackToPlayer);
         GameManager.Instance.EventManager.Register(Enumerators.Events.OpenDoor, BackToPlayer);
         GameManager.Instance.EventManager.Register(Enumerators.Events.StopInteraction, BackToPlayer);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.SetClockView, GoToClock);
     }
 
 
@@ -113,6 +116,12 @@ public class CameraController
 
         if (m_targetCollider != null) m_targetCollider.enabled = true;
         //this.DisableController();
+    }
+
+    public void GoToClock()
+    {
+        m_camera.transform.position = m_clockView.position;
+        m_camera.transform.rotation = m_clockView.rotation;
     }
 
 

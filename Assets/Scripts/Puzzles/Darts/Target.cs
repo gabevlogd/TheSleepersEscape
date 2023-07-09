@@ -76,6 +76,7 @@ public class Target : MonoBehaviour
 
     private void PerformMousePosition(InputAction.CallbackContext context)
     {
+        if (GameManager.Instance.Player.PlayerStateMachine.CurrentState.StateID != Enumerators.PlayerState.RunningPuzzle) return;
         if (GameManager.Instance.dartsManager.m_gameTriggered)
         {
             Vector2 mousePosition = context.ReadValue<Vector2>();
@@ -85,6 +86,7 @@ public class Target : MonoBehaviour
 
     private void PerformThrow(InputAction.CallbackContext context)
     {
+        if (GameManager.Instance.Player.PlayerStateMachine.CurrentState.StateID != Enumerators.PlayerState.RunningPuzzle) return;
         if (GameManager.Instance.dartsManager.ReadyToThrow && GameManager.Instance.dartsManager.initialThrows > 0 && GameManager.Instance.dartsManager.m_gameTriggered) Throw();
     }
 

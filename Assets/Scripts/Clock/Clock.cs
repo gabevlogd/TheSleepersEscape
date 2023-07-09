@@ -6,6 +6,8 @@ public class Clock : MonoBehaviour
 {
     public float Timer;// LAST MINUTE
     public TextMeshPro TimerText;
+    private bool m_timerOn;
+    private bool m_gameOver;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +17,8 @@ public class Clock : MonoBehaviour
             TimeSpan timeSpan = TimeSpan.FromSeconds(Timer);
             TimerText.text = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
         }
+
+        m_timerOn = true;
     }
 
     private void Update()
@@ -24,15 +28,23 @@ public class Clock : MonoBehaviour
 
     private void TimerFunction()
     {
-        if (Timer != Mathf.Infinity)
+        if (m_timerOn && !Door.IsOpen)
         {
-            Timer -= Time.deltaTime;
+            if (GameManager.Instance.Player.PlayerStateMachine.CurrentState.StateID != Enumerators.PlayerState.OnPause)
+                Timer -= Time.deltaTime;
 
-            if (Timer <= 0f)
+            if (Timer <= 8f && !m_gameOver)
             {
-                Timer = 0f;
+                m_gameOver = true;
                 GameManager.PlayerWin = false;
+                GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.ResumeGame);
                 GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.GameOver);
+            }
+
+            if (Timer <= 0)
+            {
+                m_timerOn = false;
+                Timer = 0;
             }
 
             if (TimerText != null)

@@ -63,6 +63,8 @@ public class ItemsDetector : MonoBehaviour
 
     private void TryPickUp()
     {
+        if (GameManager.Instance.Player.PlayerStateMachine.CurrentState.StateID != Enumerators.PlayerState.Navigation) return;
+
         if (m_inputs.Selections.PickUp.WasReleasedThisFrame() && m_interactablesSpotted.Count > 0)
         {
             if (GameManager.Instance.Player.PlayerStateMachine.CurrentState.StateID != Enumerators.PlayerState.Navigation) return;
