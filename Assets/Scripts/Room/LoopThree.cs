@@ -15,7 +15,7 @@ public class LoopThree : LoopBase
 
         //Radio.CanInteract = true; //per adesso qui poi chiedo ai designer dove
         //GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableRadio); //per adesso qui poi chiedo ai designer dove
-
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.MoveExitPoint);
         GameManager.Instance.RoomManager.Puzzles[2].SetActive(true); // seta active true memory
 
         //LightsManager.GameTriggered = true; //qui solo per il debug, va dopo aver messo l'ultima comobinazione nella porta

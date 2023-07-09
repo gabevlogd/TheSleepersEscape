@@ -12,7 +12,6 @@ public class GameOverScreenManager : MonoBehaviour
     public float FadeSpeed;
 
     private bool m_canFade;
-    private int m_fadeDirection;
     private Color m_fadeColor;
 
     private void Awake()
@@ -27,18 +26,8 @@ public class GameOverScreenManager : MonoBehaviour
 
     private void StartFade()
     {
-        m_fadeColor = FadeEffect.color;
-        if (m_fadeColor.a <= 0)
-        {
-            m_fadeDirection = 1;
-            m_fadeColor.a = 0;
-        }
-        else if (m_fadeColor.a >= 1)
-        {
-            m_fadeDirection = -1;
-            m_fadeColor.a = 1;
-        }
-        else return;
+        if (GameManager.PlayerWin) m_fadeColor = new Color(1f, 1f, 1f, 1f);
+        else m_fadeColor = new Color(0f, 0f, 0f, 1f);
 
         m_canFade = true;
     }
@@ -47,10 +36,10 @@ public class GameOverScreenManager : MonoBehaviour
     {
         if (m_canFade)
         {
-            m_fadeColor.a += Time.deltaTime * FadeSpeed * m_fadeDirection;
+            m_fadeColor.a -= Time.deltaTime * FadeSpeed;
             FadeEffect.color = m_fadeColor;
 
-            if (m_fadeColor.a <= 0f || m_fadeColor.a >= 1f) m_canFade = false;
+            if (m_fadeColor.a >= 1f) m_canFade = false;
         }
     }
 }

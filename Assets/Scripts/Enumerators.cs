@@ -38,6 +38,7 @@ public static class Enumerators
         UpdateSettings,
         StartFade,
         SetClockView,
+        MoveExitPoint,
 		GameOver
 
 	}

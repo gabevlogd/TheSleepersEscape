@@ -19,14 +19,19 @@ public class GameManager : Singleton<GameManager>
     protected override void Awake()
     {
         base.Awake();
+        PlayerWin = false;
         EventManager = new();
         EventManager.Register(Enumerators.Events.GameOver, GameOver);
         //DontDestroyOnLoad(this.gameObject);
     }
 
-    public void GameOver() => StartCoroutine(PerformGameOver());
+    public void GameOver()
+    {
+        if (!PlayerWin) StartCoroutine(PerformLoseSequence());
+        else SceneManager.LoadScene("GameOver");
+    }
 
-    private IEnumerator PerformGameOver()
+    private IEnumerator PerformLoseSequence()
     {
         EventManager.TriggerEvent(Enumerators.Events.StartFade); //fade out
 

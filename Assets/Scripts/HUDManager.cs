@@ -51,7 +51,9 @@ public class HUDManager : MonoBehaviour
 
     private void StartFade()
     {
-        m_fadeColor = FadeEffect.color;
+        if (GameManager.PlayerWin) m_fadeColor = new Color(1f,1f,1f,0f);
+        else m_fadeColor = FadeEffect.color;
+
         if (m_fadeColor.a <= 0)
         {
             m_fadeDirection = 1;

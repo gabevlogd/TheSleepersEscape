@@ -7,9 +7,18 @@ public class ExitPoint : MonoBehaviour
 {
     public Transform RespawnPoint;
 
+    private void Awake()
+    {
+        GameManager.Instance.EventManager.Register(Enumerators.Events.MoveExitPoint, SetPosition);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Player player)) GoToNexLoop();
+        if (other.TryGetComponent(out Player player))
+        {
+            if (RoomManager.LoopCounter == 3) GameManager.PlayerWin = true;
+            GoToNexLoop();
+        }
     }
 
     private void GoToNexLoop() => StartCoroutine(PerformLoopChange());
@@ -47,10 +56,12 @@ public class ExitPoint : MonoBehaviour
         else if (RoomManager.LoopCounter == 3)
         {
             Debug.Log("End game");
-            GameManager.PlayerWin = true;
+            //GameManager.PlayerWin = true;
             GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.GameOver);
         }
     }
+
+    public void SetPosition() => transform.position += new Vector3(0f, 0f, 6f);
 
 
 }
