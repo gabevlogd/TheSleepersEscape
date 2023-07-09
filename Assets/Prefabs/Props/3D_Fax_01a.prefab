@@ -176,7 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6562386451118420330}
   m_Layer: 0
-  m_Name: fax_mesh
+  m_Name: 3D_Fax_01a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

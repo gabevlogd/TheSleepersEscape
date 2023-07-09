@@ -342,7 +342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8381274542229219742}
   m_Layer: 0
-  m_Name: C3D_LightSwitch_02a_mesh
+  m_Name: 3D_LightSwitch_02a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7394338384849843380}
   m_Layer: 0
-  m_Name: LongCandle
+  m_Name: 3D_LongCandle_01a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

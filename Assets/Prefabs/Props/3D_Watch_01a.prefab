@@ -493,7 +493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6983287409472640065}
   m_Layer: 0
-  m_Name: Pocketwatch
+  m_Name: 3D_Watch_01a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
