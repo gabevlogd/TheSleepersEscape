@@ -1,10 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
 
+    [Header("-----AudioMixer-----")]
+    [SerializeField] private AudioMixer m_audioMixer;
+
+
+    [Header("-----AudioSource-----")]
     [SerializeField]
     private AudioSource m_audioSourcePlayer;
 
@@ -18,10 +23,12 @@ public class SoundManager : MonoBehaviour
     private AudioSource m_audioSourceRadio;
 
     [SerializeField]
-    private AudioSource m_audioSourceWatch;
+    private AudioSource m_audioSourceEnv;
 
 
-    public AudioClip PlayerStep, PickUp, ThrowDart, TargetBoard,TargetWall, GO15SwitchTile, Watch, SelectedTiled, Pair, NoPair, SuccessPuzzle, FailedPuzzle, SwitchLight, MasterSwitch, LampOn, LampOff, AllLightPowerOn, AllLightPowerOff, DoorDial, DoorLight, DoorOpen, WalkmanPlay, WalkmanStop, Radio,Fax;
+    [Header("-----AudioClip-----")]
+    public AudioClip PlayerStep, PickUp, ThrowDart, TargetBoard,TargetWall, GO15SwitchTile, Watch, SelectedTiled, Pair, NoPair, SuccessPuzzle, FailedPuzzle, SwitchLight, MasterSwitch, AllLightPowerOn, AllLightPowerOff, DoorDial, DoorLight, DoorOpen, WalkmanPlay, WalkmanStop, Radio,Fax;
+
 
 
     private void OnEnable()
@@ -30,7 +37,7 @@ public class SoundManager : MonoBehaviour
         GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundDoor, ChangeClipAndPlayForDoor);
         GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundRadio, ChangeClipAndPlayForRadio);
         GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundDoor, ChangeClipAndPlayForPlayer);
-        GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundWatch, ChangeClipAndPlayForWatch);
+        GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundEnv, ChangeClipAndPlayForEnv);
         GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundGenerator, ChangeClipAndPlayForGenerator);
     }
 
@@ -40,7 +47,7 @@ public class SoundManager : MonoBehaviour
         GameManager.Instance.SoundEventManager.Unregister<AudioClip>(Enumerators.MusicEvents.PlaySoundPlayer, ChangeClipAndPlayForPlayer);
         GameManager.Instance.SoundEventManager.Unregister<AudioClip>(Enumerators.MusicEvents.PlaySoundDoor, ChangeClipAndPlayForDoor);
         GameManager.Instance.SoundEventManager.Unregister<AudioClip>(Enumerators.MusicEvents.PlaySoundRadio, ChangeClipAndPlayForRadio);
-        GameManager.Instance.SoundEventManager.Unregister<AudioClip>(Enumerators.MusicEvents.PlaySoundWatch, ChangeClipAndPlayForWatch);
+        GameManager.Instance.SoundEventManager.Unregister<AudioClip>(Enumerators.MusicEvents.PlaySoundEnv, ChangeClipAndPlayForEnv);
         GameManager.Instance.SoundEventManager.Unregister<AudioClip>(Enumerators.MusicEvents.PlaySoundGenerator, ChangeClipAndPlayForGenerator);
     }
 
@@ -48,6 +55,7 @@ public class SoundManager : MonoBehaviour
 
     private void ChangeClipAndPlayForPlayer(AudioClip audioClip)
     {
+        if (m_audioSourcePlayer.isPlaying) return;
         m_audioSourcePlayer.clip = audioClip;
         m_audioSourcePlayer.Play();
 
@@ -60,7 +68,6 @@ public class SoundManager : MonoBehaviour
 
     }
 
-
     private void ChangeClipAndPlayForRadio(AudioClip audioClip)
     {
         m_audioSourceRadio.clip = audioClip;
@@ -68,21 +75,37 @@ public class SoundManager : MonoBehaviour
 
     }
 
-
-    private void ChangeClipAndPlayForWatch(AudioClip audioClip)
+    private void ChangeClipAndPlayForEnv(AudioClip audioClip)
     {
-        m_audioSourceWatch.clip = audioClip;
-        m_audioSourceWatch.Play();
+
+        m_audioSourceEnv.clip = audioClip;
+        m_audioSourceEnv.Play();
 
     }
-
-
-
 
     private void ChangeClipAndPlayForGenerator(AudioClip audioClip)
     {
         m_generatorSound.clip = audioClip;
         m_generatorSound.Play();
+
+    }
+
+
+    public void SetMasterVolum(float volume)
+    {
+        m_audioMixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20);
+  
+    }
+
+    public void SetMusicVolum(float volume)
+    {
+        m_audioMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
+
+    }
+
+    public void SetSFXVolum(float volume)
+    {
+        m_audioMixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20);
 
     }
 

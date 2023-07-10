@@ -61,7 +61,8 @@ public class Radio : MonoBehaviour
         m_runDialogue = true;
         PrintedText.text = "";
         m_scriptLineIndex = -1;
-        m_time = 0;   
+        m_time = 0;
+        GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundRadio, GameManager.Instance.SoundManager.Radio);
     }
 
     /// <summary>
@@ -71,7 +72,12 @@ public class Radio : MonoBehaviour
     {
 
         GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.StopDialogue);
-        if (RoomManager.LoopCounter == 1) GameManager.Instance.RoomManager.Items[2].SetActive(true); //active the paper pick up;
+        if (RoomManager.LoopCounter == 1)
+        {
+            GameManager.Instance.RoomManager.Items[2].SetActive(true); //active the paper pick up;
+            GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundEnv, GameManager.Instance.SoundManager.Fax);
+        }
+
         if (RoomManager.LoopCounter == 2) GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableDials);
         m_runDialogue = false;
         Canvas.gameObject.SetActive(false);

@@ -36,6 +36,8 @@ public class LightsManager : MonoBehaviour
         if (AnimationIsRunning()) return;
         m_animator.SetBool("IsSwitchOn", true);
 
+        StartCoroutine(PlaySound());
+
         for (int i = 0; i < LightSwitches.Count; i++)
         {
             if (LightSwitches[i].Triggered != TargetPattern[i])
@@ -60,9 +62,17 @@ public class LightsManager : MonoBehaviour
     {
         yield return new WaitUntil(() => AnimationIsRunning() == true);
         m_animator.SetBool("IsSwitchOn", false);
+        StartCoroutine(PlaySound());
     }
 
     private bool AnimationIsRunning() => m_animator.GetCurrentAnimatorStateInfo(0).length > m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+
+    private IEnumerator PlaySound()
+    {
+        yield return new WaitForSeconds(0.8f);
+        GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundEnv, GameManager.Instance.SoundManager.MasterSwitch);
+    }
+
 
 }
 

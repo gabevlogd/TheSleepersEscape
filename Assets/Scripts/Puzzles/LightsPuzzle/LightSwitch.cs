@@ -32,6 +32,8 @@ public class LightSwitch : MonoBehaviour
 
         m_animator.SetBool("IsSwitchOn", !m_animator.GetBool("IsSwitchOn"));
 
+        GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundEnv, GameManager.Instance.SoundManager.SwitchLight);
+
         TriggersLights();
     }
 
