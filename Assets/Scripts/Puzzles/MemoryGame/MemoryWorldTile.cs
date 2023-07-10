@@ -141,6 +141,7 @@ public class MemoryWorldTile : MonoBehaviour, IPointerDownHandler
         tileB.RotateCard(true);
         m_memoryManager.SetScore(-1);
         m_memoryManager.CanChackTwoPair = true;
+        GameManager.Instance.MemoryManager.SetImageFillAmmount(-1f / 13f);
     }
 
 
@@ -166,13 +167,13 @@ public class MemoryWorldTile : MonoBehaviour, IPointerDownHandler
                 m_memoryManager.SelectedTiles[1].Paired = true;
                 m_memoryManager.SetScore(m_memoryManager.IncreaseNumber, ItemRewardTransform);
                 m_memoryManager.CanChackTwoPair = true;
-                //GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundPlayer, GameManager.Instance.SoundManager.Pair);
+                GameManager.Instance.MemoryManager.SetImageFillAmmount(1f/13f);
             }
             else
             {
                 m_memoryManager.CanChackTwoPair = false;
                 StartCoroutine(NotMatchedTiles(m_memoryManager.SelectedTiles[0], m_memoryManager.SelectedTiles[1]));
-
+                
             }
             m_memoryManager.SelectedTiles.Clear();
         }
