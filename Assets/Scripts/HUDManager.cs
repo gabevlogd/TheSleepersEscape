@@ -13,6 +13,7 @@ public class HUDManager : MonoBehaviour
     public Image CrossAir;
     public Image InteractablePointFeedback;
     public Image FadeEffect;
+    public Image QInfoImage;
 
     public TextMeshProUGUI Info;
 
@@ -37,6 +38,11 @@ public class HUDManager : MonoBehaviour
         GameManager.Instance.EventManager.Register(Enumerators.Events.NextTutorial, SetNextTutorial);
         GameManager.Instance.EventManager.Register(Enumerators.Events.CloseTutorial, CloseTutorial);
 
+
+        GameManager.Instance.EventManager.Register(Enumerators.Events.StopInteraction, HideQInfo);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.TurnOffLights, ShowQInfo);
+
+
         TutorialOne.SetActive(true);
         TutorialTwo.SetActive(false);
 
@@ -47,6 +53,22 @@ public class HUDManager : MonoBehaviour
 
     public void ShowHUD() => HUD.SetActive(true);
     public void HideHUD() => HUD.SetActive(false);
+
+    public void ShowQInfo()
+    {
+        QInfoImage.gameObject.SetActive(true);
+        ShowHUD();
+        HideCrossAir();
+    }
+
+    public void HideQInfo()
+    {
+        QInfoImage.gameObject.SetActive(false);
+        ShowCrossAir();
+    }
+
+    public void ShowCrossAir() => CrossAir.gameObject.SetActive(true);
+    public void HideCrossAir() => CrossAir.gameObject.SetActive(false);
 
     public void ShowInteractableFeedback()
     {
