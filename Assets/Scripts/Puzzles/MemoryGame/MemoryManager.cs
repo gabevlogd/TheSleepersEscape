@@ -32,7 +32,9 @@ public class MemoryManager : MonoBehaviour, IPuzzle
     /// <summary>
     /// bool to set if the game is unlocked
     /// </summary>
-    public bool GameTriggered;
+    [HideInInspector] public bool GameTriggered;
+
+    [SerializeField] private GameObject m_memoryUI;
 
 
     private void Awake()
