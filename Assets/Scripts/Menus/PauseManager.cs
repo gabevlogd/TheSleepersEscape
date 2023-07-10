@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class PauseManager : MonoBehaviour
@@ -65,7 +66,7 @@ public class PauseManager : MonoBehaviour
 
 
     public void OnPause() => OpenPauseScreen();
-    public void OnExit() => Application.Quit();
+    public void OnExit() => SceneManager.LoadScene("MainMenu");
 
 
 

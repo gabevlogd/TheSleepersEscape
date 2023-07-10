@@ -10,6 +10,8 @@ public class OnTutorial : PlayerState
     public OnTutorial(Enumerators.PlayerState stateID, StatesMachine<Enumerators.PlayerState> stateMachine = null) : base(stateID, stateMachine)
     {
         m_inputs = new();
+        OnTutorialOne = false;
+        OnTutorialTwo = false;
     }
 
     public override void OnEnter()
