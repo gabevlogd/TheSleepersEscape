@@ -6,7 +6,7 @@ using TMPro;
 public class Radio : MonoBehaviour
 {
     //public static bool CanInteract;
-
+    public ParticleSystem LightVFX;
     public List<Dialogue> Dialogues;
     public Canvas Canvas;
     public TextMeshProUGUI PrintedText;
@@ -44,8 +44,14 @@ public class Radio : MonoBehaviour
         /*if (CanInteract)*/ TurnOnRadio();
     }
 
-    public void EnableRadioInteraction() => m_collider.enabled = true;
+    public void EnableRadioInteraction()
+    {
+        m_collider.enabled = true;
+        LightVFX.gameObject.SetActive(true);
+    }
+
     public void DisableRadioInteraction() => m_collider.enabled = false;
+    
 
     /// <summary>
     /// Triggers the radio starting a new dialogue (UI text box)
@@ -70,7 +76,7 @@ public class Radio : MonoBehaviour
     /// </summary>
     public void TurnOffRadio()
     {
-
+        LightVFX.gameObject.SetActive(false);
         GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.StopDialogue);
         if (RoomManager.LoopCounter == 1)
         {
