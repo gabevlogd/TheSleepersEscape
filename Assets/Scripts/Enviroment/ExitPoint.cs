@@ -30,8 +30,8 @@ public class ExitPoint : MonoBehaviour
 
         yield return new WaitUntil(() => GameManager.Instance.HUDManager.CanFade == false);
 
-        ChangeRoomState();
         RespawnPlayer();
+        ChangeRoomState();
         GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.CloseDoor);
         
         yield return new WaitForSeconds(GameManager.Instance.HUDManager.TimeBetweenFades);

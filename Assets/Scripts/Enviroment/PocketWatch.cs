@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PocketWatch : MonoBehaviour
 {
-    //public Transform HoursHand;
     public Transform MinutesHand;
     public Transform SecondsHand;
 
