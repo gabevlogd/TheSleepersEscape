@@ -80,6 +80,7 @@ public class ItemsDetector : MonoBehaviour
                 GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableRadio);
                 GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundEnv, GameManager.Instance.SoundManager.PickUp);
             }
+            else if (m_interactablesSpotted[0].data.ItemName == "Photo") GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundEnv, GameManager.Instance.SoundManager.PickUp);
             else
             {
                 GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableDials);

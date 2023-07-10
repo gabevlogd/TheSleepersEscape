@@ -37,7 +37,10 @@ public class PauseManager : MonoBehaviour
         if (!Main.activeInHierarchy) OpenMainScreen();
 
         ClosePauseScreen();
-        GameManager.Instance.Player.PlayerStateMachine.ChangeState(Enumerators.PlayerState.Navigation);
+        if (GameManager.Instance.Player.PlayerStateMachine.PreviousState == null || GameManager.Instance.Player.PlayerStateMachine.PreviousState.StateID == Enumerators.PlayerState.OnTutorial) 
+            GameManager.Instance.Player.PlayerStateMachine.ChangeState(Enumerators.PlayerState.OnTutorial);
+        else 
+            GameManager.Instance.Player.PlayerStateMachine.ChangeState(Enumerators.PlayerState.Navigation);
     }
 
     public void OnSettings()

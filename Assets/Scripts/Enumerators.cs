@@ -39,6 +39,8 @@ public static class Enumerators
         StartFade,
         SetClockView,
         MoveExitPoint,
+        NextTutorial,
+        CloseTutorial,
 		GameOver
 
 	}
@@ -53,6 +55,7 @@ public static class Enumerators
 
     public enum PlayerState
     {
+        OnTutorial,
         Navigation,
         RunningPuzzle,
         RunningInteractable,
