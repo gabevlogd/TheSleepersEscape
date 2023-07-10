@@ -12,4 +12,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnPlay() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     public void OnExit() => Application.Quit();
+
+
 }

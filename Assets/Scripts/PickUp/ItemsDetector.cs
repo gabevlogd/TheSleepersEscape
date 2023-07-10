@@ -55,7 +55,7 @@ public class ItemsDetector : MonoBehaviour
 
     private void PickUp()
     {
-        GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundPlayer, GameManager.Instance.SoundManager.PickUp);
+        
         ItemsDatas.Add(m_interactablesSpotted[0].data);
         Destroy(m_interactablesSpotted[0].gameObject, 0.2f);
         Unspotted(m_interactablesSpotted[0]);
@@ -70,10 +70,21 @@ public class ItemsDetector : MonoBehaviour
         {
             if (GameManager.Instance.Player.PlayerStateMachine.CurrentState.StateID != Enumerators.PlayerState.Navigation) return;
 
-            if (m_interactablesSpotted[0].data.ItemName == "Walkman") GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.PlayWalkman);
-            else if (m_interactablesSpotted[0].data.ItemName == "Note 1") GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableRadio);
-            else /*if (m_interactablesSpotted[0].data.ItemName == "Paper")*/ GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableDials);
-            //else if (m_interactablesSpotted[0].data.ItemName == "Note 3")
+            if (m_interactablesSpotted[0].data.ItemName == "Walkman")
+            {
+                GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.PlayWalkman);
+                GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundEnv, GameManager.Instance.SoundManager.WalkmanPlay);
+            }
+            else if (m_interactablesSpotted[0].data.ItemName == "Note 1")
+            {
+                GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableRadio);
+                GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundEnv, GameManager.Instance.SoundManager.PickUp);
+            }
+            else
+            {
+                GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableDials);
+                GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundEnv, GameManager.Instance.SoundManager.PickUp);
+            }
 
             PickUp();
         }

@@ -29,6 +29,7 @@ public class Navigation : PlayerState
     {
        
         base.OnUpdate();
+        if(m_inputs.Traslation.Forward.IsInProgress()||m_inputs.Traslation.Lateral.IsInProgress()) GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundPlayer, GameManager.Instance.SoundManager.PlayerStep);
         HandleInventoryOpening();
         HandlePauseMenu();
     }
