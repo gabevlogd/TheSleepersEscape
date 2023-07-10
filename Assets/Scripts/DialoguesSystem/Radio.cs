@@ -148,6 +148,7 @@ public class Radio : MonoBehaviour
             CheckFullLinePrintRequest();
             PrintScriptLine();
             LoadNextScriptLine();
+            
         }
     }
 
