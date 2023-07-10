@@ -36,7 +36,7 @@ public class SoundManager : MonoBehaviour
         GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundPlayer, ChangeClipAndPlayForPlayer);
         GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundDoor, ChangeClipAndPlayForDoor);
         GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundRadio, ChangeClipAndPlayForRadio);
-        GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundDoor, ChangeClipAndPlayForPlayer);
+        //GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundDoor, ChangeClipAndPlayForPlayer);
         GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundEnv, ChangeClipAndPlayForEnv);
         GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundGenerator, ChangeClipAndPlayForGenerator);
         GameManager.Instance.EventManager.Register(Enumerators.Events.TurnOffLights, TurnOffGenerator);
