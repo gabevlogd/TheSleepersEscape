@@ -57,7 +57,7 @@ public class HUDManager : MonoBehaviour
     public void HideInteractableFeedback()
     {
         if (InteractablePointFeedback != null)
-            InteractablePointFeedback?.gameObject.SetActive(false);
+            InteractablePointFeedback.gameObject.SetActive(false);
     }
 
 
