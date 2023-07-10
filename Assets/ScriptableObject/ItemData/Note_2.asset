@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_itemName: Note 2
   m_layerUI: 9
-  m_description: Bla Bla Bla...
+  m_description: Ruined note with red inscription corresponding to the door combination
   m_itemMesh: {fileID: 1214351361538647191, guid: 442a35d7e6a7c4140a533008f798d69f, type: 3}

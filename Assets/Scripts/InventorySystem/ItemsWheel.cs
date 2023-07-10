@@ -14,6 +14,7 @@ public class ItemsWheel
     private Quaternion m_targetRotation;
 
     private Vector3 m_raycastDirection;
+    public Vector3 LookAtDirection { get => m_raycastDirection; }
 
     private float m_angularSpeed = 100f;
 
@@ -37,7 +38,8 @@ public class ItemsWheel
     public void Enable()
     {
         m_inventoryData.Inputs.UI.SlideItems.performed += SlideItems;
-        ShowSelectedItemInfo();
+        if (m_inventoryData.Items.Count > 0)
+            ShowSelectedItemInfo(m_inventoryData.Items[0].data.Description);
     }
 
     public void Disable() => m_inventoryData.Inputs.UI.SlideItems.performed -= SlideItems;
@@ -45,10 +47,11 @@ public class ItemsWheel
 
     public void SlideItems(InputAction.CallbackContext context)
     {
+        if (m_inventoryData.Items.Count == 0) return;
         if (GameManager.Instance.Player.PlayerStateMachine.CurrentState.StateID != Enumerators.PlayerState.OnInventory) return;
 
         if (m_targetRotation != m_transform.rotation) return;
-        Debug.Log("SlideItem");
+        //Debug.Log("SlideItem");
 
         float slideDirection = context.ReadValue<float>();
         m_targetRotation = m_transform.rotation * Quaternion.Euler(0f, GetAngle() * slideDirection, 0f);
@@ -57,7 +60,7 @@ public class ItemsWheel
     public void HandleWheelRotation()
     {
         if (m_targetRotation == m_transform.rotation) return;
-
+        ShowSelectedItemInfo("");
         m_transform.rotation = Quaternion.RotateTowards(m_transform.rotation, m_targetRotation, Time.deltaTime * m_angularSpeed);
 
         if (Mathf.Abs(Quaternion.Dot(m_transform.rotation, m_targetRotation) - 1f) <= 0.0001f)
@@ -67,15 +70,17 @@ public class ItemsWheel
         }
     }
 
-    private void ShowSelectedItemInfo()
+    public void ShowSelectedItemInfo(string value = null)
     {
         RaycastHit hitInfo;
         Physics.Raycast(m_transform.position, m_raycastDirection, out hitInfo);
         if (hitInfo.collider != null)
         {
-            Debug.Log(hitInfo.collider.name);
+            //Debug.Log(hitInfo.collider.name);
+            string itemDescription = hitInfo.collider.GetComponent<ItemBase>().data.Description;
+            GameManager.Instance.InventoryManager.SetItemDescription(itemDescription);
         }
-        else Debug.Log("no items");
+        else GameManager.Instance.InventoryManager.SetItemDescription(value);
     }
 
 
@@ -96,7 +101,7 @@ public class ItemsWheel
 
         for (int i = 0; i < itemsCount; i++)
         {
-            itemsPositions.Add(new Vector3(Mathf.Cos(theta), 0f, Mathf.Sin(theta)));
+            itemsPositions.Add(new Vector3(Mathf.Cos(theta), 0f, Mathf.Sin(theta)) * 0.5f);
             theta += angularIncrement;
         }
         return itemsPositions;
@@ -138,9 +143,10 @@ public class ItemsWheel
 
         newItemBase.gameObject.layer = newItemData.LayerUI;
 
-        ConstraintSource targetSource = new ConstraintSource();
-        targetSource.sourceTransform = m_inventoryData.InventoryCamera.transform;
-        newItemBase.GetComponent<LookAtConstraint>().SetSource(0, targetSource);
+        //ConstraintSource targetSource = new ConstraintSource();
+        //targetSource.sourceTransform = m_inventoryData.InventoryCamera.transform;
+        //newItemBase.GetComponent<LookAtConstraint>().SetSource(0, targetSource);
+        newItemBase.GetComponent<LookAtComponent>().enabled = true;
 
         if (m_inventoryData.Items == null) m_inventoryData.Items = new List<ItemBase>();
         m_inventoryData.Items.Add(newItemBase);
@@ -171,9 +177,10 @@ public class ItemsWheel
 
         newItemBase.gameObject.layer = newItemData.LayerUI;
 
-        ConstraintSource targetSource = new ConstraintSource();
-        targetSource.sourceTransform = m_inventoryData.InventoryCamera.transform;
-        newItemBase.GetComponent<LookAtConstraint>().SetSource(0, targetSource);
+        //ConstraintSource targetSource = new ConstraintSource();
+        //targetSource.sourceTransform = m_inventoryData.InventoryCamera.transform;
+        //newItemBase.GetComponent<LookAtConstraint>().SetSource(0, targetSource);
+        newItemBase.GetComponent<LookAtComponent>().enabled = true;
 
         if (m_inventoryData.Items == null) m_inventoryData.Items = new List<ItemBase>();
         m_inventoryData.Items.Add(newItemBase);

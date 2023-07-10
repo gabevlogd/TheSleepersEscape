@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_itemName: Note 1
   m_layerUI: 9
-  m_description: Bla Bla Bla...
+  m_description: Ruined note found behind the dart board
   m_itemMesh: {fileID: 1214351361538647191, guid: c0b32c9395e98e249a0bf18e7ec999ce, type: 3}
