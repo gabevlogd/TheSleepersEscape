@@ -5,12 +5,13 @@ using UnityEngine;
 public class Darts : MonoBehaviour
 {
     private Rigidbody m_rigidBody;
-
+    
 
 
     private void OnEnable()
     {
         m_rigidBody = GetComponent<Rigidbody>();
+        
     }
 
 
@@ -25,12 +26,12 @@ public class Darts : MonoBehaviour
             Debug.Log(collision.contacts[0].point);
             if (target.BullEyeHitted(collision.contacts[0].point)) GameManager.Instance.dartsManager.SetScore(1);
             GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundPlayer, GameManager.Instance.SoundManager.TargetBoard);
-            
+            GameManager.Instance.dartsManager.SetDartsImage();
 
         }
         GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundPlayer, GameManager.Instance.SoundManager.TargetWall);
         GameManager.Instance.dartsManager.CheckLoseCondition();
-
+        GameManager.Instance.dartsManager.SetDartsImage();
     }
 
 

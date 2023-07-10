@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MemoryManager : MonoBehaviour, IPuzzle
 {
@@ -32,13 +33,18 @@ public class MemoryManager : MonoBehaviour, IPuzzle
     /// <summary>
     /// bool to set if the game is unlocked
     /// </summary>
-    public bool GameTriggered;
+    [HideInInspector] public bool GameTriggered;
+
+    [SerializeField] private GameObject m_memoryUI;
+
+    [SerializeField] private Image m_memoryImage;
 
 
     private void Awake()
     {
         GeneratePuzzle();
         //ShuffleTile();
+        m_memoryUI.SetActive(false);
         if (WorldOrientation != null) SetPositionAndRotation(WorldOrientation);
     }
 
@@ -164,6 +170,7 @@ public class MemoryManager : MonoBehaviour, IPuzzle
     public void SetScore(int value, Transform itemRewardTransform = null)
     {
         Score += value;
+        if (Score > 10) Score = 10;
         CheckLoseCondition();
         CheckWinCondition(itemRewardTransform);
     }
@@ -187,14 +194,6 @@ public class MemoryManager : MonoBehaviour, IPuzzle
         if (Score <= 0) GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.ResetPuzzle);
     }
 
-    //private void TurnFaceUp()
-    //{
-    //    foreach (MemoryWorldTile worldTile in m_worldTiles)
-    //    {
-    //        worldTile.transform.localRotation = Quaternion.identity;
-
-    //    }
-    //}
     private void TurnFaceUp()
     {
         foreach (MemoryWorldTile worldTile in m_worldTiles)
@@ -206,6 +205,10 @@ public class MemoryManager : MonoBehaviour, IPuzzle
 
     public void StartGame() 
     {
+        SetImageFillAmmount();
+        m_memoryUI.SetActive(true);
+        
+
         GameTriggered = true;
         Score = InitialScore;
         StartCoroutine(Shuffle());
@@ -213,6 +216,8 @@ public class MemoryManager : MonoBehaviour, IPuzzle
 
     public void EndGame()
     {
+        m_memoryUI.SetActive(false);
+
         GameTriggered = false;
         CameraTriggerer.gameObject.SetActive(false);
         GameManager.Instance.RoomManager.Items[4].SetActive(true); //set active true note 3
@@ -220,11 +225,28 @@ public class MemoryManager : MonoBehaviour, IPuzzle
 
     public void ResetGame()
     {
+        m_memoryUI.SetActive(false);
+
         GameTriggered = false;
         Score = InitialScore;
         TurnFaceUp();
     }
 
 
+    public void SetImageFillAmmount(float value = -1)
+    {
+        
+        if (value == -1)
+        {
+            value = 1 - (10f - (float)InitialScore) * (1f / 13f);
+            m_memoryImage.fillAmount = value;
+            return;
+            
+        }
+
+        m_memoryImage.fillAmount += value;
+        if (m_memoryImage.fillAmount < (4f / 13f)) m_memoryImage.fillAmount = 0;
+        
+    }
 
 }
