@@ -11,13 +11,20 @@ public class LightsManager : MonoBehaviour
     public bool[] TargetPattern;
 
     private Collider m_collider;
+    private Animator m_animator;
 
     private void Awake()
     {
         //GameTriggered = false;
         m_collider = GetComponent<Collider>();
+        m_animator = GetComponent<Animator>();
         GameManager.Instance.EventManager.Register(Enumerators.Events.EnableSwitch, EnableLightsPuzzle);
         GameManager.Instance.EventManager.Register(Enumerators.Events.DisableSwitch, DisableLightsPuzzle);
+    }
+
+    private void Update()
+    {
+        Debug.Log(AnimationIsRunning());
     }
 
     private void OnMouseDown() => CheckWinCondition();
@@ -25,17 +32,21 @@ public class LightsManager : MonoBehaviour
 
     public void CheckWinCondition()
     {
-       if (LightSwitches.Count != TargetPattern.Length)
+        if (LightSwitches.Count != TargetPattern.Length)
         {
             Debug.Log("the length of Target Pattern need to match the number of switches, modify it in the Light Manager inspector");
             return;
         }
+
+        if (AnimationIsRunning()) return;
+        m_animator.SetBool("IsSwitchOn", true);
 
         for (int i = 0; i < LightSwitches.Count; i++)
         {
             if (LightSwitches[i].Triggered != TargetPattern[i])
             {
                 Debug.Log("not win");
+                StartCoroutine(TurnOff());
                 return;
             }
         }
@@ -49,6 +60,14 @@ public class LightsManager : MonoBehaviour
 
     public void EnableLightsPuzzle() => m_collider.enabled = true;
     public void DisableLightsPuzzle() => m_collider.enabled = false; 
+
+    private IEnumerator TurnOff()
+    {
+        yield return new WaitUntil(() => AnimationIsRunning() == true);
+        m_animator.SetBool("IsSwitchOn", false);
+    }
+
+    private bool AnimationIsRunning() => m_animator.GetCurrentAnimatorStateInfo(0).length > m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
 
 }
 

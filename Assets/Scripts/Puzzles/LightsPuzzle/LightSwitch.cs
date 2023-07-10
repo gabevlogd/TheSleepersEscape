@@ -10,10 +10,12 @@ public class LightSwitch : MonoBehaviour
     public bool Triggered;
 
     private Collider m_collider;
+    private Animator m_animator;
 
     private void Awake()
     {
         m_collider = GetComponent<Collider>();
+        m_animator = GetComponent<Animator>();
         GameManager.Instance.EventManager.Register(Enumerators.Events.EnableSwitch, EnableSwitch);
         GameManager.Instance.EventManager.Register(Enumerators.Events.DisableSwitch, DisableSwitch);
     }
@@ -24,15 +26,11 @@ public class LightSwitch : MonoBehaviour
     private void TriggersSwitch()
     {
         //if (!LightsManager.GameTriggered) return;
-        //if (switch animation is running) return;
+        if (m_animator.GetCurrentAnimatorStateInfo(0).length > m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime) return;
 
         Triggered = !Triggered;
 
-        //placeholder
-        MeshRenderer renderer = GetComponentInChildren<MeshRenderer>();
-        if (renderer.material.color == Color.red) renderer.material.color = Color.green;
-        else renderer.material.color = Color.red;
-        //placeholder
+        m_animator.SetBool("IsSwitchOn", !m_animator.GetBool("IsSwitchOn"));
 
         TriggersLights();
     }
