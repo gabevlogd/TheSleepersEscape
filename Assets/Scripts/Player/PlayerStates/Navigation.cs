@@ -27,6 +27,7 @@ public class Navigation : PlayerState
 
     public override void OnUpdate()
     {
+       
         base.OnUpdate();
         HandleInventoryOpening();
         HandlePauseMenu();

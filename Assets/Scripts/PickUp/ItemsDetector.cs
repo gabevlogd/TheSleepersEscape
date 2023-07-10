@@ -55,6 +55,7 @@ public class ItemsDetector : MonoBehaviour
 
     private void PickUp()
     {
+        GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundPlayer, GameManager.Instance.SoundManager.PickUp);
         ItemsDatas.Add(m_interactablesSpotted[0].data);
         Destroy(m_interactablesSpotted[0].gameObject, 0.2f);
         Unspotted(m_interactablesSpotted[0]);

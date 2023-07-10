@@ -16,6 +16,10 @@ public class GameManager : Singleton<GameManager>
     public HUDManager HUDManager;
     public static bool PlayerWin;
 
+    public SoundEventManager<Enumerators.MusicEvents> SoundEventManager;
+    public SoundManager SoundManager;
+
+
     protected override void Awake()
     {
         base.Awake();
@@ -23,6 +27,8 @@ public class GameManager : Singleton<GameManager>
         EventManager = new();
         EventManager.Register(Enumerators.Events.GameOver, GameOver);
         //DontDestroyOnLoad(this.gameObject);
+        SoundEventManager = new();
+
     }
 
     public void GameOver()

@@ -63,4 +63,12 @@ public static class Enumerators
         OnGameOver
     }
 
+	public enum MusicEvents
+	{
+		PlaySoundPlayer,
+        PlaySoundDoor,
+        PlaySoundRadio,
+        PlaySoundWatch,
+        PlaySoundGenerator // si spegne quando si spengono le luci si riaccende quando si riaccendono le luci
+	}
 }
