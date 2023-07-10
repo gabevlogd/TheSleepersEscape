@@ -69,11 +69,13 @@ public class Dial : MonoBehaviour, IPointerClickHandler
         if (eventData.position.y >= Camera.main.pixelHeight * 0.5f)
         {
             SetCurrentNumber(-1);
+            GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundDoor, GameManager.Instance.SoundManager.DoorDial);
             return -36f;
         }
         else
         {
             SetCurrentNumber(1);
+            GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundDoor, GameManager.Instance.SoundManager.DoorDial);
             return 36f;
         }
     }

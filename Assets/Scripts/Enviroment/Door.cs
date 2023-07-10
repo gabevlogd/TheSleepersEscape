@@ -20,6 +20,7 @@ public class Door : MonoBehaviour
     public void OpenDoor()
     {
         IsOpen = true;
+        //GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundDoor, GameManager.Instance.SoundManager.DoorOpen);
         Debug.Log("Door opening");
         m_animator.Play("OpenDoor");
     }
