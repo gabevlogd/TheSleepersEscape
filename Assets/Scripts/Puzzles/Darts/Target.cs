@@ -71,6 +71,7 @@ public class Target : MonoBehaviour
         if (GameManager.Instance.dartsManager.m_gameTriggered)
         {
             m_viewfinderOut.transform.position = m_mousePosition;
+
         }
     }
 
@@ -140,6 +141,8 @@ public class Target : MonoBehaviour
 
     public void StartGame()
     {
+        GameManager.Instance.dartsManager.Dart.SetActive(true);
+        GameManager.Instance.dartsManager.EnableAllDartsImage(true);
         //StartCoroutine(GameManager.Instance.dartsManager.EnableThrowAbility()); //not needed anymore, problem fixed in the camera controller
         GameManager.Instance.dartsManager.ReadyToThrow = true;
         Cursor.visible = false;
@@ -153,6 +156,7 @@ public class Target : MonoBehaviour
 
     public void EndGame()
     {
+        GameManager.Instance.dartsManager.Dart.SetActive(false);
         GameManager.Instance.RoomManager.Items[1].SetActive(true); //active the note 1 pick up
         GameManager.Instance.dartsManager.m_gameTriggered = false;
         m_cameraTriggerer.gameObject.SetActive(false);
@@ -163,6 +167,8 @@ public class Target : MonoBehaviour
 
     public void ResetGame()
     {
+        GameManager.Instance.dartsManager.Dart.SetActive(false);
+        GameManager.Instance.dartsManager.EnableAllDartsImage(false);
         m_viewfinderIn.SetActive(false);
         m_viewfinderOut.SetActive(false);
         GameManager.Instance.dartsManager.m_gameTriggered = false;

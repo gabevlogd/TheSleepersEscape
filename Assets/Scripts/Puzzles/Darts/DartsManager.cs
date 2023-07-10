@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DartsManager : MonoBehaviour
 {
@@ -19,11 +20,15 @@ public class DartsManager : MonoBehaviour
 
     [HideInInspector] public int initialThrows;
 
+    public GameObject Dart;
+    [SerializeField] private List<Image> m_dartsImage;
 
     private void Awake()
     {
+        Dart.SetActive(false);
         initialThrows = totalThrows;
     }
+
 
     public IEnumerator EnableThrowAbility() //not needed anymore, problem fixed in the camera controller
     {
@@ -56,7 +61,20 @@ public class DartsManager : MonoBehaviour
     }
 
     
+    public void SetDartsImage()
+    {
+        if (initialThrows == totalThrows - 1) m_dartsImage[0].enabled = false;
+        else if (initialThrows == totalThrows - 2) m_dartsImage[1].enabled = false;
+        else if (initialThrows == totalThrows - 3) m_dartsImage[2].enabled = false;
 
+    }
 
+    public void EnableAllDartsImage(bool setActive)
+    {
+        foreach(var dart in m_dartsImage)
+        {
+            dart.enabled = setActive; 
+        }
+    }
 
 }
