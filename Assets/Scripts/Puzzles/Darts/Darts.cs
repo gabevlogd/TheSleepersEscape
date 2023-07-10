@@ -15,6 +15,10 @@ public class Darts : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        if (RoomManager.LoopCounter == 2) Destroy(gameObject);
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
