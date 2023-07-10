@@ -9,8 +9,12 @@ public class Dial : MonoBehaviour, IPointerClickHandler
     [Range(0, 9)]
     public int StartingSelectedNumber;
     public float AngularSpeed;
-    public int TargetNumber;
+    public int TargetNumber1;
+    public int TargetNumber2;
+    public int TargetNumber3;
     public Dial Twin;
+
+    //public int DialID;
 
     public int CurrentNumber { get; private set; }
     public bool CorrectNumber { get; private set; }
@@ -24,6 +28,7 @@ public class Dial : MonoBehaviour, IPointerClickHandler
         CurrentNumber = StartingSelectedNumber;
 
         GameManager.Instance.EventManager.Register(Enumerators.Events.EnableDials, EnableDials);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.DisableDials, DisableDials);
     }
 
     private void Update() => HandleRotation();
@@ -40,8 +45,12 @@ public class Dial : MonoBehaviour, IPointerClickHandler
         if (Mathf.Abs(Quaternion.Dot(transform.localRotation, m_targetRotation) - 1f) <= 0.0001f)
         {
             transform.localRotation = m_targetRotation;
-            if (CheckCombination()) OpenDoor();
-            else m_mustRotate = false;
+            if (CheckCombination())
+            {
+                if (RoomManager.LoopCounter == 3) GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.TurnOffLights);
+                else OpenDoor();
+            }
+            m_mustRotate = false;
         }
     }
 
@@ -60,12 +69,12 @@ public class Dial : MonoBehaviour, IPointerClickHandler
         if (eventData.position.y >= Camera.main.pixelHeight * 0.5f)
         {
             SetCurrentNumber(-1);
-            return 36f;
+            return -36f;
         }
         else
         {
             SetCurrentNumber(1);
-            return -36f;
+            return 36f;
         }
     }
 
@@ -79,7 +88,12 @@ public class Dial : MonoBehaviour, IPointerClickHandler
 
     private bool CheckCombination()
     {
-        if (CurrentNumber == TargetNumber) CorrectNumber = true;
+        int currentTargetNumber = 0;
+        if (RoomManager.LoopCounter == 1) currentTargetNumber = TargetNumber1;
+        else if (RoomManager.LoopCounter == 2) currentTargetNumber = TargetNumber2;
+        else if (RoomManager.LoopCounter == 3) currentTargetNumber = TargetNumber3;
+
+        if (CurrentNumber == currentTargetNumber) CorrectNumber = true;
         else CorrectNumber = false;
 
         if (CorrectNumber && Twin.CorrectNumber) return true;
@@ -90,13 +104,21 @@ public class Dial : MonoBehaviour, IPointerClickHandler
     {
         GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.OpenDoor);
         CameraTriggerer.gameObject.SetActive(false);
-        Twin.enabled = false;
-        this.enabled = false;
+        Twin.CorrectNumber = false;
+        this.CorrectNumber = false;
     }
 
     public void EnableDials()
     {
+        //if (RoomManager.LoopCounter == 1 && DialID != 1) return;
+        //else if (RoomManager.LoopCounter == 2 && DialID != 2) return;
+        //else if (RoomManager.LoopCounter == 3 && DialID != 3) return;
         //ricordati di settare il discorso dei dial corretti da attivare (possibile soluzione itrodurre un id per ogni dial e controllare il Loop Counter del room manager)
         CameraTriggerer.gameObject.SetActive(true);
+    }
+
+    public void DisableDials()
+    {
+        CameraTriggerer.gameObject.SetActive(false);
     }
 }

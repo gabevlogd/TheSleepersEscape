@@ -3,43 +3,76 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PauseManager : MonoBehaviour
 {
     public GameObject PauseUI;
+    public GameObject Main;
+    public GameObject Settings;
+
     public Button ResumeButton;
+    public Button SettingsButton;
+    public Button BackButton;
     public Button ExitButton;
 
-    //private PlayerInput m_inputs;
+    public Slider MouseSensSlider;
+    public TextMeshProUGUI MouseSensText;
+    public static float MouseSens;
+
 
     private void Awake()
     {
-        //m_inputs = new();
-        //m_inputs.UI.Pause.performed += OnPause;
-        //m_inputs.Enable();
         GameManager.Instance.EventManager.Register(Enumerators.Events.ResumeGame, OnResume);
         GameManager.Instance.EventManager.Register(Enumerators.Events.PauseGame, OnPause);
+
+        OpenMainScreen();
+        CloseSettingsScreen();
+        ClosePauseScreen();
     }
 
     public void OnResume()
     {
-        PauseUI.SetActive(false);
+        if (Settings.activeInHierarchy) CloseSettingsScreen();
+        if (!Main.activeInHierarchy) OpenMainScreen();
+
+        ClosePauseScreen();
         GameManager.Instance.Player.PlayerStateMachine.ChangeState(Enumerators.PlayerState.Navigation);
-        //if (Camera.main.transform.localPosition.z == 0f) //meaning: if it false it mean that player is running a puzzles so the player controller needs to rest disabled 
-        //    GameManager.Instance.Player.PlayerController.EnableController();
     }
 
-    public void OnPause(InputAction.CallbackContext context)
+    public void OnSettings()
     {
-        PauseUI.SetActive(true);
-        GameManager.Instance.Player.PlayerController.DisableController();
+        CloseMainScreen();
+        OpenSettingsScreen();
     }
 
-    public void OnPause()
+    public void OnBack()
     {
-        PauseUI.SetActive(true);
+        CloseSettingsScreen();
+        OpenMainScreen();
     }
 
+    public void OnSlideMouseSens()
+    {
+        MouseSens = MouseSensSlider.value;
+        MouseSensText.text = "Mouse Sensibility: " + MouseSens;
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.UpdateSettings);
+    }
+
+
+
+    public void OnPause() => OpenPauseScreen();
     public void OnExit() => Application.Quit();
+
+
+
+    private void OpenPauseScreen() => PauseUI.SetActive(true);
+    private void ClosePauseScreen() => PauseUI.SetActive(false);
+
+    private void OpenMainScreen() => Main.SetActive(true);
+    private void CloseMainScreen() => Main.SetActive(false);
+
+    private void OpenSettingsScreen() => Settings.SetActive(true);
+    private void CloseSettingsScreen() => Settings.SetActive(false);
 
 }

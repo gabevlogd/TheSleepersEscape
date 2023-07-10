@@ -408,6 +408,7 @@ MonoBehaviour:
   AngularSpeed: 1
   TargetNumber: 6
   Twin: {fileID: 2927524957354372270}
+  DialID: 0
 --- !u!1 &2927524957204263754
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,6 +817,7 @@ MonoBehaviour:
   AngularSpeed: 1
   TargetNumber: 6
   Twin: {fileID: 2927524957100718039}
+  DialID: 1
 --- !u!1 &2927524957415661149
 GameObject:
   m_ObjectHideFlags: 0

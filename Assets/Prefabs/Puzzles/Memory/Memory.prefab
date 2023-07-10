@@ -120,6 +120,7 @@ MonoBehaviour:
   - {fileID: 8877749165303872969, guid: 8d7f0e11977818e4cb89c9f65bac3c26, type: 3}
   - {fileID: 8877749165303872969, guid: 0eb85dd60ed6b964bbe96fad28e60de9, type: 3}
   - {fileID: 8877749165303872969, guid: 4fc889fad36e2964f8f212e3b5d8f61a, type: 3}
+  ItemReward: {fileID: 117198198453621243, guid: e271c1b0660f5ad499756d711e39dac9, type: 3}
   SelectedTiles: []
   CanChackTwoPair: 0
   VelocityAfterTurnTheRotationTo0: 2

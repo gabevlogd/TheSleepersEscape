@@ -42,7 +42,8 @@ public class GO15WorldTile : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
     private void StoreThisTile()
     {
         //Debug.Log("StoreThisTile");
-        //if (!m_go15Manager.GameTriggered) return;
+        if (GameManager.Instance.Player.PlayerStateMachine.CurrentState.StateID != Enumerators.PlayerState.RunningPuzzle) return;
+        if (!m_go15Manager.GameTriggered) return;
 
         if (GO15Manager.SelectedTiles.Count != 0) GO15Manager.SelectedTiles.Clear();
         GO15Manager.SelectedTiles.Add(this);
@@ -51,7 +52,8 @@ public class GO15WorldTile : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
     private void SwapWithLastSelectedTile()
     {
         //Debug.Log("SwapWithLastSelectedTile");
-        //if (!m_go15Manager.GameTriggered) return;
+        if (GameManager.Instance.Player.PlayerStateMachine.CurrentState.StateID != Enumerators.PlayerState.RunningPuzzle) return;
+        if (!m_go15Manager.GameTriggered) return;
 
         if (!Input.GetKey(KeyCode.Mouse0) || !EmptyTile) return;
 

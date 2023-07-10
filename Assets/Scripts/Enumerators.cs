@@ -6,6 +6,7 @@ public static class Enumerators
         StartPuzzle,
         ResetPuzzle,
         OpenDoor,
+        OpenDoorOnGameOver,
         CloseDoor,
         OpenInventory,
         CloseInventory,
@@ -25,9 +26,19 @@ public static class Enumerators
         PlayWalkman,
         EnableDarts,
         EnableDials,
+        DisableDials,
         RemoveWalkman,
         EnterLoopChange,
         ExitLoopChange,
+        PickUpNote,
+        TurnOffLights,
+        TurnOnLights,
+        EnableSwitch,
+        DisableSwitch,
+        UpdateSettings,
+        StartFade,
+        SetClockView,
+        MoveExitPoint,
 		GameOver
 
 	}
@@ -48,7 +59,8 @@ public static class Enumerators
         OnInventory,
         OnDialogue,
         OnPause,
-        OnLoopChange
+        OnLoopChange,
+        OnGameOver
     }
 
 	public enum MusicEvents

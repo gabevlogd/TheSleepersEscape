@@ -9,6 +9,7 @@ public class LoopOne : LoopBase
     public override void OnEnter()
     {
         base.OnEnter();
+        RoomManager.LoopCounter = 1;
 
         //Radio.CanInteract = true; //per adesso qui poi chiedo ai designer dove
         //GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableRadio); //per adesso qui poi chiedo ai designer dove
@@ -28,6 +29,8 @@ public class LoopOne : LoopBase
 
         //remove walkman from inventory
         GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.RemoveWalkman);
+
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.DisableDials);
     }
 
 }

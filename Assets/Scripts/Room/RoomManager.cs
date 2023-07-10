@@ -9,6 +9,9 @@ public class RoomManager : MonoBehaviour
     public RoomStatesMachine RoomStatesMachine;
     public List<GameObject> Puzzles;
     public List<GameObject> Items;
+    public List<GameObject> GameObjects;
+    public List<GameObject> RoomLights;
+    public List<GameObject> PuzzleLights;
 
     private void Awake()
     {
@@ -16,10 +19,25 @@ public class RoomManager : MonoBehaviour
         RoomStatesMachine = new();
         RoomStatesMachine.CurrentState = RoomStatesMachine.AllStates[Enumerators.RoomState.LoopOne];
         RoomStatesMachine.CurrentState.OnEnter();
+
+        GameManager.Instance.EventManager.Register(Enumerators.Events.TurnOffLights, TurnOffLights);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.TurnOnLights, TurnOnLights);
     }
 
     private void Update()
     {
         RoomStatesMachine.CurrentState.OnUpdate();
+    }
+
+    public void TurnOffLights()
+    {
+        foreach (GameObject light in RoomLights) light.SetActive(false);
+        foreach (GameObject light in PuzzleLights) light.SetActive(false);
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableSwitch);
+    }
+
+    public void TurnOnLights()
+    {
+        foreach (GameObject light in RoomLights) light.SetActive(true);
     }
 }

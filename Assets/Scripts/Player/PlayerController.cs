@@ -24,6 +24,7 @@ public class PlayerController
 
         GameManager.Instance.EventManager.Register(Enumerators.Events.OpenInventory, DisableController);
         GameManager.Instance.EventManager.Register(Enumerators.Events.CloseInventory, EnableController);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.UpdateSettings, SetAngularSpeed);
     }
 
     public void EnableController()
@@ -77,6 +78,8 @@ public class PlayerController
         MoveYaw();
         MovePitch();
     }
+
+    public void SetAngularSpeed() => m_movementData.AngularSpeed = PauseManager.MouseSens;
 
 
     #region Movements:

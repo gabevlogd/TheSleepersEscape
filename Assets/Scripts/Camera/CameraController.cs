@@ -8,16 +8,18 @@ public class CameraController
 {
     private Transform m_targetTransform;
     private Transform m_pov;
+    private Transform m_clockView;
     private Collider m_targetCollider;
     private PlayerInput m_input;
     private Camera m_camera;
     private CameraMovementData m_movementData;
 
-    public CameraController(Camera camera, Transform pov, CameraMovementData data)
+    public CameraController(Camera camera, Transform pov, Transform clockView, CameraMovementData data)
     {
         m_camera = camera;
         m_movementData = data;     
         m_pov = pov;
+        m_clockView = clockView;
 
         m_camera.transform.position = m_pov.position;
         m_camera.transform.rotation = m_pov.rotation;
@@ -29,20 +31,19 @@ public class CameraController
         GameManager.Instance.EventManager.Register(Enumerators.Events.ResetPuzzle, BackToPlayer);
         GameManager.Instance.EventManager.Register(Enumerators.Events.OpenDoor, BackToPlayer);
         GameManager.Instance.EventManager.Register(Enumerators.Events.StopInteraction, BackToPlayer);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.SetClockView, GoToClock);
     }
 
 
     public void EnableController()
     {
         m_input.Selections.ItemSelection.canceled += LookForTarget;
-        //m_input.Selections.Unselect.performed += BackToPlayer;
     }
 
 
     public void DisableController()
     {
         m_input.Selections.ItemSelection.canceled -= LookForTarget;
-        //m_input.Selections.Unselect.performed -= BackToPlayer;
     }
 
 
@@ -79,10 +80,6 @@ public class CameraController
     /// </summary>
     private void LookForTarget(InputAction.CallbackContext context)
     {
-        //if (GameManager.Instance.InventoryManager.InventoryCanvas.gameObject.activeInHierarchy) return;
-        //if (GameManager.Instance.PauseManager.PauseUI.activeInHierarchy) return;
-        //if (m_camera.transform.position != m_pov.position) return;
-
         //Debug.Log("LookForTarget");
         int puzzleTriggerMask = 1 << 6; //puzzle trigger objects layer mask
         int interactableTriggerMask = 1 << 7; //interactable trigger objects layer mask
@@ -99,9 +96,6 @@ public class CameraController
 
             m_targetCollider.enabled = false;
 
-            //GameManager.Instance.Player.PlayerController.DisableController(); //put into gamemanger
-            //this.DisableController();
-
             if (hitInfo.collider.gameObject.layer == 6)
             {
                 GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.StartPuzzle);
@@ -115,19 +109,6 @@ public class CameraController
         }
     }
 
-    /// <summary>
-    /// Moves back the camera to the player POV (only for debug, the player does not have the possibility to exits from puzzles)
-    /// </summary>
-    private void BackToPlayer(InputAction.CallbackContext context)
-    {
-        if (m_camera.transform.position == m_pov.position) return;
-        m_targetTransform = m_pov;
-
-        if (m_targetCollider != null) m_targetCollider.enabled = true;
-        this.DisableController();
-        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.ResetPuzzle);
-    }
-
     public void BackToPlayer()
     {
         if (m_camera.transform.position == m_pov.position) return;
@@ -135,6 +116,12 @@ public class CameraController
 
         if (m_targetCollider != null) m_targetCollider.enabled = true;
         //this.DisableController();
+    }
+
+    public void GoToClock()
+    {
+        m_camera.transform.position = m_clockView.position;
+        m_camera.transform.rotation = m_clockView.rotation;
     }
 
 
