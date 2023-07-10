@@ -23,6 +23,7 @@ public class GO15WorldTile : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
     public void SetGO15Manager(GO15Manager manager) => m_go15Manager = manager;
 
     public int GetTileNumber() => m_data.TileNumber;
+    public TextMeshPro GetTMProTileNumber() => m_tileNumber;
 
     public void SetTileNumber(int value)
     {
@@ -30,6 +31,7 @@ public class GO15WorldTile : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
         if (value < 10) m_tileNumber.text = "0" + m_data.TileNumber.ToString();
         else m_tileNumber.text = m_data.TileNumber.ToString();
     }
+
 
     public void InitTileData(ref GO15Tile data)
     {

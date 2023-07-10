@@ -27,7 +27,7 @@ public class SoundManager : MonoBehaviour
 
 
     [Header("-----AudioClip-----")]
-    public AudioClip PlayerStep, PickUp, ThrowDart, TargetBoard,TargetWall, GO15SwitchTile, Watch, SelectedTiled, Pair, NoPair, SuccessPuzzle, FailedPuzzle, SwitchLight, MasterSwitch, AllLightPowerOn, AllLightPowerOff, DoorDial, DoorLight, DoorOpen, WalkmanPlay, WalkmanStop, Radio,Fax;
+    public AudioClip PlayerStep, PickUp, ThrowDart, TargetBoard,TargetWall, GO15SwitchTile, Watch, SelectedTiled, Pair, NoPair, SuccessPuzzle, FailedPuzzle, SwitchLight, MasterSwitch, AllLightPowerOn, AllLightPowerOff, DoorDial, DoorLight, DoorOpen, WalkmanPlay, WalkmanStop, Radio,Fax, PenSound;
 
 
 

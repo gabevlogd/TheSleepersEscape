@@ -25,6 +25,8 @@ public class GO15Manager : MonoBehaviour, IPuzzle
 
     private static GO15Manager m_instance;
 
+    private TextMeshPro m_tile06;
+
 
 
     private void Awake()
@@ -137,8 +139,10 @@ public class GO15Manager : MonoBehaviour, IPuzzle
     private static void CheckWinCondition()
     {
         int nextNumber = m_instance.m_worldTiles[1].GetTileNumber();
+
         foreach (GO15WorldTile worldTile in m_instance.m_worldTiles)
         {
+            if (worldTile.GetTileNumber() == 6) m_instance.m_tile06 = worldTile.GetTMProTileNumber();
             if (worldTile.GetTileNumber() == nextNumber - 1)
             {
                 nextNumber++;
@@ -160,9 +164,10 @@ public class GO15Manager : MonoBehaviour, IPuzzle
     private IEnumerator WinEvent()
     {
         GameTriggered = false;
-        //illuminare numero 6
-        //trigger audio note 2
-        yield return new WaitForSeconds(3f);
+        m_tile06.color = Color.green;
+        yield return new WaitForSeconds(2f);
+        GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundEnv, GameManager.Instance.SoundManager.PenSound);
+        yield return new WaitForSeconds(1f);
         GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.PuzzleCompleted); //win condition
     }
 

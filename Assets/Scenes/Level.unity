@@ -14635,6 +14635,7 @@ MonoBehaviour:
   WalkmanStop: {fileID: 8300000, guid: 3aeacf6545a3d0e4782240bf55659cc9, type: 3}
   Radio: {fileID: 8300000, guid: 4367e41af562b874c9796b81ee60dddc, type: 3}
   Fax: {fileID: 8300000, guid: 7899e7ed0e6c0814999b6ab35f2574ec, type: 3}
+  PenSound: {fileID: 8300000, guid: 51532ab3c6c25e94891dbd1953574fea, type: 3}
 --- !u!4 &1253338662 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7539441494442313976, guid: ed51802af94631e4393bbd0eec97e024, type: 3}
@@ -36194,7 +36195,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2116074526}
   - component: {fileID: 2116074523}
-  - component: {fileID: 2116074525}
   - component: {fileID: 2116074524}
   m_Layer: 0
   m_Name: DartsCanvasCamera
@@ -36279,14 +36279,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &2116074525
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2116074522}
-  m_Enabled: 1
 --- !u!4 &2116074526
 Transform:
   m_ObjectHideFlags: 0
@@ -41423,35 +41415,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8006704604149471483, guid: 0c9c9253c23b2e54180de5a52cfdbc89, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.8057
+      value: 3.8003
       objectReference: {fileID: 0}
     - target: {fileID: 8006704604149471483, guid: 0c9c9253c23b2e54180de5a52cfdbc89, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.7675
+      value: 0.7557
       objectReference: {fileID: 0}
     - target: {fileID: 8006704604149471483, guid: 0c9c9253c23b2e54180de5a52cfdbc89, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.4378
+      value: -9.4265
       objectReference: {fileID: 0}
     - target: {fileID: 8006704604149471483, guid: 0c9c9253c23b2e54180de5a52cfdbc89, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.94115424
+      value: 0.89463246
       objectReference: {fileID: 0}
     - target: {fileID: 8006704604149471483, guid: 0c9c9253c23b2e54180de5a52cfdbc89, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.25547388
+      value: -0.38816196
       objectReference: {fileID: 0}
     - target: {fileID: 8006704604149471483, guid: 0c9c9253c23b2e54180de5a52cfdbc89, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.21354559
+      value: -0.20299277
       objectReference: {fileID: 0}
     - target: {fileID: 8006704604149471483, guid: 0c9c9253c23b2e54180de5a52cfdbc89, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.057966407
+      value: -0.08807424
       objectReference: {fileID: 0}
     - target: {fileID: 8006704604149471483, guid: 0c9c9253c23b2e54180de5a52cfdbc89, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -30.374
+      value: -46.91
       objectReference: {fileID: 0}
     - target: {fileID: 8006704604149471483, guid: 0c9c9253c23b2e54180de5a52cfdbc89, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
