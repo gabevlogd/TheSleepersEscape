@@ -31,13 +31,13 @@ public class RoomManager : MonoBehaviour
 
     public void TurnOffLights()
     {
-        foreach (GameObject light in RoomLights) light.SetActive(false);
-        foreach (GameObject light in PuzzleLights) light.SetActive(false);
+        foreach (GameObject light in RoomLights) light.SetActive(!light.activeInHierarchy);
+        foreach (GameObject light in PuzzleLights) light.SetActive(!light.activeInHierarchy);
         GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableSwitch);
     }
 
     public void TurnOnLights()
     {
-        foreach (GameObject light in RoomLights) light.SetActive(true);
+        foreach (GameObject light in RoomLights) light.SetActive(!light.activeInHierarchy);
     }
 }

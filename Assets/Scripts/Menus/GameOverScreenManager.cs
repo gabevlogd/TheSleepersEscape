@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameOverScreenManager : MonoBehaviour
 {
@@ -42,4 +43,6 @@ public class GameOverScreenManager : MonoBehaviour
             if (m_fadeColor.a >= 1f) m_canFade = false;
         }
     }
+
+    public void BackToMenu() => SceneManager.LoadScene("MainMenu");
 }

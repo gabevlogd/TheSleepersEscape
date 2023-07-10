@@ -17,6 +17,7 @@ public class LightsManager : MonoBehaviour
     {
         //GameTriggered = false;
         m_collider = GetComponent<Collider>();
+        m_collider.enabled = false;
         m_animator = GetComponent<Animator>();
         GameManager.Instance.EventManager.Register(Enumerators.Events.EnableSwitch, EnableLightsPuzzle);
         GameManager.Instance.EventManager.Register(Enumerators.Events.DisableSwitch, DisableLightsPuzzle);

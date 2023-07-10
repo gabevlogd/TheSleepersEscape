@@ -35,7 +35,16 @@ public class OnInventory : PlayerState
     private void HandleInventoryClosing()
     {
         if (m_inputs.UI.ToggleInventory.WasReleasedThisFrame())
-            m_stateMachine.ChangeState(Enumerators.PlayerState.Navigation);
+        {
+            if (m_stateMachine.PreviousState == null || m_stateMachine.PreviousState.StateID == Enumerators.PlayerState.OnTutorial)
+            {
+                OnTutorial.OnTutorialTwo = true;
+                //m_stateMachine.ChangeState(Enumerators.PlayerState.OnTutorial);
+                GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.CloseTutorial);
+            }
+            /*else */m_stateMachine.ChangeState(Enumerators.PlayerState.Navigation);
+        }
+            
     }
 
 

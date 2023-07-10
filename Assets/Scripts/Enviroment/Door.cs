@@ -17,6 +17,7 @@ public class Door : MonoBehaviour
         GameManager.Instance.EventManager.Register(Enumerators.Events.OpenDoorOnGameOver, OpenDoor);
         GameManager.Instance.EventManager.Register(Enumerators.Events.CloseDoor, CloseDoor);
         GameManager.Instance.EventManager.Register(Enumerators.Events.EnableDials, TurnOnDoorLight);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.EnableDials, OpenGlass);
     }
 
     public void OpenDoor()
@@ -34,6 +35,11 @@ public class Door : MonoBehaviour
         m_animator.Play("Closed");
         transform.position = m_closedPosition;
         TurnOffDoorLight();
+    }
+
+    public void OpenGlass()
+    {
+        m_animator.Play("OpenDialGlass");
     }
 
     public void TurnOnDoorLight() => LightVFX.gameObject.SetActive(true);

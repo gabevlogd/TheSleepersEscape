@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class PauseManager : MonoBehaviour
@@ -37,7 +38,10 @@ public class PauseManager : MonoBehaviour
         if (!Main.activeInHierarchy) OpenMainScreen();
 
         ClosePauseScreen();
-        GameManager.Instance.Player.PlayerStateMachine.ChangeState(Enumerators.PlayerState.Navigation);
+        if (GameManager.Instance.Player.PlayerStateMachine.PreviousState == null || GameManager.Instance.Player.PlayerStateMachine.PreviousState.StateID == Enumerators.PlayerState.OnTutorial) 
+            GameManager.Instance.Player.PlayerStateMachine.ChangeState(Enumerators.PlayerState.OnTutorial);
+        else 
+            GameManager.Instance.Player.PlayerStateMachine.ChangeState(Enumerators.PlayerState.Navigation);
     }
 
     public void OnSettings()
@@ -62,7 +66,7 @@ public class PauseManager : MonoBehaviour
 
 
     public void OnPause() => OpenPauseScreen();
-    public void OnExit() => Application.Quit();
+    public void OnExit() => SceneManager.LoadScene("MainMenu");
 
 
 

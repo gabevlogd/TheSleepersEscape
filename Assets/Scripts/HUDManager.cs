@@ -2,13 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HUDManager : MonoBehaviour
 {
     public GameObject HUD;
+    public GameObject TutorialOne;
+    public GameObject TutorialTwo;
+
     public Image CrossAir;
     public Image InteractablePointFeedback;
     public Image FadeEffect;
+    public Image QInfoImage;
+
+    public TextMeshProUGUI Info;
 
     public float FadeSpeed;
     public float TimeBetweenFades;
@@ -28,6 +35,17 @@ public class HUDManager : MonoBehaviour
 
         GameManager.Instance.EventManager.Register(Enumerators.Events.StartFade, StartFade);
 
+        GameManager.Instance.EventManager.Register(Enumerators.Events.NextTutorial, SetNextTutorial);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.CloseTutorial, CloseTutorial);
+
+
+        GameManager.Instance.EventManager.Register(Enumerators.Events.StopInteraction, HideQInfo);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.TurnOffLights, ShowQInfo);
+
+
+        TutorialOne.SetActive(true);
+        TutorialTwo.SetActive(false);
+
     }
 
     private void Update() => HandleFade();
@@ -35,6 +53,22 @@ public class HUDManager : MonoBehaviour
 
     public void ShowHUD() => HUD.SetActive(true);
     public void HideHUD() => HUD.SetActive(false);
+
+    public void ShowQInfo()
+    {
+        QInfoImage.gameObject.SetActive(true);
+        ShowHUD();
+        HideCrossAir();
+    }
+
+    public void HideQInfo()
+    {
+        QInfoImage.gameObject.SetActive(false);
+        ShowCrossAir();
+    }
+
+    public void ShowCrossAir() => CrossAir.gameObject.SetActive(true);
+    public void HideCrossAir() => CrossAir.gameObject.SetActive(false);
 
     public void ShowInteractableFeedback()
     {
@@ -45,7 +79,7 @@ public class HUDManager : MonoBehaviour
     public void HideInteractableFeedback()
     {
         if (InteractablePointFeedback != null)
-            InteractablePointFeedback?.gameObject.SetActive(false);
+            InteractablePointFeedback.gameObject.SetActive(false);
     }
 
 
@@ -79,6 +113,36 @@ public class HUDManager : MonoBehaviour
             if (m_fadeColor.a <= 0f || m_fadeColor.a >= 1f) m_canFade = false;
         }
     }
+
+    public void SetNextTutorial()
+    {
+        TutorialOne.SetActive(false);
+        TutorialTwo.SetActive(true);
+    }
+
+    public void CloseTutorial()
+    {
+        TutorialTwo.SetActive(false);
+        //GameManager.Instance.Player.PlayerStateMachine.ChangeState(Enumerators.PlayerState.Navigation);
+
+        StartCoroutine(TutorialEndMessage());
+    }
+
+    private IEnumerator TutorialEndMessage()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Info.text = "Good game";
+        Info.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        CloseInfo();
+    }
+
+    private void CloseInfo()
+    {
+        Info.text = "";
+        Info.gameObject.SetActive(false);
+    }
+
 
     
 

@@ -57,7 +57,7 @@ public class GameManager : Singleton<GameManager>
 
         EventManager.TriggerEvent(Enumerators.Events.OpenDoorOnGameOver);
 
-        yield return new WaitForSeconds(4f); //wait three seconds
+        yield return new WaitForSeconds(6f); //wait three seconds
 
         EventManager.TriggerEvent(Enumerators.Events.StartFade); //fade out
 
