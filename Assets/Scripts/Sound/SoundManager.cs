@@ -27,7 +27,7 @@ public class SoundManager : MonoBehaviour
 
 
     [Header("-----AudioClip-----")]
-    public AudioClip PlayerStep, PickUp, ThrowDart, TargetBoard,TargetWall, GO15SwitchTile, Watch, SelectedTiled, Pair, NoPair, SuccessPuzzle, FailedPuzzle, SwitchLight, MasterSwitch, AllLightPowerOn, AllLightPowerOff, DoorDial, DoorLight, DoorOpen, WalkmanPlay, WalkmanStop, Radio,Fax, PenSound;
+    public AudioClip PlayerStep, PickUp, ThrowDart, TargetBoard,TargetWall, GO15SwitchTile, Watch, SelectedTiled, Pair, NoPair, SuccessPuzzle, FailedPuzzle, SwitchLight, MasterSwitch, AllLightPowerOn, AllLightPowerOff, DoorDial, DoorLight, DoorOpen, WalkmanPlay, WalkmanStop, Radio,Fax, PenSound,GeneratorSound;
 
 
 
@@ -39,6 +39,9 @@ public class SoundManager : MonoBehaviour
         GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundDoor, ChangeClipAndPlayForPlayer);
         GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundEnv, ChangeClipAndPlayForEnv);
         GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundGenerator, ChangeClipAndPlayForGenerator);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.TurnOffLights, TurnOffGenerator);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.TurnOnLights, GeneratorPowerOn);
+
     }
 
 
@@ -49,6 +52,8 @@ public class SoundManager : MonoBehaviour
         GameManager.Instance.SoundEventManager.Unregister<AudioClip>(Enumerators.MusicEvents.PlaySoundRadio, ChangeClipAndPlayForRadio);
         GameManager.Instance.SoundEventManager.Unregister<AudioClip>(Enumerators.MusicEvents.PlaySoundEnv, ChangeClipAndPlayForEnv);
         GameManager.Instance.SoundEventManager.Unregister<AudioClip>(Enumerators.MusicEvents.PlaySoundGenerator, ChangeClipAndPlayForGenerator);
+        GameManager.Instance.EventManager.Unregister(Enumerators.Events.TurnOffLights, TurnOffGenerator);
+        GameManager.Instance.EventManager.Unregister(Enumerators.Events.TurnOnLights, GeneratorPowerOn);
     }
 
 
@@ -60,6 +65,8 @@ public class SoundManager : MonoBehaviour
         m_audioSourcePlayer.Play();
 
     }
+
+
 
     private void ChangeClipAndPlayForDoor(AudioClip audioClip)
     {
@@ -110,7 +117,26 @@ public class SoundManager : MonoBehaviour
     }
 
 
+    private void TurnOffGenerator()
+    {
+        m_generatorSound.clip = AllLightPowerOff;
+        if(!m_generatorSound.isPlaying)
+        {
+            m_generatorSound.enabled = false;
+            m_generatorSound.loop = false;
+        }
+    }
 
 
+    private void GeneratorPowerOn()
+    {
+        m_generatorSound.enabled = true;
+        m_generatorSound.clip = AllLightPowerOn;
+        if (!m_generatorSound.isPlaying)
+        {
+            m_generatorSound.clip = GeneratorSound;
+            m_generatorSound.loop = true;
+        }
+    }
 
 }
