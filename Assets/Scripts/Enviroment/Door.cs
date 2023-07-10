@@ -5,6 +5,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     public static bool IsOpen;
+    public ParticleSystem LightVFX;
     private Animator m_animator;
     private Vector3 m_closedPosition;
 
@@ -15,6 +16,7 @@ public class Door : MonoBehaviour
         GameManager.Instance.EventManager.Register(Enumerators.Events.OpenDoor, OpenDoor);
         GameManager.Instance.EventManager.Register(Enumerators.Events.OpenDoorOnGameOver, OpenDoor);
         GameManager.Instance.EventManager.Register(Enumerators.Events.CloseDoor, CloseDoor);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.EnableDials, TurnOnDoorLight);
     }
 
     public void OpenDoor()
@@ -31,5 +33,9 @@ public class Door : MonoBehaviour
         Debug.Log("Door closing");
         m_animator.Play("Closed");
         transform.position = m_closedPosition;
+        TurnOffDoorLight();
     }
+
+    public void TurnOnDoorLight() => LightVFX.gameObject.SetActive(true);
+    public void TurnOffDoorLight() => LightVFX.gameObject.SetActive(false);
 }
