@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1139583634591756890}
   m_Layer: 0
-  m_Name: CouchComb
+  m_Name: 3D_Couch_01a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
