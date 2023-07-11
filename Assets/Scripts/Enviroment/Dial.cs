@@ -13,7 +13,7 @@ public class Dial : MonoBehaviour, IPointerClickHandler
     public int TargetNumber2;
     public int TargetNumber3;
     public Dial Twin;
-
+    private Collider m_collider;
     //public int DialID;
 
     public int CurrentNumber { get; private set; }
@@ -26,9 +26,10 @@ public class Dial : MonoBehaviour, IPointerClickHandler
     private void Awake()
     {
         CurrentNumber = StartingSelectedNumber;
-
+        m_collider = GetComponent<Collider>();
         GameManager.Instance.EventManager.Register(Enumerators.Events.EnableDials, EnableDials);
         GameManager.Instance.EventManager.Register(Enumerators.Events.DisableDials, DisableDials);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.DisableDialsCollider, DisableCollider);
     }
 
     private void Update() => HandleRotation();
@@ -123,4 +124,11 @@ public class Dial : MonoBehaviour, IPointerClickHandler
     {
         CameraTriggerer.gameObject.SetActive(false);
     }
+
+    public void DisableCollider()
+    {
+        m_collider.enabled = false;
+    }
+
+
 }

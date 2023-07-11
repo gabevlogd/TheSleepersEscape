@@ -23,6 +23,7 @@ public class LightsManager : MonoBehaviour
         GameManager.Instance.EventManager.Register(Enumerators.Events.DisableSwitch, DisableLightsPuzzle);
     }
 
+
     private void OnMouseDown() => CheckWinCondition();
 
 

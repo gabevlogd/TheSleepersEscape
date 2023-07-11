@@ -41,7 +41,8 @@ public static class Enumerators
         MoveExitPoint,
         NextTutorial,
         CloseTutorial,
-		GameOver
+		GameOver,
+        DisableDialsCollider
 
 	}
 
