@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57e2bd222577c2b488fa96a9c73b76de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Timer: 240
+  Timer: 1200
   TimerText: {fileID: 75498993860685986}
 --- !u!1001 &3212151502609476119
 PrefabInstance:
@@ -293,6 +293,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 3D_Clock_01a
       objectReference: {fileID: 0}
+    - target: {fileID: 4743096431014021870, guid: d1c7b114054c10d4f949278c09f2a37a, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 2797687578962592920, guid: 58143665853f7e34995c7e686cd397d6, type: 3}
     - target: {fileID: 7144888972937182979, guid: d1c7b114054c10d4f949278c09f2a37a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

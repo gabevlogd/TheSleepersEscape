@@ -193,7 +193,7 @@ public class GO15Manager : MonoBehaviour, IPuzzle
     public void StartGame()
     {
         //da capire
-        GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundEnv, GameManager.Instance.SoundManager.Watch);
+        //GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundEnv, GameManager.Instance.SoundManager.Watch);
         GameTriggered = true;
         m_timer = DefaultTimer;
         m_outOfTime = false;

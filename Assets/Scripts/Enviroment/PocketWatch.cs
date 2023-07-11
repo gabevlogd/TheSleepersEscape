@@ -65,6 +65,7 @@ public class PocketWatch : MonoBehaviour
         {
             m_leftSeconds--;
             SecondsHand.localRotation = Quaternion.identity * Quaternion.Euler(0f, 0f, m_leftSeconds * m_SecondsRotationAngle);
+            GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundPlayer, GameManager.Instance.SoundManager.Watch);
         }
     }
 
