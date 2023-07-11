@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_itemName: Photo
   m_layerUI: 9
-  m_description: Bla Bla Bla...
+  m_description: '"This person seems like me, but it''s not me."'
   m_itemMesh: {fileID: 3574137990395202457, guid: 8a279acf34ca7da4ba9c294b7fa1807a, type: 3}

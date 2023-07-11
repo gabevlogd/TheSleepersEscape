@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_itemName: Walkman
   m_layerUI: 9
-  m_description: Bla Bla Bla...
+  m_description: Walkman with a pair of headphones and a note urging to listen to
+    it
   m_itemMesh: {fileID: 3574137990395202457, guid: 1e6378d0a7e961544a1b3996114260f0, type: 3}
