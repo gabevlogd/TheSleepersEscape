@@ -34,6 +34,7 @@ public class RoomManager : MonoBehaviour
         foreach (GameObject light in RoomLights) light.SetActive(!light.activeInHierarchy);
         foreach (GameObject light in PuzzleLights) light.SetActive(!light.activeInHierarchy);
         GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableSwitch);
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.DisableDials);
     }
 
     public void TurnOnLights()
