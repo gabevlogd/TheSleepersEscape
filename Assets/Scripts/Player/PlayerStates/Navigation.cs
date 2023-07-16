@@ -1,6 +1,9 @@
+using UnityEngine;
+
 public class Navigation : PlayerState
 {
     private PlayerInput m_inputs;
+    private Vector3 m_pastPosition;
 
     public Navigation(Enumerators.PlayerState stateID, StatesMachine<Enumerators.PlayerState> stateMachine = null) : base(stateID, stateMachine)
     {
@@ -29,7 +32,7 @@ public class Navigation : PlayerState
     {
        
         base.OnUpdate();
-        if(m_inputs.Traslation.Forward.IsInProgress()||m_inputs.Traslation.Lateral.IsInProgress()) GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundPlayer, GameManager.Instance.SoundManager.PlayerStep);
+        HandleStepsSFX();
         HandleInventoryOpening();
         HandlePauseMenu();
     }
@@ -62,5 +65,22 @@ public class Navigation : PlayerState
     }
 
     public void EnterNavigationState() => m_stateMachine.ChangeState(Enumerators.PlayerState.Navigation);
+
+    private void HandleStepsSFX()
+    {
+        if (IsMoving()) GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlayStepsSound, GameManager.Instance.SoundManager.PlayerStep);
+        else GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.StopStepsSound, GameManager.Instance.SoundManager.PlayerStep);
+        
+    }
+
+    private bool IsMoving()
+    {
+        if (m_pastPosition != GameManager.Instance.Player.transform.position)
+        {
+            m_pastPosition = GameManager.Instance.Player.transform.position;
+            return true;
+        }
+        else return false;
+    }
 
 }

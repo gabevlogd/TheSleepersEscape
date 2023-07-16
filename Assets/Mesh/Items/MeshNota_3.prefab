@@ -163,5 +163,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 3047585782099215469, guid: 2e0bfccd60990fc45b941128e1ec56f8, type: 3}
-  m_angularSpeed: 100
+  m_angularSpeed: 200
   AlignmentPrecision: 1
