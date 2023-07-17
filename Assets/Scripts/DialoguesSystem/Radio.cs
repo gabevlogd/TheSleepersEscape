@@ -29,7 +29,7 @@ public class Radio : MonoBehaviour
         m_collider = GetComponent<Collider>();
 
         GameManager.Instance.EventManager.Register(Enumerators.Events.EnableRadio, EnableRadioInteraction);
-        GameManager.Instance.EventManager.Register(Enumerators.Events.DisableRadio, DisableRadioInteraction);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.TurnOffLights, DisableRadioInteraction);
     }
 
     private void Update() => HandlePrintProcess();
@@ -37,11 +37,8 @@ public class Radio : MonoBehaviour
 
     private void OnMouseUp()
     {
-        //if (GameManager.Instance.InventoryManager.InventoryCanvas.gameObject.activeInHierarchy) return;
-        //if (GameManager.Instance.PauseManager.PauseUI.activeInHierarchy) return;
         if (GameManager.Instance.Player.PlayerStateMachine.CurrentState.StateID != Enumerators.PlayerState.Navigation) return;
-
-        /*if (CanInteract)*/ TurnOnRadio();
+        TurnOnRadio();
     }
 
     public void EnableRadioInteraction()
@@ -50,8 +47,12 @@ public class Radio : MonoBehaviour
         LightVFX.gameObject.SetActive(true);
     }
 
-    public void DisableRadioInteraction() => m_collider.enabled = false;
-    
+    public void DisableRadioInteraction()
+    {
+        m_collider.enabled = false;
+        LightVFX.gameObject.SetActive(false);
+    }
+
 
     /// <summary>
     /// Triggers the radio starting a new dialogue (UI text box)
@@ -81,10 +82,10 @@ public class Radio : MonoBehaviour
         if (RoomManager.LoopCounter == 1)
         {
             GameManager.Instance.RoomManager.Items[2].SetActive(true); //active the paper pick up;
-            GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundRadio, GameManager.Instance.SoundManager.Fax);
+            GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlayFaxSound, GameManager.Instance.SoundManager.Fax);
         }
 
-        if (RoomManager.LoopCounter == 2) GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableDials);
+        //if (RoomManager.LoopCounter == 2) GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableDials);
         m_runDialogue = false;
         Canvas.gameObject.SetActive(false);
     }

@@ -26,7 +26,6 @@ public class GameManager : Singleton<GameManager>
         PlayerWin = false;
         EventManager = new();
         EventManager.Register(Enumerators.Events.GameOver, GameOver);
-        //DontDestroyOnLoad(this.gameObject);
         SoundEventManager = new();
 
     }
@@ -57,7 +56,7 @@ public class GameManager : Singleton<GameManager>
 
         EventManager.TriggerEvent(Enumerators.Events.OpenDoorOnGameOver);
 
-        yield return new WaitForSeconds(6f); //wait three seconds
+        yield return new WaitForSeconds(6f); //wait six seconds
 
         EventManager.TriggerEvent(Enumerators.Events.StartFade); //fade out
 

@@ -212,6 +212,7 @@ public class GO15Manager : MonoBehaviour, IPuzzle
         CameraTriggerer.gameObject.SetActive(false);
         //maybe other stuff to implement...
         GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableRadio);
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableDials);
         GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.PickUpNote);
     }
 

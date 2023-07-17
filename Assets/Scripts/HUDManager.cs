@@ -127,14 +127,14 @@ public class HUDManager : MonoBehaviour
         //StartCoroutine(TutorialEndMessage());
     }
 
-    private IEnumerator TutorialEndMessage()
-    {
-        yield return new WaitForSeconds(0.5f);
-        Info.text = "Good game";
-        Info.gameObject.SetActive(true);
-        yield return new WaitForSeconds(3f);
-        CloseInfo();
-    }
+    //private IEnumerator TutorialEndMessage()
+    //{
+    //    yield return new WaitForSeconds(0.5f);
+    //    Info.text = "Good game";
+    //    Info.gameObject.SetActive(true);
+    //    yield return new WaitForSeconds(3f);
+    //    CloseInfo();
+    //}
 
     private void CloseInfo()
     {

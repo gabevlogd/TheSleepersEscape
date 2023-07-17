@@ -5,14 +5,11 @@ public class OnTutorial : PlayerState
 {
     private PlayerInput m_inputs;
     private Vector3 m_pastPosition;
-    private bool m_wPressed, m_sPressed, m_aPressed, m_dPressed;
-    public static bool OnTutorialOne, OnTutorialTwo;
+    public bool OnTutorialOne;
 
     public OnTutorial(Enumerators.PlayerState stateID, StatesMachine<Enumerators.PlayerState> stateMachine = null) : base(stateID, stateMachine)
     {
         m_inputs = new();
-        OnTutorialOne = false;
-        OnTutorialTwo = false;
     }
 
     public override void OnEnter()
@@ -36,8 +33,7 @@ public class OnTutorial : PlayerState
         HandleInventoryOpening();
         HandlePauseMenu();
 
-        CheckTutorialOneState();
-        CheckTutorialTwoState();
+        CheckTutorialState();
     }
 
     public override void OnExit()
@@ -67,35 +63,10 @@ public class OnTutorial : PlayerState
         }
     }
 
-    private void CheckTutorialOneState()
+    private void CheckTutorialState()
     {
-        if (!m_wPressed)
-        {
-            if (m_inputs.Traslation.Forward.ReadValue<float>() > 0) m_wPressed = true;
-        }
-        else if (!m_sPressed)
-        {
-            if (m_inputs.Traslation.Forward.ReadValue<float>() < 0) m_sPressed = true;
-        }
-        else if (!m_dPressed)
-        {
-            if (m_inputs.Traslation.Lateral.ReadValue<float>() > 0) m_dPressed = true;
-        }
-        else if (!m_aPressed)
-        {
-            if (m_inputs.Traslation.Lateral.ReadValue<float>() < 0)
-            {
-                m_aPressed = true;
-                OnTutorialOne = true;
-                GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.NextTutorial);
-            }
-        }
-    }
-
-    private void CheckTutorialTwoState()
-    {
-        if (!OnTutorialTwo) return;
-        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.CloseTutorial);
+        if (m_inputs.Traslation.Forward.WasPerformedThisFrame() || m_inputs.Traslation.Lateral.WasPerformedThisFrame())
+            GameManager.Instance.StartCoroutine(SetNextTutorial());
     }
 
     private void HandleStepsSFX()
@@ -113,5 +84,13 @@ public class OnTutorial : PlayerState
             return true;
         }
         else return false;
+    }
+
+    private IEnumerator SetNextTutorial()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+        OnTutorialOne = true;
+        GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.NextTutorial);
+
     }
 }

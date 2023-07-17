@@ -31,6 +31,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private AudioSource m_audioSourceGO15;
 
+    [SerializeField]
+    private AudioSource m_audioSourceFax;
+
 
     [Header("-----AudioClip-----")]
     public AudioClip PlayerStep, PickUp, ThrowDart, TargetBoard,TargetWall, GO15SwitchTile, Watch, SelectedTiled, Pair, NoPair, SuccessPuzzle, FailedPuzzle, SwitchLight, MasterSwitch, AllLightPowerOn, AllLightPowerOff, DoorDial, DoorLight, DoorOpen, WalkmanPlay, WalkmanStop, Radio,Fax, PenSound,GeneratorSound;
@@ -47,6 +50,7 @@ public class SoundManager : MonoBehaviour
         GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlayStepsSound, PlayStepsSound);
         GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.StopStepsSound, StopStepsSound);
         GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundGO15, PlayFromGO15AS);
+        GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlayFaxSound, PlayFromFaxAS);
         GameManager.Instance.EventManager.Register(Enumerators.Events.TurnOffLights, TurnOffGenerator);
         GameManager.Instance.EventManager.Register(Enumerators.Events.TurnOnLights, GeneratorPowerOn);
 
@@ -71,7 +75,6 @@ public class SoundManager : MonoBehaviour
         if (m_audioSourcePlayer.isPlaying) return;
         m_audioSourcePlayer.clip = audioClip;
         m_audioSourcePlayer.Play();
-
     }
 
 
@@ -80,42 +83,41 @@ public class SoundManager : MonoBehaviour
     {
         m_audioSourceDoor.clip = audioClip;
         m_audioSourceDoor.Play();
-
     }
 
     private void PlayFromRadioAS(AudioClip audioClip)
     {
         m_audioSourceRadio.clip = audioClip;
         m_audioSourceRadio.Play();
-
     }
 
     private void PlayFromEnvAS(AudioClip audioClip)
     {
-
         m_audioSourceEnv.clip = audioClip;
         m_audioSourceEnv.Play();
-
     }
 
     private void PlayFromGeneratorAS(AudioClip audioClip)
     {
         m_audioSourceGenerator.clip = audioClip;
         m_audioSourceGenerator.Play();
+    }
 
+    private void PlayFromFaxAS(AudioClip audioClip)
+    {
+        m_audioSourceFax.clip = audioClip;
+        m_audioSourceFax.Play();
     }
 
     private void PlayStepsSound(AudioClip audioClip)
     {
         if (m_audioSourceSteps.isPlaying) return;
-        //m_audioSourceSteps.clip = audioClip;
         m_audioSourceSteps.Play();
     }
 
     private void StopStepsSound(AudioClip audioClip)
     {
-        m_audioSourceGenerator.clip = audioClip;
-        m_audioSourceGenerator.Play();
+        m_audioSourceSteps.Stop();
     }
 
     private void PlayFromGO15AS(AudioClip audioClip)

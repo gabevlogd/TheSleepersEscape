@@ -76,6 +76,7 @@ public static class Enumerators
         PlaySoundGenerator, // si spegne quando si spengono le luci si riaccende quando si riaccendono le luci
         PlayStepsSound,
         StopStepsSound,
-        PlaySoundGO15
+        PlaySoundGO15,
+        PlayFaxSound
 	}
 }
