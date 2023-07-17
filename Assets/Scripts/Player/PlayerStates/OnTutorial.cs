@@ -65,6 +65,7 @@ public class OnTutorial : PlayerState
 
     private void CheckTutorialState()
     {
+        if (OnTutorialOne) return;
         if (m_inputs.Traslation.Forward.WasPerformedThisFrame() || m_inputs.Traslation.Lateral.WasPerformedThisFrame())
             GameManager.Instance.StartCoroutine(SetNextTutorial());
     }
@@ -88,8 +89,8 @@ public class OnTutorial : PlayerState
 
     private IEnumerator SetNextTutorial()
     {
-        yield return new WaitForSecondsRealtime(2f);
         OnTutorialOne = true;
+        yield return new WaitForSecondsRealtime(2f);
         GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.NextTutorial);
 
     }

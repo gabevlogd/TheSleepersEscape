@@ -30,6 +30,7 @@ public class Radio : MonoBehaviour
 
         GameManager.Instance.EventManager.Register(Enumerators.Events.EnableRadio, EnableRadioInteraction);
         GameManager.Instance.EventManager.Register(Enumerators.Events.TurnOffLights, DisableRadioInteraction);
+        GameManager.Instance.EventManager.Register(Enumerators.Events.TurnOffLights, TurnOffRadioLight);
     }
 
     private void Update() => HandlePrintProcess();
@@ -50,7 +51,7 @@ public class Radio : MonoBehaviour
     public void DisableRadioInteraction()
     {
         m_collider.enabled = false;
-        LightVFX.gameObject.SetActive(false);
+        //LightVFX.gameObject.SetActive(false);
     }
 
 
@@ -77,15 +78,16 @@ public class Radio : MonoBehaviour
     /// </summary>
     public void TurnOffRadio()
     {
-        LightVFX.gameObject.SetActive(false);
+        TurnOffRadioLight();
         GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.StopDialogue);
+        GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.StopSoundRadio, GameManager.Instance.SoundManager.Radio);
+
         if (RoomManager.LoopCounter == 1)
         {
             GameManager.Instance.RoomManager.Items[2].SetActive(true); //active the paper pick up;
             GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlayFaxSound, GameManager.Instance.SoundManager.Fax);
         }
 
-        //if (RoomManager.LoopCounter == 2) GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.EnableDials);
         m_runDialogue = false;
         Canvas.gameObject.SetActive(false);
     }
@@ -165,5 +167,7 @@ public class Radio : MonoBehaviour
         }
     }
 
-    
+    public void TurnOffRadioLight() => LightVFX.gameObject.SetActive(false);
+
+
 }

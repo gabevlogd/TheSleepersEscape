@@ -45,6 +45,7 @@ public class SoundManager : MonoBehaviour
         GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundPlayer, PlayFromPlayerAS);
         GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundDoor, PlayFromDoorAS);
         GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundRadio, PlayFromRadioAS);
+        GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.StopSoundRadio, StopRadioAS);
         GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundEnv, PlayFromEnvAS);
         GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlaySoundGenerator, PlayFromGeneratorAS);
         GameManager.Instance.SoundEventManager.Register<AudioClip>(Enumerators.MusicEvents.PlayStepsSound, PlayStepsSound);
@@ -89,6 +90,11 @@ public class SoundManager : MonoBehaviour
     {
         m_audioSourceRadio.clip = audioClip;
         m_audioSourceRadio.Play();
+    }
+
+    private void StopRadioAS(AudioClip audioClip)
+    {
+        m_audioSourceRadio.Stop();
     }
 
     private void PlayFromEnvAS(AudioClip audioClip)
