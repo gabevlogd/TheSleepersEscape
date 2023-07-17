@@ -18,6 +18,7 @@ public class LookAtComponent : MonoBehaviour
         if (AlignmentNeeded())
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Target.rotation, m_angularSpeed * Time.deltaTime);
+            //transform.rotation = Target.rotation;
         }
     }
 

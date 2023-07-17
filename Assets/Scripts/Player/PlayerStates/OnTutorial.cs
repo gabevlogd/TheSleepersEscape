@@ -4,6 +4,7 @@ using UnityEngine;
 public class OnTutorial : PlayerState
 {
     private PlayerInput m_inputs;
+    private Vector3 m_pastPosition;
     private bool m_wPressed, m_sPressed, m_aPressed, m_dPressed;
     public static bool OnTutorialOne, OnTutorialTwo;
 
@@ -30,8 +31,7 @@ public class OnTutorial : PlayerState
 
         base.OnUpdate();
 
-        if (m_inputs.Traslation.Forward.IsInProgress() || m_inputs.Traslation.Lateral.IsInProgress()) 
-            GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlaySoundPlayer, GameManager.Instance.SoundManager.PlayerStep);
+        HandleStepsSFX();
 
         HandleInventoryOpening();
         HandlePauseMenu();
@@ -96,5 +96,22 @@ public class OnTutorial : PlayerState
     {
         if (!OnTutorialTwo) return;
         GameManager.Instance.EventManager.TriggerEvent(Enumerators.Events.CloseTutorial);
+    }
+
+    private void HandleStepsSFX()
+    {
+        if (IsMoving()) GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.PlayStepsSound, GameManager.Instance.SoundManager.PlayerStep);
+        else GameManager.Instance.SoundEventManager.TriggerEvent(Enumerators.MusicEvents.StopStepsSound, GameManager.Instance.SoundManager.PlayerStep);
+
+    }
+
+    private bool IsMoving()
+    {
+        if (m_pastPosition != GameManager.Instance.Player.transform.position)
+        {
+            m_pastPosition = GameManager.Instance.Player.transform.position;
+            return true;
+        }
+        else return false;
     }
 }

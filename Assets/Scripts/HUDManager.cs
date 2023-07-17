@@ -124,8 +124,7 @@ public class HUDManager : MonoBehaviour
     {
         TutorialTwo.SetActive(false);
         //GameManager.Instance.Player.PlayerStateMachine.ChangeState(Enumerators.PlayerState.Navigation);
-
-        StartCoroutine(TutorialEndMessage());
+        //StartCoroutine(TutorialEndMessage());
     }
 
     private IEnumerator TutorialEndMessage()

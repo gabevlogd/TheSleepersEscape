@@ -16,7 +16,7 @@ public class ItemsWheel
     private Vector3 m_raycastDirection;
     public Vector3 LookAtDirection { get => m_raycastDirection; }
 
-    private float m_angularSpeed = 100f;
+    private float m_angularSpeed = 150f;
 
     public ItemsWheel(ref InventoryData inventoryData)
     {

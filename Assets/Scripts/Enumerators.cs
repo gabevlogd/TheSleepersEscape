@@ -73,6 +73,9 @@ public static class Enumerators
         PlaySoundDoor,
         PlaySoundRadio,
         PlaySoundEnv,
-        PlaySoundGenerator // si spegne quando si spengono le luci si riaccende quando si riaccendono le luci
+        PlaySoundGenerator, // si spegne quando si spengono le luci si riaccende quando si riaccendono le luci
+        PlayStepsSound,
+        StopStepsSound,
+        PlaySoundGO15
 	}
 }
